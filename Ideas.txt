@@ -1,0 +1,73 @@
+	
+-	Combat Ideas
+	-	Attack Skill ideas
+		-	Blink/dash - tp from a to b (short range)
+		-	Magic weapon throw
+		-	Buff weapon
+			-	Enhance speed
+			-	Add Element
+			-	
+		-	'Stuck' weapon (this could all be a particular skill or something)
+			- explodes (or something) in enemy (see below)
+	-	Attacks Stick/bounce on larger enemies
+		-	Based on weight/size/armour/toughness of skin(?), type of weapon, quality of swing
+		-	
+	-	Super duper targetting system that leaves Andrew aroused
+		-	for multiplayer purposes allow to change targetting highlight colour either:
+			- a setting that you can change
+			- based on the equipment you're using
+			- Maybe change colour for each party member and slight change of targeting reticle design for different class of weapon/equipment
+	-	Appendage System
+		-Execute on weakened enemies (after disabling arms/legs)
+
+-	Rather then set 'classes' for characters could have weapon skills/masteries
+	-	let players choose what weapon they use and dont lock them to it
+	-	build mastery of a weapon through use and 'training' (<- training per say may be a bit iffy idk)
+	-	if a player wants to switch weapon they can, however include a punishment for other stats not being used
+	-	e.g. a player uses weapon A for a while, builds up a bit of skill, switches to weapon B, building different skills, causing other non-used skills to decay
+	-	encourages use of weapons previously used rather than farm and max out and forget about it
+	-	Could be annoying to some if coming back to Weapon A after using Weapon B for a long period of time
+		-	^ Combat this with accelerated skill earning when revisiting previously used weapon
+
+-	Definitely gotta have a marriage system, gotta get dem waifus
+
+-	'everyday life' skills (maybe)
+	-	IF WE DO THIS IT WILL BE AFTER LITERALLY EVERYTHING ELSE
+	-	If we're planning on implementing normal skills (such as cooking, smithing, etc) include minigame of sort
+	-	(Rather than just a number going up for clicking the 'cook' button)
+	-	instead of minigame [MAYBE A BIT TOO AMBITIOUS] 
+		-	For cooking for example, reward places with bonux skill XP for experimenting with new, unknown ingredients, creating new meals with added bonuses (or whatever purpose food serves ingame)
+	
+
+	
+
+
+NOTES
+To code the system Andrew wants
+A class for body parts
+each part has a reference to another part to the up, down, left, right (possibly generalise this to instead find the closest part based on input)
+a bool for whether or not this one is targetted, some way to tell if player is behind (to swap left,right)
+
+
+List of Useful classes (if i haven't added one, please add it for me)
+Ordered by usefulness and somewhat Heirarchically
+-	UObject - BASE CLASS
+	-	AActor - placable object
+		-	AActorComponent - component on the actor (controls/rendering/mechanics)
+		-	APawn - players/creatures (controllable)
+			-	ACharacter - player/creature with inbuilt movement (may use this or pawn not sure)
+			-	APlayerController - object for enabling control of a pawn
+
+
+
+
+
+
+
+-	AGameWorldBase - Defines the game
+-	AWorldSettings - Settings for the world
+-	AHUD - allows usage of heads up display (will fiddle a little now and a lot later)
+-	APlayerState - multiplayer replicated information of the player (name,gear,etc.)
+-	ASceneComponent - 
+- 	ADecalActor	- renders marks on walls (includes bullet decals, arrows, etc.)
+
