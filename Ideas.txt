@@ -28,15 +28,17 @@
 	-	encourages use of weapons previously used rather than farm and max out and forget about it
 	-	Could be annoying to some if coming back to Weapon A after using Weapon B for a long period of time
 		-	^ Combat this with accelerated skill earning when revisiting previously used weapon
+			-	^ remember the highest level that skill has had
 
 -	Definitely gotta have a marriage system, gotta get dem waifus
+	- Probably not
 
 -	'everyday life' skills (maybe)
 	-	IF WE DO THIS IT WILL BE AFTER LITERALLY EVERYTHING ELSE
 	-	If we're planning on implementing normal skills (such as cooking, smithing, etc) include minigame of sort
 	-	(Rather than just a number going up for clicking the 'cook' button)
 	-	instead of minigame [MAYBE A BIT TOO AMBITIOUS] 
-		-	For cooking for example, reward places with bonux skill XP for experimenting with new, unknown ingredients, creating new meals with added bonuses (or whatever purpose food serves ingame)
+		-	For cooking for example, reward places with bonus skill XP for experimenting with new, unknown ingredients, creating new meals with added bonuses (or whatever purpose food serves ingame)
 	
 
 	
@@ -49,25 +51,5 @@ each part has a reference to another part to the up, down, left, right (possibly
 a bool for whether or not this one is targetted, some way to tell if player is behind (to swap left,right)
 
 
-List of Useful classes (if i haven't added one, please add it for me)
-Ordered by usefulness and somewhat Heirarchically
--	UObject - BASE CLASS
-	-	AActor - placable object
-		-	AActorComponent - component on the actor (controls/rendering/mechanics)
-		-	APawn - players/creatures (controllable)
-			-	ACharacter - player/creature with inbuilt movement (may use this or pawn not sure)
-			-	APlayerController - object for enabling control of a pawn
-
-
-
-
-
-
-
--	AGameWorldBase - Defines the game
--	AWorldSettings - Settings for the world
--	AHUD - allows usage of heads up display (will fiddle a little now and a lot later)
--	APlayerState - multiplayer replicated information of the player (name,gear,etc.)
--	ASceneComponent - 
-- 	ADecalActor	- renders marks on walls (includes bullet decals, arrows, etc.)
-
+Light + Particles to identify where the player(s) is/are targetting
+	- Particles should launch normal to the mesh somehow.
