@@ -37,9 +37,4 @@ public class TestGoThroughVerts : MonoBehaviour {
         }
         }
 	}
-    void OnDrawGizmos()
-    {
-        if(mesh!=null)
-        Gizmos.DrawCube(verts[currentTriangleIndex], Vector3.one*0.01f);    
-    }
 }
