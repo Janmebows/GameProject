@@ -16,15 +16,15 @@ public class CameraController: MonoBehaviour
     public float distanceMin = .5f;
     public float distanceMax = 15f;
     private Rigidbody rigidbody;
+    bool zoomIn = false;
+    float x = 0.0f;
+    float y = 0.0f;
+
 
     //the offset for the camera to look over right(left) shoulder
     public Vector3 offset;
     //Whether or not the player has targetted an enemy
     private bool lockOn;
-    bool zoomIn = false;
-    float x = 0.0f;
-    float y = 0.0f;
-    public AnimationCurve animCurve;
     // Use this for initialization
     void Start()
     {
