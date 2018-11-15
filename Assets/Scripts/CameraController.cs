@@ -59,15 +59,17 @@ public class CameraController: MonoBehaviour
                 distance = Mathf.Clamp(distance - 0.1f, distanceMin, distanceMax);
             else
                 distance = Mathf.Clamp(distance + 0.5f, distanceMin, distanceMax);
-            RaycastHit hit;
-            if (Physics.Linecast(target.position, transform.position, out hit))
-            {
-                distance -= hit.distance;
-            }
+
+            //Will need to fix this part here - currently a bit janky (hence commented)
+            //RaycastHit hit;
+            //if (Physics.Linecast(target.position, transform.position, out hit))
+            //{
+            //    distance -= hit.distance;
+            //}
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
             //not sure about the offset term
             Vector3 position = rotation * negDistance + target.position + (rotation*offset);
-
+            
             transform.rotation = rotation;
             transform.position = position;
         }

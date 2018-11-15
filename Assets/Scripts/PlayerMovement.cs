@@ -29,10 +29,13 @@ public class PlayerMovement : MonoBehaviour
         float inputx = Input.GetAxis("Horizontal");
         float inputy = Input.GetAxis("Vertical");
         float inputMag = Mathf.Sqrt(Mathf.Pow(inputx,2f)+ Mathf.Pow(inputy, 2f));
-        if(inputMag > 0)
+        if (inputMag > 0)
+        {
             inputAngle = InputToRotation(inputx, inputy);
-        //convert the input angle with respect to the camera
-        inputAngle += camera.transform.rotation.eulerAngles.y;
+            //convert the input angle with respect to the camera
+            inputAngle += camera.transform.rotation.eulerAngles.y;
+        }
+
         float yrot = Mathf.LerpAngle(player.transform.rotation.eulerAngles.y, inputAngle, rotateSpeed);
         player.transform.rotation = Quaternion.Euler(0, yrot, 0);
         //if the player is on the ground
