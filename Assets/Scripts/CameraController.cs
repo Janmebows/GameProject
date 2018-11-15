@@ -15,12 +15,16 @@ public class CameraController: MonoBehaviour
 
     public float distanceMin = .5f;
     public float distanceMax = 15f;
-    private bool lockOn;
     private Rigidbody rigidbody;
 
+    //the offset for the camera to look over right(left) shoulder
+    public Vector3 offset;
+    //Whether or not the player has targetted an enemy
+    private bool lockOn;
+    bool zoomIn = false;
     float x = 0.0f;
     float y = 0.0f;
-
+    public AnimationCurve animCurve;
     // Use this for initialization
     void Start()
     {
@@ -41,22 +45,28 @@ public class CameraController: MonoBehaviour
     {
         if (target)
         {
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+            x += Input.GetAxis("XboxRightHorizontal") * xSpeed * distance * 0.02f;
+            y -= Input.GetAxis("XboxRightVertical") * ySpeed * 0.02f;
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
             Quaternion rotation = Quaternion.Euler(y, x, 0);
+            //zoom on first click, zoomout on second 
+            // ^ is XOR
+            zoomIn = zoomIn ^ Input.GetButtonDown("XboxRightStickClick");
 
-            distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
-
+            if (zoomIn)
+                distance = Mathf.Clamp(distance - 0.1f, distanceMin, distanceMax);
+            else
+                distance = Mathf.Clamp(distance + 0.5f, distanceMin, distanceMax);
             RaycastHit hit;
             if (Physics.Linecast(target.position, transform.position, out hit))
             {
                 distance -= hit.distance;
             }
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-            Vector3 position = rotation * negDistance + target.position;
+            //not sure about the offset term
+            Vector3 position = rotation * negDistance + target.position + (rotation*offset);
 
             transform.rotation = rotation;
             transform.position = position;

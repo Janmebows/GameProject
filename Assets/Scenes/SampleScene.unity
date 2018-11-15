@@ -2571,6 +2571,11 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0684b2d7b0c7c4947bb7ed3a824a02ea, type: 2}
+    - target: {fileID: 64207228703770762, guid: b272f597012627f458f567d60cf716fc,
+        type: 2}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b272f597012627f458f567d60cf716fc, type: 2}
   m_IsPrefabAsset: 0
@@ -5022,7 +5027,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 922325832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0.88, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1019640381}
@@ -10135,14 +10140,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417ed8454f0fca94c856f68e69bec713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 922325833}
+  target: {fileID: 1019640381}
   distance: 5
   xSpeed: 120
   ySpeed: 120
   yMinLimit: -20
   yMaxLimit: 80
-  distanceMin: 0.5
-  distanceMax: 15
+  distanceMin: 1
+  distanceMax: 2
+  offset: {x: 1, y: 1.5, z: 0}
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!81 &1999465412
 AudioListener:
   m_ObjectHideFlags: 0

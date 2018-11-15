@@ -1,3 +1,37 @@
+
+NOTES
+Unfinished/unimportant business:
+Camera needs zoom-smoothing (animation curve)
+Possibly make it to hold right stick to zoom, let go to zoom out
+
+
+Next objectives:
+need to animate walking (please)
+Get player to HOLD weapon
+hitboxes
+
+
+
+
+
+
+
+
+To code the system Andrew wants
+A class for body parts
+each part has a reference to another part to the up, down, left, right (possibly generalise this to instead find the closest part based on input)
+a bool for whether or not this one is targetted, some way to tell if player is behind (to swap left,right)
+
+
+Light + Particles to identify where the player(s) is/are targetting
+	- Particles should launch normal to the mesh somehow.
+
+
+
+
+
+
+
 	
 -	Combat Ideas
 	-	Attack Skill ideas
@@ -43,13 +77,3 @@
 
 	
 
-
-NOTES
-To code the system Andrew wants
-A class for body parts
-each part has a reference to another part to the up, down, left, right (possibly generalise this to instead find the closest part based on input)
-a bool for whether or not this one is targetted, some way to tell if player is behind (to swap left,right)
-
-
-Light + Particles to identify where the player(s) is/are targetting
-	- Particles should launch normal to the mesh somehow.

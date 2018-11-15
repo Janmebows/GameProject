@@ -1,0 +1,136 @@
+fileFormatVersion: 2
+guid: 96c0e0efffe193b449534848d6965488
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ETC_machine_root
+    100002: ETC_machineArm01_L
+    100004: ETC_machineArm01_R
+    100006: ETC_machineArm02_L
+    100008: ETC_machineArm02_R
+    100010: ETC_machineArm03_L
+    100012: ETC_machineArm03_R
+    100014: ETC_machineCannonHigh_L
+    100016: ETC_machineCannonHigh_R
+    100018: ETC_machineCannonLow_L
+    100020: ETC_machineCannonLow_R
+    100022: ETC_machineShip_L
+    100024: ETC_machineShip_R
+    100026: ETC_machineShipBack_L
+    100028: ETC_machineShipBack_R
+    100030: ETC_machineShipJaw_L
+    100032: ETC_machineShipJaw_R
+    100034: //RootNode
+    100036: PrinzEugen mec
+    100038: PrinzEugen mec_arm
+    100040: PrinzEugen mec_mesh
+    100042: subetenooya
+    400000: ETC_machine_root
+    400002: ETC_machineArm01_L
+    400004: ETC_machineArm01_R
+    400006: ETC_machineArm02_L
+    400008: ETC_machineArm02_R
+    400010: ETC_machineArm03_L
+    400012: ETC_machineArm03_R
+    400014: ETC_machineCannonHigh_L
+    400016: ETC_machineCannonHigh_R
+    400018: ETC_machineCannonLow_L
+    400020: ETC_machineCannonLow_R
+    400022: ETC_machineShip_L
+    400024: ETC_machineShip_R
+    400026: ETC_machineShipBack_L
+    400028: ETC_machineShipBack_R
+    400030: ETC_machineShipJaw_L
+    400032: ETC_machineShipJaw_R
+    400034: //RootNode
+    400036: PrinzEugen mec
+    400038: PrinzEugen mec_arm
+    400040: PrinzEugen mec_mesh
+    400042: subetenooya
+    2100000: MAT_CHR_OIG01_machine
+    4300000: PrinzEugen mec_mesh
+    9500000: //RootNode
+    13700000: PrinzEugen mec_mesh
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
