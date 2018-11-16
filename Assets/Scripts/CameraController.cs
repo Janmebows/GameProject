@@ -19,7 +19,7 @@ public class CameraController: MonoBehaviour
     bool zoomIn = false;
     float x = 0.0f;
     float y = 0.0f;
-
+    bool invertY = false;
 
     //the offset for the camera to look over right(left) shoulder
     public Vector3 offset;
@@ -46,8 +46,10 @@ public class CameraController: MonoBehaviour
         if (target)
         {
             x += Input.GetAxis("XboxRightHorizontal") * xSpeed * distance * 0.02f;
-            y -= Input.GetAxis("XboxRightVertical") * ySpeed * 0.02f;
-
+            if(!invertY)
+                y -= Input.GetAxis("XboxRightVertical") * ySpeed * 0.02f;
+            else
+                y += Input.GetAxis("XboxRightVertical") * ySpeed * 0.02f;
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
             Quaternion rotation = Quaternion.Euler(y, x, 0);
