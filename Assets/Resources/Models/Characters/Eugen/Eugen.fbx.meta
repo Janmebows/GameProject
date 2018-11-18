@@ -414,7 +414,37 @@ ModelImporter:
     4300000: PrinzEugen_mesh
     9500000: //RootNode
     13700000: PrinzEugen_mesh
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_CHR_OIG01_body
+    second: {fileID: 2100000, guid: bba6795e6f0d0514ea0c7d42a94705e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_CHR_OIG01_bodySkin
+    second: {fileID: 2100000, guid: 4fb7def994c40dc46ab5c926221deead, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_CHR_OIG01_face
+    second: {fileID: 2100000, guid: f633f385fc5c6104887d5f57d0d81fc7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_CHR_OIG01_faceNoLine
+    second: {fileID: 2100000, guid: ff16fdcda37500f498e3217162b2f96d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_CHR_OIG01_hair
+    second: {fileID: 2100000, guid: b8be1abe00970314fb5bbf0e980975f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_CHR_OIG01_obj
+    second: {fileID: 2100000, guid: 768a7d54e9165ac469651050522b7eba, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -486,7 +516,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
