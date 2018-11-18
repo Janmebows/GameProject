@@ -15,7 +15,7 @@ public class CameraController: MonoBehaviour
 
     public float distanceMin = .5f;
     public float distanceMax = 15f;
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
     bool zoomIn = false;
     float x = 0.0f;
     float y = 0.0f;

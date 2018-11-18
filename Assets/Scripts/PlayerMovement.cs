@@ -18,15 +18,19 @@ public class PlayerMovement : MonoBehaviour
     public float rotateSpeed =0.3f;
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
-    public Camera camera;
+    public new Camera camera;
     public GameObject player;
-    public float inputAngle=0;
+    float inputAngle=0;
     Animator anim;
     void Start()
     {
         controller = GetComponent<CharacterController>();
         player = transform.gameObject;
         anim = GetComponent<Animator>();
+        if(camera == null)
+        {
+            camera = Camera.main;
+        }
     }
 
     void Update()

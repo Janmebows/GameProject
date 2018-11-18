@@ -4,66 +4,80 @@ using System.Collections.Generic;
 [AddComponentMenu("Dynamic Bone/Dynamic Bone")]
 public class DynamicBone : MonoBehaviour
 {
-    public Transform m_Root = null;
-    public float m_UpdateRate = 60.0f;
+    //The root of the transform hierarchy to apply physics
+    public Transform root = null;
+    //internal physics simulation rate (in fps)
+    public float updateRate = 60.0f;
+    //how much the bones are slowed down
     [Range(0, 1)]
-    public float m_Damping = 0.1f;
-    public AnimationCurve m_DampingDistrib = null;
+    public float damping = 0.1f;
+    public AnimationCurve dampingDistribution = null;
+    //how much force is applied to return bones to original orientation
     [Range(0, 1)]
-    public float m_Elasticity = 0.1f;
-    public AnimationCurve m_ElasticityDistrib = null;
+    public float elasticity = 0.1f;
+    public AnimationCurve elasticityDistribution = null;
+    //how much the original orientation is preserved
     [Range(0, 1)]
-    public float m_Stiffness = 0.1f;
-    public AnimationCurve m_StiffnessDistrib = null;
+    public float stiffness = 0.1f;
+    public AnimationCurve stiffnessDistribution = null;
+    //how much the character's positional change is ignored in simulation
     [Range(0, 1)]
-    public float m_Inert = 0;
-    public AnimationCurve m_InertDistrib = null;
-    public float m_Radius = 0;
-    public AnimationCurve m_RadiusDistrib = null;
-
-    public float m_EndLength = 0;
-    public Vector3 m_EndOffset = Vector3.zero;
-    public Vector3 m_Gravity = Vector3.zero;
-    public Vector3 m_Force = Vector3.zero;
-    public List<DynamicBoneCollider> m_Colliders = null;
-    public List<Transform> m_Exclusions = null;
+    public float inertia = 0;
+    public AnimationCurve inertiaDistribution = null;
+    //radius of the sphere collider
+    public float radius = 0;
+    public AnimationCurve radiusDistribution = null;
+    //if nonzero generates an extra bone
+    public float endLength = 0;
+    //if nonzero generates an extra bone
+    public Vector3 endOffset = Vector3.zero;
+    //the force to apply to bones in world space Partial force apply to character's initial pose is cancelled out.
+    public Vector3 gravity = Vector3.zero;
+    //force to apply in world space
+    public Vector3 force = Vector3.zero;
+    //colliders to interact with the bones - no penetration can occur
+    public List<DynamicBoneCollider> colliders = null;
+    //bones to exclude from physics simulation
+    public List<Transform> exclusions = null;
+    //constrain bones to only move on certain planes
     public enum FreezeAxis
     {
         None, X, Y, Z
     }
-    public FreezeAxis m_FreezeAxis = FreezeAxis.None;
-    public bool m_DistantDisable = false;
-    public Transform m_ReferenceObject = null;
-    public float m_DistanceToObject = 20;
+    public FreezeAxis freezeAxis = FreezeAxis.None;
+    //disable physics simulation if the character is distancetoobject away from the reference object
+    public bool distantDisable = false;
+    public Transform referenceObject = null;
+    public float distanceToObject = 20;
 
-    Vector3 m_LocalGravity = Vector3.zero;
-    Vector3 m_ObjectMove = Vector3.zero;
-    Vector3 m_ObjectPrevPosition = Vector3.zero;
-    float m_BoneTotalLength = 0;
-    float m_ObjectScale = 1.0f;
-    float m_Time = 0;
-    float m_Weight = 1.0f;
-    bool m_DistantDisabled = false;
+    Vector3 localGravity = Vector3.zero;
+    Vector3 objectMove = Vector3.zero;
+    Vector3 objectPreviousPosition = Vector3.zero;
+    float boneTotalLength = 0;
+    float objectScale = 1.0f;
+    float time = 0;
+    float weight = 1.0f;
+    bool distantDisabled = false;
 
     class Particle
     {
-        public Transform m_Transform = null;
-        public int m_ParentIndex = -1;
-        public float m_Damping = 0;
-        public float m_Elasticity = 0;
-        public float m_Stiffness = 0;
-        public float m_Inert = 0;
-        public float m_Radius = 0;
-        public float m_BoneLength = 0;
+        public Transform transform = null;
+        public int parentIndex = -1;
+        public float damping = 0;
+        public float elasticity = 0;
+        public float stiffness = 0;
+        public float inertia = 0;
+        public float radius = 0;
+        public float boneLength = 0;
 
-        public Vector3 m_Position = Vector3.zero;
-        public Vector3 m_PrevPosition = Vector3.zero;
-        public Vector3 m_EndOffset = Vector3.zero;
-        public Vector3 m_InitLocalPosition = Vector3.zero;
-        public Quaternion m_InitLocalRotation = Quaternion.identity;
+        public Vector3 position = Vector3.zero;
+        public Vector3 previousPosition = Vector3.zero;
+        public Vector3 endOffset = Vector3.zero;
+        public Vector3 initLocalPosition = Vector3.zero;
+        public Quaternion initLocalRotation = Quaternion.identity;
     }
 
-    List<Particle> m_Particles = new List<Particle>();
+    List<Particle> particles = new List<Particle>();
 
     void Start()
     {
@@ -72,42 +86,43 @@ public class DynamicBone : MonoBehaviour
 
     void Update()
     {
-        if (m_Weight > 0 && !(m_DistantDisable && m_DistantDisabled))
+        if (weight > 0 && !(distantDisable && distantDisabled))
             InitTransforms();
     }
 
     void LateUpdate()
     {
-        if (m_DistantDisable)
+        if (distantDisable)
             CheckDistance();
 
-        if (m_Weight > 0 && !(m_DistantDisable && m_DistantDisabled))
+        if (weight > 0 && !(distantDisable && distantDisabled))
             UpdateDynamicBones(Time.deltaTime);
     }
 
     void CheckDistance()
     {
-        Transform rt = m_ReferenceObject;
+        Transform rt = referenceObject;
         if (rt == null && Camera.main != null)
             rt = Camera.main.transform;
         if (rt != null)
         {
             float d = (rt.position - transform.position).sqrMagnitude;
-            bool disable = d > m_DistanceToObject * m_DistanceToObject;
-            if (disable != m_DistantDisabled)
+            bool disable = d > distanceToObject * distanceToObject;
+            if (disable != distantDisabled)
             {
                 if (!disable)
                     ResetParticlesPosition();
-                m_DistantDisabled = disable;
+                distantDisabled = disable;
             }
         }
     }
 
+    //when enabled in hierarchy
     void OnEnable()
     {
         ResetParticlesPosition();
     }
-
+    //when disabled in hierarchy
     void OnDisable()
     {
         InitTransforms();
@@ -115,12 +130,12 @@ public class DynamicBone : MonoBehaviour
 
     void OnValidate()
     {
-        m_UpdateRate = Mathf.Max(m_UpdateRate, 0);
-        m_Damping = Mathf.Clamp01(m_Damping);
-        m_Elasticity = Mathf.Clamp01(m_Elasticity);
-        m_Stiffness = Mathf.Clamp01(m_Stiffness);
-        m_Inert = Mathf.Clamp01(m_Inert);
-        m_Radius = Mathf.Max(m_Radius, 0);
+        updateRate = Mathf.Max(updateRate, 0);
+        damping = Mathf.Clamp01(damping);
+        elasticity = Mathf.Clamp01(elasticity);
+        stiffness = Mathf.Clamp01(stiffness);
+        inertia = Mathf.Clamp01(inertia);
+        radius = Mathf.Max(radius, 0);
 
         if (Application.isEditor && Application.isPlaying)
         {
@@ -131,7 +146,7 @@ public class DynamicBone : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        if (!enabled || m_Root == null)
+        if (!enabled || root == null)
             return;
 
         if (Application.isEditor && !Application.isPlaying && transform.hasChanged)
@@ -141,58 +156,58 @@ public class DynamicBone : MonoBehaviour
         }
 
         Gizmos.color = Color.white;
-        for (int i = 0; i < m_Particles.Count; ++i)
+        for (int i = 0; i < particles.Count; ++i)
         {
-            Particle p = m_Particles[i];
-            if (p.m_ParentIndex >= 0)
+            Particle p = particles[i];
+            if (p.parentIndex >= 0)
             {
-                Particle p0 = m_Particles[p.m_ParentIndex];
-                Gizmos.DrawLine(p.m_Position, p0.m_Position);
+                Particle p0 = particles[p.parentIndex];
+                Gizmos.DrawLine(p.position, p0.position);
             }
-            if (p.m_Radius > 0)
-                Gizmos.DrawWireSphere(p.m_Position, p.m_Radius * m_ObjectScale);
+            if (p.radius > 0)
+                Gizmos.DrawWireSphere(p.position, p.radius * objectScale);
         }
     }
 
     public void SetWeight(float w)
     {
-        if (m_Weight != w)
+        if (weight != w)
         {
             if (w == 0)
                 InitTransforms();
-            else if (m_Weight == 0)
+            else if (weight == 0)
                 ResetParticlesPosition();
-            m_Weight = w;
+            weight = w;
         }
     }
 
     public float GetWeight()
     {
-        return m_Weight;
+        return weight;
     }
 
     void UpdateDynamicBones(float t)
     {
-        if (m_Root == null)
+        if (root == null)
             return;
 
-        m_ObjectScale = Mathf.Abs(transform.lossyScale.x);
-        m_ObjectMove = transform.position - m_ObjectPrevPosition;
-        m_ObjectPrevPosition = transform.position;
+        objectScale = Mathf.Abs(transform.lossyScale.x);
+        objectMove = transform.position - objectPreviousPosition;
+        objectPreviousPosition = transform.position;
 
         int loop = 1;
-        if (m_UpdateRate > 0)
+        if (updateRate > 0)
         {
-            float dt = 1.0f / m_UpdateRate;
-            m_Time += t;
+            float dt = 1.0f / updateRate;
+            time += t;
             loop = 0;
 
-            while (m_Time >= dt)
+            while (time >= dt)
             {
-                m_Time -= dt;
+                time -= dt;
                 if (++loop >= 3)
                 {
-                    m_Time = 0;
+                    time = 0;
                     break;
                 }
             }
@@ -204,7 +219,7 @@ public class DynamicBone : MonoBehaviour
             {
                 UpdateParticles1();
                 UpdateParticles2();
-                m_ObjectMove = Vector3.zero;
+                objectMove = Vector3.zero;
             }
         }
         else
@@ -217,98 +232,98 @@ public class DynamicBone : MonoBehaviour
 
     void SetupParticles()
     {
-        m_Particles.Clear();
-        if (m_Root == null)
+        particles.Clear();
+        if (root == null)
             return;
 
-        m_LocalGravity = m_Root.InverseTransformDirection(m_Gravity);
-        m_ObjectScale = transform.lossyScale.x;
-        m_ObjectPrevPosition = transform.position;
-        m_ObjectMove = Vector3.zero;
-        m_BoneTotalLength = 0;
-        AppendParticles(m_Root, -1, 0);
+        localGravity = root.InverseTransformDirection(gravity);
+        objectScale = transform.lossyScale.x;
+        objectPreviousPosition = transform.position;
+        objectMove = Vector3.zero;
+        boneTotalLength = 0;
+        AppendParticles(root, -1, 0);
 
-        for (int i = 0; i < m_Particles.Count; ++i)
+        for (int i = 0; i < particles.Count; ++i)
         {
-            Particle p = m_Particles[i];
-            p.m_Damping = m_Damping;
-            p.m_Elasticity = m_Elasticity;
-            p.m_Stiffness = m_Stiffness;
-            p.m_Inert = m_Inert;
-            p.m_Radius = m_Radius;
+            Particle p = particles[i];
+            p.damping = damping;
+            p.elasticity = elasticity;
+            p.stiffness = stiffness;
+            p.inertia = inertia;
+            p.radius = radius;
 
-            if (m_BoneTotalLength > 0)
+            if (boneTotalLength > 0)
             {
-                float a = p.m_BoneLength / m_BoneTotalLength;
-                if (m_DampingDistrib != null && m_DampingDistrib.keys.Length > 0)
-                    p.m_Damping *= m_DampingDistrib.Evaluate(a);
-                if (m_ElasticityDistrib != null && m_ElasticityDistrib.keys.Length > 0)
-                    p.m_Elasticity *= m_ElasticityDistrib.Evaluate(a);
-                if (m_StiffnessDistrib != null && m_StiffnessDistrib.keys.Length > 0)
-                    p.m_Stiffness *= m_StiffnessDistrib.Evaluate(a);
-                if (m_InertDistrib != null && m_InertDistrib.keys.Length > 0)
-                    p.m_Inert *= m_InertDistrib.Evaluate(a);
-                if (m_RadiusDistrib != null && m_RadiusDistrib.keys.Length > 0)
-                    p.m_Radius *= m_RadiusDistrib.Evaluate(a);
+                float a = p.boneLength / boneTotalLength;
+                if (dampingDistribution != null && dampingDistribution.keys.Length > 0)
+                    p.damping *= dampingDistribution.Evaluate(a);
+                if (elasticityDistribution != null && elasticityDistribution.keys.Length > 0)
+                    p.elasticity *= elasticityDistribution.Evaluate(a);
+                if (stiffnessDistribution != null && stiffnessDistribution.keys.Length > 0)
+                    p.stiffness *= stiffnessDistribution.Evaluate(a);
+                if (inertiaDistribution != null && inertiaDistribution.keys.Length > 0)
+                    p.inertia *= inertiaDistribution.Evaluate(a);
+                if (radiusDistribution != null && radiusDistribution.keys.Length > 0)
+                    p.radius *= radiusDistribution.Evaluate(a);
             }
 
-            p.m_Damping = Mathf.Clamp01(p.m_Damping);
-            p.m_Elasticity = Mathf.Clamp01(p.m_Elasticity);
-            p.m_Stiffness = Mathf.Clamp01(p.m_Stiffness);
-            p.m_Inert = Mathf.Clamp01(p.m_Inert);
-            p.m_Radius = Mathf.Max(p.m_Radius, 0);
+            p.damping = Mathf.Clamp01(p.damping);
+            p.elasticity = Mathf.Clamp01(p.elasticity);
+            p.stiffness = Mathf.Clamp01(p.stiffness);
+            p.inertia = Mathf.Clamp01(p.inertia);
+            p.radius = Mathf.Max(p.radius, 0);
         }
     }
 
     void AppendParticles(Transform b, int parentIndex, float boneLength)
     {
         Particle p = new Particle();
-        p.m_Transform = b;
-        p.m_ParentIndex = parentIndex;
+        p.transform = b;
+        p.parentIndex = parentIndex;
         if (b != null)
         {
-            p.m_Position = p.m_PrevPosition = b.position;
-            p.m_InitLocalPosition = b.localPosition;
-            p.m_InitLocalRotation = b.localRotation;
+            p.position = p.previousPosition = b.position;
+            p.initLocalPosition = b.localPosition;
+            p.initLocalRotation = b.localRotation;
         }
         else 	// end bone
         {
-            Transform pb = m_Particles[parentIndex].m_Transform;
-            if (m_EndLength > 0)
+            Transform pb = particles[parentIndex].transform;
+            if (endLength > 0)
             {
                 Transform ppb = pb.parent;
                 if (ppb != null)
-                    p.m_EndOffset = pb.InverseTransformPoint((pb.position * 2 - ppb.position)) * m_EndLength;
+                    p.endOffset = pb.InverseTransformPoint((pb.position * 2 - ppb.position)) * endLength;
                 else
-                    p.m_EndOffset = new Vector3(m_EndLength, 0, 0);
+                    p.endOffset = new Vector3(endLength, 0, 0);
             }
             else
             {
-                p.m_EndOffset = pb.InverseTransformPoint(transform.TransformDirection(m_EndOffset) + pb.position);
+                p.endOffset = pb.InverseTransformPoint(transform.TransformDirection(endOffset) + pb.position);
             }
-            p.m_Position = p.m_PrevPosition = pb.TransformPoint(p.m_EndOffset);
+            p.position = p.previousPosition = pb.TransformPoint(p.endOffset);
         }
 
         if (parentIndex >= 0)
         {
-            boneLength += (m_Particles[parentIndex].m_Transform.position - p.m_Position).magnitude;
-            p.m_BoneLength = boneLength;
-            m_BoneTotalLength = Mathf.Max(m_BoneTotalLength, boneLength);
+            boneLength += (particles[parentIndex].transform.position - p.position).magnitude;
+            p.boneLength = boneLength;
+            boneTotalLength = Mathf.Max(boneTotalLength, boneLength);
         }
 
-        int index = m_Particles.Count;
-        m_Particles.Add(p);
+        int index = particles.Count;
+        particles.Add(p);
 
         if (b != null)
         {
             for (int i = 0; i < b.childCount; ++i)
             {
                 bool exclude = false;
-                if (m_Exclusions != null)
+                if (exclusions != null)
                 {
-                    for (int j = 0; j < m_Exclusions.Count; ++j)
+                    for (int j = 0; j < exclusions.Count; ++j)
                     {
-                        Transform e = m_Exclusions[j];
+                        Transform e = exclusions[j];
                         if (e == b.GetChild(i))
                         {
                             exclude = true;
@@ -320,66 +335,67 @@ public class DynamicBone : MonoBehaviour
                     AppendParticles(b.GetChild(i), index, boneLength);
             }
 
-            if (b.childCount == 0 && (m_EndLength > 0 || m_EndOffset != Vector3.zero))
+            if (b.childCount == 0 && (endLength > 0 || endOffset != Vector3.zero))
                 AppendParticles(null, index, boneLength);
         }
     }
 
+    //Restores particles to their initial transformations
     void InitTransforms()
     {
-        for (int i = 0; i < m_Particles.Count; ++i)
+        for (int i = 0; i < particles.Count; ++i)
         {
-            Particle p = m_Particles[i];
-            if (p.m_Transform != null)
+            Particle p = particles[i];
+            if (p.transform != null)
             {
-                p.m_Transform.localPosition = p.m_InitLocalPosition;
-                p.m_Transform.localRotation = p.m_InitLocalRotation;
+                p.transform.localPosition = p.initLocalPosition;
+                p.transform.localRotation = p.initLocalRotation;
             }
         }
     }
 
     void ResetParticlesPosition()
     {
-        for (int i = 0; i < m_Particles.Count; ++i)
+        for (int i = 0; i < particles.Count; ++i)
         {
-            Particle p = m_Particles[i];
-            if (p.m_Transform != null)
+            Particle p = particles[i];
+            if (p.transform != null)
             {
-                p.m_Position = p.m_PrevPosition = p.m_Transform.position;
+                p.position = p.previousPosition = p.transform.position;
             }
             else	// end bone
             {
-                Transform pb = m_Particles[p.m_ParentIndex].m_Transform;
-                p.m_Position = p.m_PrevPosition = pb.TransformPoint(p.m_EndOffset);
+                Transform pb = particles[p.parentIndex].transform;
+                p.position = p.previousPosition = pb.TransformPoint(p.endOffset);
             }
         }
-        m_ObjectPrevPosition = transform.position;
+        objectPreviousPosition = transform.position;
     }
 
     void UpdateParticles1()
     {
-        Vector3 force = m_Gravity;
-        Vector3 fdir = m_Gravity.normalized;
-        Vector3 rf = m_Root.TransformDirection(m_LocalGravity);
+        Vector3 force = gravity;
+        Vector3 fdir = gravity.normalized;
+        Vector3 rf = root.TransformDirection(localGravity);
         Vector3 pf = fdir * Mathf.Max(Vector3.Dot(rf, fdir), 0);	// project current gravity to rest gravity
         force -= pf;	// remove projected gravity
-        force = (force + m_Force) * m_ObjectScale;
+        force = (force + this.force) * objectScale;
 
-        for (int i = 0; i < m_Particles.Count; ++i)
+        for (int i = 0; i < particles.Count; ++i)
         {
-            Particle p = m_Particles[i];
-            if (p.m_ParentIndex >= 0)
+            Particle p = particles[i];
+            if (p.parentIndex >= 0)
             {
                 // verlet integration
-                Vector3 v = p.m_Position - p.m_PrevPosition;
-                Vector3 rmove = m_ObjectMove * p.m_Inert;
-                p.m_PrevPosition = p.m_Position + rmove;
-                p.m_Position += v * (1 - p.m_Damping) + force + rmove;
+                Vector3 v = p.position - p.previousPosition;
+                Vector3 rmove = objectMove * p.inertia;
+                p.previousPosition = p.position + rmove;
+                p.position += v * (1 - p.damping) + force + rmove;
             }
             else
             {
-                p.m_PrevPosition = p.m_Position;
-                p.m_Position = p.m_Transform.position;
+                p.previousPosition = p.position;
+                p.position = p.transform.position;
             }
         }
     }
@@ -388,152 +404,152 @@ public class DynamicBone : MonoBehaviour
     {
         Plane movePlane = new Plane();
 
-        for (int i = 1; i < m_Particles.Count; ++i)
+        for (int i = 1; i < particles.Count; ++i)
         {
-            Particle p = m_Particles[i];
-            Particle p0 = m_Particles[p.m_ParentIndex];
+            Particle p = particles[i];
+            Particle p0 = particles[p.parentIndex];
 
             float restLen;
-            if (p.m_Transform != null)
-                restLen = (p0.m_Transform.position - p.m_Transform.position).magnitude;
+            if (p.transform != null)
+                restLen = (p0.transform.position - p.transform.position).magnitude;
             else
-                restLen = p0.m_Transform.localToWorldMatrix.MultiplyVector(p.m_EndOffset).magnitude;
+                restLen = p0.transform.localToWorldMatrix.MultiplyVector(p.endOffset).magnitude;
 
             // keep shape
-            float stiffness = Mathf.Lerp(1.0f, p.m_Stiffness, m_Weight);
-            if (stiffness > 0 || p.m_Elasticity > 0)
+            float stiffness = Mathf.Lerp(1.0f, p.stiffness, weight);
+            if (stiffness > 0 || p.elasticity > 0)
             {
-                Matrix4x4 m0 = p0.m_Transform.localToWorldMatrix;
-                m0.SetColumn(3, p0.m_Position);
+                Matrix4x4 m0 = p0.transform.localToWorldMatrix;
+                m0.SetColumn(3, p0.position);
                 Vector3 restPos;
-                if (p.m_Transform != null)
-                    restPos = m0.MultiplyPoint3x4(p.m_Transform.localPosition);
+                if (p.transform != null)
+                    restPos = m0.MultiplyPoint3x4(p.transform.localPosition);
                 else
-                    restPos = m0.MultiplyPoint3x4(p.m_EndOffset);
+                    restPos = m0.MultiplyPoint3x4(p.endOffset);
 
-                Vector3 d = restPos - p.m_Position;
-                p.m_Position += d * p.m_Elasticity;
+                Vector3 d = restPos - p.position;
+                p.position += d * p.elasticity;
 
                 if (stiffness > 0)
                 {
-                    d = restPos - p.m_Position;
+                    d = restPos - p.position;
                     float len = d.magnitude;
                     float maxlen = restLen * (1 - stiffness) * 2;
                     if (len > maxlen)
-                        p.m_Position += d * ((len - maxlen) / len);
+                        p.position += d * ((len - maxlen) / len);
                 }
             }
 
             // collide
-            if (m_Colliders != null)
+            if (colliders != null)
             {
-                float particleRadius = p.m_Radius * m_ObjectScale;
-                for (int j = 0; j < m_Colliders.Count; ++j)
+                float particleRadius = p.radius * objectScale;
+                for (int j = 0; j < colliders.Count; ++j)
                 {
-                    DynamicBoneCollider c = m_Colliders[j];
+                    DynamicBoneCollider c = colliders[j];
                     if (c != null && c.enabled)
-                        c.Collide(ref p.m_Position, particleRadius);
+                        c.Collide(ref p.position, particleRadius);
                 }
             }
 
             // freeze axis, project to plane 
-            if (m_FreezeAxis != FreezeAxis.None)
+            if (freezeAxis != FreezeAxis.None)
             {
-                switch (m_FreezeAxis)
+                switch (freezeAxis)
                 {
                     case FreezeAxis.X:
-                        movePlane.SetNormalAndPosition(p0.m_Transform.right, p0.m_Position);
+                        movePlane.SetNormalAndPosition(p0.transform.right, p0.position);
                         break;
                     case FreezeAxis.Y:
-                        movePlane.SetNormalAndPosition(p0.m_Transform.up, p0.m_Position);
+                        movePlane.SetNormalAndPosition(p0.transform.up, p0.position);
                         break;
                     case FreezeAxis.Z:
-                        movePlane.SetNormalAndPosition(p0.m_Transform.forward, p0.m_Position);
+                        movePlane.SetNormalAndPosition(p0.transform.forward, p0.position);
                         break;
                 }
-                p.m_Position -= movePlane.normal * movePlane.GetDistanceToPoint(p.m_Position);
+                p.position -= movePlane.normal * movePlane.GetDistanceToPoint(p.position);
             }
 
             // keep length
-            Vector3 dd = p0.m_Position - p.m_Position;
+            Vector3 dd = p0.position - p.position;
             float leng = dd.magnitude;
             if (leng > 0)
-                p.m_Position += dd * ((leng - restLen) / leng);
+                p.position += dd * ((leng - restLen) / leng);
         }
     }
 
     // only update stiffness and keep bone length
     void SkipUpdateParticles()
     {
-        for (int i = 0; i < m_Particles.Count; ++i)
+        for (int i = 0; i < particles.Count; ++i)
         {
-            Particle p = m_Particles[i];
-            if (p.m_ParentIndex >= 0)
+            Particle p = particles[i];
+            if (p.parentIndex >= 0)
             {
-                p.m_PrevPosition += m_ObjectMove;
-                p.m_Position += m_ObjectMove;
+                p.previousPosition += objectMove;
+                p.position += objectMove;
 
-                Particle p0 = m_Particles[p.m_ParentIndex];
+                Particle p0 = particles[p.parentIndex];
 
                 float restLen;
-                if (p.m_Transform != null)
-                    restLen = (p0.m_Transform.position - p.m_Transform.position).magnitude;
+                if (p.transform != null)
+                    restLen = (p0.transform.position - p.transform.position).magnitude;
                 else
-                    restLen = p0.m_Transform.localToWorldMatrix.MultiplyVector(p.m_EndOffset).magnitude;
+                    restLen = p0.transform.localToWorldMatrix.MultiplyVector(p.endOffset).magnitude;
 
                 // keep shape
-                float stiffness = Mathf.Lerp(1.0f, p.m_Stiffness, m_Weight);
+                float stiffness = Mathf.Lerp(1.0f, p.stiffness, weight);
                 if (stiffness > 0)
                 {
-                    Matrix4x4 m0 = p0.m_Transform.localToWorldMatrix;
-                    m0.SetColumn(3, p0.m_Position);
+                    Matrix4x4 m0 = p0.transform.localToWorldMatrix;
+                    m0.SetColumn(3, p0.position);
                     Vector3 restPos;
-                    if (p.m_Transform != null)
-                        restPos = m0.MultiplyPoint3x4(p.m_Transform.localPosition);
+                    if (p.transform != null)
+                        restPos = m0.MultiplyPoint3x4(p.transform.localPosition);
                     else
-                        restPos = m0.MultiplyPoint3x4(p.m_EndOffset);
+                        restPos = m0.MultiplyPoint3x4(p.endOffset);
 
-                    Vector3 d = restPos - p.m_Position;
+                    Vector3 d = restPos - p.position;
                     float len = d.magnitude;
                     float maxlen = restLen * (1 - stiffness) * 2;
                     if (len > maxlen)
-                        p.m_Position += d * ((len - maxlen) / len);
+                        p.position += d * ((len - maxlen) / len);
                 }
 
                 // keep length
-                Vector3 dd = p0.m_Position - p.m_Position;
+                Vector3 dd = p0.position - p.position;
                 float leng = dd.magnitude;
                 if (leng > 0)
-                    p.m_Position += dd * ((leng - restLen) / leng);
+                    p.position += dd * ((leng - restLen) / leng);
             }
             else
             {
-                p.m_PrevPosition = p.m_Position;
-                p.m_Position = p.m_Transform.position;
+                p.previousPosition = p.position;
+                p.position = p.transform.position;
             }
         }
     }
 
     void ApplyParticlesToTransforms()
     {
-        for (int i = 1; i < m_Particles.Count; ++i)
+        for (int i = 1; i < particles.Count; ++i)
         {
-            Particle p = m_Particles[i];
-            Particle p0 = m_Particles[p.m_ParentIndex];
+            Particle p = particles[i];
+            Particle p0 = particles[p.parentIndex];
 
-            if (p0.m_Transform.childCount <= 1)		// do not modify bone orientation if has more then one child
+            if (p0.transform.childCount <= 1)		// do not modify bone orientation if has more then one child
             {
                 Vector3 v;
-                if (p.m_Transform != null)
-                    v = p.m_Transform.localPosition;
+                if (p.transform != null)
+                    v = p.transform.localPosition;
                 else
-                    v = p.m_EndOffset;
-                Quaternion rot = Quaternion.FromToRotation(p0.m_Transform.TransformDirection(v), p.m_Position - p0.m_Position);
-                p0.m_Transform.rotation = rot * p0.m_Transform.rotation;
+                    v = p.endOffset;
+                Quaternion rot = Quaternion.FromToRotation(p0.transform.TransformDirection(v), p.position - p0.position);
+                p0.transform.rotation = rot * p0.transform.rotation;
             }
 
-            if (p.m_Transform != null)
-                p.m_Transform.position = p.m_Position;
+            if (p.transform != null)
+                p.transform.position = p.position;
         }
     }
 }

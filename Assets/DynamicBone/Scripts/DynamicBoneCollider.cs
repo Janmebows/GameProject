@@ -28,8 +28,11 @@ public class DynamicBoneCollider : MonoBehaviour
 
     public void Collide(ref Vector3 particlePosition, float particleRadius)
     {
+        //global radius
         float radius = m_Radius * Mathf.Abs(transform.lossyScale.x);
+        //finds the height of the centre
         float h = m_Height * 0.5f - m_Radius;
+        //if non-positive height
         if (h <= 0)
         {
             if (m_Bound == Bound.Outside)
@@ -37,8 +40,10 @@ public class DynamicBoneCollider : MonoBehaviour
             else
                 InsideSphere(ref particlePosition, particleRadius, transform.TransformPoint(m_Center), radius);
         }
+        //negative height
         else
         {
+            
             Vector3 c0 = m_Center;
             Vector3 c1 = m_Center;
 
