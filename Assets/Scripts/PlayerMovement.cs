@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
             inputAngle += camera.transform.rotation.eulerAngles.y;
 
             anim.SetBool("isMoving", true);
+            anim.SetFloat("walkSpeed", inputMag);
         }
         else
         {
