@@ -36,7 +36,7 @@ public class DynamicBone : MonoBehaviour
     //force to apply in world space
     public Vector3 force = Vector3.zero;
     //colliders to interact with the bones - no penetration can occur
-    public List<DynamicBoneCollider> colliders = null;
+    public List<CapsuleCollider> colliders = null;
     //bones to exclude from physics simulation
     public List<Transform> exclusions = null;
     //constrain bones to only move on certain planes
@@ -440,15 +440,19 @@ public class DynamicBone : MonoBehaviour
                 }
             }
 
-            // collide
+            //check if there are any colliders we can't interact with
             if (colliders != null)
             {
                 float particleRadius = p.radius * objectScale;
+                //for each collider
                 for (int j = 0; j < colliders.Count; ++j)
                 {
-                    DynamicBoneCollider c = colliders[j];
+                    CapsuleCollider c = colliders[j];
                     if (c != null && c.enabled)
-                        c.Collide(ref p.position, particleRadius);
+                    {
+                        //check if theres any funny business
+                        Collide(ref c,ref p.position, particleRadius);
+                    }
                 }
             }
 
@@ -552,4 +556,114 @@ public class DynamicBone : MonoBehaviour
                 p.transform.position = p.position;
         }
     }
+
+    public void Collide(ref CapsuleCollider collider, ref Vector3 particlePosition, float particleRadius)
+    {
+        float colRadius = collider.radius;
+        float colHeight = collider.height;
+        Vector3 colCentre = collider.center;
+        //global radius
+        float radius = colRadius * Mathf.Abs(this.transform.lossyScale.x);
+        //finds the height of the centre
+        float h = colHeight * 0.5f - colRadius;
+        //if non-positive height
+        if (h <= 0)
+        {
+            OutsideSphere(ref particlePosition, particleRadius, this.transform.TransformPoint(colCentre), radius);
+        }
+        //negative height
+        else
+        {
+            Vector3 c0 = colCentre;
+            Vector3 c1 = colCentre;
+            int direction = collider.direction;
+            switch (direction)
+            {
+                case 0:
+                    c0.x -= h;
+                    c1.x += h;
+                    break;
+                case 1:
+                    c0.y -= h;
+                    c1.y += h;
+                    break;
+                case 2:
+                    c0.z -= h;
+                    c1.z += h;
+                    break;
+            }
+
+            OutsideCapsule(ref particlePosition, particleRadius, transform.TransformPoint(c0), transform.TransformPoint(c1), radius);
+        }
+    }
+
+
+    //Checks if the particle is moving inside the region
+    //If it is, project it out of the region
+    static void OutsideSphere(ref Vector3 particlePosition, float particleRadius, Vector3 sphereCenter, float sphereRadius)
+    {
+        float r = sphereRadius + particleRadius;
+        float r2 = r * r;
+        Vector3 d = particlePosition - sphereCenter;
+        float len2 = d.sqrMagnitude;
+
+        // if is inside sphere, project onto sphere surface
+        if (len2 > 0 && len2 < r2)
+        {
+            float len = Mathf.Sqrt(len2);
+            particlePosition = sphereCenter + d * (r / len);
+        }
+    }
+
+
+    static void OutsideCapsule(ref Vector3 particlePosition, float particleRadius, Vector3 capsuleP0, Vector3 capsuleP1, float capsuleRadius)
+    {
+        float r = capsuleRadius + particleRadius;
+        float r2 = r * r;
+        Vector3 dir = capsuleP1 - capsuleP0;
+        Vector3 d = particlePosition - capsuleP0;
+        float t = Vector3.Dot(d, dir);
+
+        if (t <= 0)
+        {
+            // check sphere1
+            float len2 = d.sqrMagnitude;
+            if (len2 > 0 && len2 < r2)
+            {
+                float len = Mathf.Sqrt(len2);
+                particlePosition = capsuleP0 + d * (r / len);
+            }
+        }
+        else
+        {
+            float dl = dir.sqrMagnitude;
+            if (t >= dl)
+            {
+                // check sphere2
+                d = particlePosition - capsuleP1;
+                float len2 = d.sqrMagnitude;
+                if (len2 > 0 && len2 < r2)
+                {
+                    float len = Mathf.Sqrt(len2);
+                    particlePosition = capsuleP1 + d * (r / len);
+                }
+            }
+            else if (dl > 0)
+            {
+                // check cylinder
+                t /= dl;
+                d -= dir * t;
+                float len2 = d.sqrMagnitude;
+                if (len2 > 0 && len2 < r2)
+                {
+                    float len = Mathf.Sqrt(len2);
+                    particlePosition += d * ((r - len) / len);
+                }
+            }
+        }
+    }
+
+
+
+
 }

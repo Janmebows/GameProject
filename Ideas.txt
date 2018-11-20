@@ -6,12 +6,32 @@ Possibly make it to hold right stick to zoom, let go to zoom out
 
 
 Next objectives:
-need to animate walking (please)
-Get player to HOLD weapon
+Get player to HOLD weapon (soon we'll have to work out inventories too o no)
 hitboxes
+attacking
+appendages
+
+weapons (attacking)
+	- damage not measured as a number
+		- instead have weight/size/surface area?/sharpness ooh we could have stickiness and bounciness
+			-for blunt weapons instead of sharpness maybe something to do with spikes or something idk
+	- somehow calculate a weapons speed and allow it to affect animation times
+		-have a similar mechanic to light/medium/heavy rolls in dark souls (or have it truly based on the speed)
 
 
-
+appendages 
+	- need to have some internal 'health'
+	- possibly some instant break conditions?
+	- damage multipliers for different damage types (crush/sever)
+	- somehow needs to let the owner take damage (we need to work this out)
+	- appendages inflict pain and bleeding to the owner
+		- both are applied by sharp and blunt weapons
+			-sharp weapons do more bleeding, blunt do more pain 
+		- the owner will die after losing too much blood (this will recover with time)
+		- the owner will give in if they are in too much pain 
+			-pain and bleeding tolerance can be increased by moving towards the defensive classes
+	- some appendages have `fatal' tags - when broken the owner will immedaitely die
+	
 
 
 
@@ -23,8 +43,18 @@ each part has a reference to another part to the up, down, left, right (possibly
 a bool for whether or not this one is targetted, some way to tell if player is behind (to swap left,right)
 
 
+-	Each enemy has a target thing
+-	Player activates / deactivates it on lockon
+-	When activated it needs to give off a particle effect (or something)
+-	Needs reference to the pawn's mesh
+-	player needs reference to its location.
+
+
+
+
 Light + Particles to identify where the player(s) is/are targetting
 	- Particles should launch normal to the mesh somehow.
+
 
 
 

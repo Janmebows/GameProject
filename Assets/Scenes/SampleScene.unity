@@ -273,6 +273,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114406680614414316, guid: fa2f58110bd45a64a8b59236483c9e56,
+        type: 2}
+      propertyPath: colliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4119418756069322, guid: fa2f58110bd45a64a8b59236483c9e56, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -339,30 +344,29 @@ Prefab:
       propertyPath: gravity.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114236209580729372, guid: fa2f58110bd45a64a8b59236483c9e56,
+        type: 2}
+      propertyPath: root
+      value: 
+      objectReference: {fileID: 1991117461}
+    - target: {fileID: 114236209580729372, guid: fa2f58110bd45a64a8b59236483c9e56,
+        type: 2}
+      propertyPath: damping
+      value: 0.737
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236209580729372, guid: fa2f58110bd45a64a8b59236483c9e56,
+        type: 2}
+      propertyPath: inertia
+      value: 0.516
+      objectReference: {fileID: 0}
+    - target: {fileID: 114406680614414316, guid: fa2f58110bd45a64a8b59236483c9e56,
+        type: 2}
+      propertyPath: colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa2f58110bd45a64a8b59236483c9e56, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &992905164 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1144313404863242, guid: fa2f58110bd45a64a8b59236483c9e56,
-    type: 2}
-  m_PrefabInternal: {fileID: 691580876}
---- !u!114 &992905173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 992905164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baedd976e12657241bf7ff2d1c685342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.5
-  m_Height: 0
-  m_Direction: 0
-  m_Bound: 0
 --- !u!4 &1019640381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4119418756069322, guid: fa2f58110bd45a64a8b59236483c9e56,
@@ -479,6 +483,11 @@ Transform:
 --- !u!4 &1878701157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4227093205432590, guid: fa2f58110bd45a64a8b59236483c9e56,
+    type: 2}
+  m_PrefabInternal: {fileID: 691580876}
+--- !u!4 &1991117461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4870291720436612, guid: fa2f58110bd45a64a8b59236483c9e56,
     type: 2}
   m_PrefabInternal: {fileID: 691580876}
 --- !u!1 &1999465410
