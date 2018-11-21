@@ -9255,53 +9255,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac8d30c6a0d9642a11e5be4c440740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Root: {fileID: 4832992194960706}
-  m_UpdateRate: 60
-  m_Damping: 0.583
-  m_DampingDistrib:
+  root: {fileID: 0}
+  updateRate: 60
+  damping: 0.1
+  dampingDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Elasticity: 0.1
-  m_ElasticityDistrib:
+  elasticity: 0.1
+  elasticityDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.1
-  m_StiffnessDistrib:
+  stiffness: 0.1
+  stiffnessDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0.552
-  m_InertDistrib:
+  inertia: 0
+  inertiaDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Radius: 0
-  m_RadiusDistrib:
+  radius: 0
+  radiusDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_EndLength: 0
-  m_EndOffset: {x: 0, y: 0, z: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_Force: {x: 0, y: 0, z: 0}
-  m_Colliders: []
-  m_Exclusions: []
-  m_FreezeAxis: 0
-  m_DistantDisable: 0
-  m_ReferenceObject: {fileID: 0}
-  m_DistanceToObject: 20
+  endLength: 0
+  endOffset: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  colliders: []
+  exclusions: []
+  freezeAxis: 0
+  distantDisable: 0
+  referenceObject: {fileID: 0}
+  distanceToObject: 20
 --- !u!114 &114183291163645260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9313,53 +9313,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac8d30c6a0d9642a11e5be4c440740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Root: {fileID: 4950918880679712}
-  m_UpdateRate: 60
-  m_Damping: 0.583
-  m_DampingDistrib:
+  root: {fileID: 0}
+  updateRate: 60
+  damping: 0.1
+  dampingDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Elasticity: 0.1
-  m_ElasticityDistrib:
+  elasticity: 0.1
+  elasticityDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.1
-  m_StiffnessDistrib:
+  stiffness: 0.1
+  stiffnessDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0.528
-  m_InertDistrib:
+  inertia: 0
+  inertiaDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Radius: 0
-  m_RadiusDistrib:
+  radius: 0
+  radiusDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_EndLength: 0
-  m_EndOffset: {x: 0, y: 0, z: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_Force: {x: 0, y: 0, z: 0}
-  m_Colliders: []
-  m_Exclusions: []
-  m_FreezeAxis: 0
-  m_DistantDisable: 0
-  m_ReferenceObject: {fileID: 0}
-  m_DistanceToObject: 20
+  endLength: 0
+  endOffset: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  colliders: []
+  exclusions: []
+  freezeAxis: 0
+  distantDisable: 0
+  referenceObject: {fileID: 0}
+  distanceToObject: 20
 --- !u!114 &114232905866917456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9390,53 +9390,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac8d30c6a0d9642a11e5be4c440740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Root: {fileID: 4227093205432590}
-  m_UpdateRate: 60
-  m_Damping: 0.619
-  m_DampingDistrib:
+  root: {fileID: 4870291720436612}
+  updateRate: 60
+  damping: 0.737
+  dampingDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Elasticity: 0.1
-  m_ElasticityDistrib:
+  elasticity: 0.1
+  elasticityDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.1
-  m_StiffnessDistrib:
+  stiffness: 0.1
+  stiffnessDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0.544
-  m_InertDistrib:
+  inertia: 0.516
+  inertiaDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Radius: 0
-  m_RadiusDistrib:
+  radius: 0
+  radiusDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_EndLength: 0
-  m_EndOffset: {x: 0, y: 0, z: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_Force: {x: 0, y: 0, z: 0}
-  m_Colliders: []
-  m_Exclusions: []
-  m_FreezeAxis: 0
-  m_DistantDisable: 0
-  m_ReferenceObject: {fileID: 0}
-  m_DistanceToObject: 20
+  endLength: 0
+  endOffset: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  colliders: []
+  exclusions: []
+  freezeAxis: 0
+  distantDisable: 0
+  referenceObject: {fileID: 0}
+  distanceToObject: 20
 --- !u!114 &114406680614414316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9448,53 +9448,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac8d30c6a0d9642a11e5be4c440740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Root: {fileID: 4870291720436612}
-  m_UpdateRate: 60
-  m_Damping: 0.481
-  m_DampingDistrib:
+  root: {fileID: 4227093205432590}
+  updateRate: 60
+  damping: 0.819
+  dampingDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Elasticity: 0.1
-  m_ElasticityDistrib:
+  elasticity: 0.092
+  elasticityDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.1
-  m_StiffnessDistrib:
+  stiffness: 0.1
+  stiffnessDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0.75
-  m_InertDistrib:
+  inertia: 0.744
+  inertiaDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Radius: 0
-  m_RadiusDistrib:
+  radius: 0
+  radiusDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_EndLength: 0
-  m_EndOffset: {x: 0, y: 0, z: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_Force: {x: 0, y: 0, z: 0}
-  m_Colliders: []
-  m_Exclusions: []
-  m_FreezeAxis: 0
-  m_DistantDisable: 0
-  m_ReferenceObject: {fileID: 0}
-  m_DistanceToObject: 20
+  endLength: 0
+  endOffset: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  colliders:
+  - {fileID: 0}
+  exclusions: []
+  freezeAxis: 0
+  distantDisable: 0
+  referenceObject: {fileID: 0}
+  distanceToObject: 20
 --- !u!114 &114494139379654216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9506,53 +9507,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac8d30c6a0d9642a11e5be4c440740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Root: {fileID: 4254500687080494}
-  m_UpdateRate: 60
-  m_Damping: 0.548
-  m_DampingDistrib:
+  root: {fileID: 0}
+  updateRate: 60
+  damping: 0.1
+  dampingDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Elasticity: 0.1
-  m_ElasticityDistrib:
+  elasticity: 0.1
+  elasticityDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.1
-  m_StiffnessDistrib:
+  stiffness: 0.1
+  stiffnessDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0.748
-  m_InertDistrib:
+  inertia: 0
+  inertiaDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Radius: 0
-  m_RadiusDistrib:
+  radius: 0
+  radiusDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_EndLength: 0
-  m_EndOffset: {x: 0, y: 0, z: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_Force: {x: 0, y: 0, z: 0}
-  m_Colliders: []
-  m_Exclusions: []
-  m_FreezeAxis: 0
-  m_DistantDisable: 0
-  m_ReferenceObject: {fileID: 0}
-  m_DistanceToObject: 20
+  endLength: 0
+  endOffset: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  colliders: []
+  exclusions: []
+  freezeAxis: 0
+  distantDisable: 0
+  referenceObject: {fileID: 0}
+  distanceToObject: 20
 --- !u!114 &114536158071091892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9564,53 +9565,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac8d30c6a0d9642a11e5be4c440740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Root: {fileID: 4075592243054150}
-  m_UpdateRate: 60
-  m_Damping: 0.544
-  m_DampingDistrib:
+  root: {fileID: 0}
+  updateRate: 60
+  damping: 0.1
+  dampingDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Elasticity: 0.1
-  m_ElasticityDistrib:
+  elasticity: 0.1
+  elasticityDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.1
-  m_StiffnessDistrib:
+  stiffness: 0.1
+  stiffnessDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0.752
-  m_InertDistrib:
+  inertia: 0
+  inertiaDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Radius: 0
-  m_RadiusDistrib:
+  radius: 0
+  radiusDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_EndLength: 0
-  m_EndOffset: {x: 0, y: 0, z: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_Force: {x: 0, y: 0, z: 0}
-  m_Colliders: []
-  m_Exclusions: []
-  m_FreezeAxis: 0
-  m_DistantDisable: 0
-  m_ReferenceObject: {fileID: 0}
-  m_DistanceToObject: 20
+  endLength: 0
+  endOffset: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  colliders: []
+  exclusions: []
+  freezeAxis: 0
+  distantDisable: 0
+  referenceObject: {fileID: 0}
+  distanceToObject: 20
 --- !u!114 &114717700145878962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9634,53 +9635,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac8d30c6a0d9642a11e5be4c440740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Root: {fileID: 4223827847350032}
-  m_UpdateRate: 60
-  m_Damping: 0.575
-  m_DampingDistrib:
+  root: {fileID: 0}
+  updateRate: 60
+  damping: 0.1
+  dampingDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Elasticity: 0.1
-  m_ElasticityDistrib:
+  elasticity: 0.1
+  elasticityDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.1
-  m_StiffnessDistrib:
+  stiffness: 0.1
+  stiffnessDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0.815
-  m_InertDistrib:
+  inertia: 0
+  inertiaDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Radius: 0
-  m_RadiusDistrib:
+  radius: 0
+  radiusDistribution:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_EndLength: 0
-  m_EndOffset: {x: 0, y: 0, z: 0}
-  m_Gravity: {x: 0, y: 0, z: 0}
-  m_Force: {x: 0, y: 0, z: 0}
-  m_Colliders: []
-  m_Exclusions: []
-  m_FreezeAxis: 0
-  m_DistantDisable: 0
-  m_ReferenceObject: {fileID: 0}
-  m_DistanceToObject: 20
+  endLength: 0
+  endOffset: {x: 0, y: 0, z: 0}
+  gravity: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  colliders: []
+  exclusions: []
+  freezeAxis: 0
+  distantDisable: 0
+  referenceObject: {fileID: 0}
+  distanceToObject: 20
 --- !u!137 &137768338019747652
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

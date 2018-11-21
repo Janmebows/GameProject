@@ -11,13 +11,15 @@ hitboxes
 attacking
 appendages
 
+
 weapons (attacking)
 	- damage not measured as a number
-		- instead have weight/size/surface area?/sharpness ooh we could have stickiness and bounciness
+		- instead have weight/size (reach)/surface area?/sharpness ooh we could have stickiness and bounciness
 			-for blunt weapons instead of sharpness maybe something to do with spikes or something idk
+			-sharpness vs surface 
 	- somehow calculate a weapons speed and allow it to affect animation times
 		-have a similar mechanic to light/medium/heavy rolls in dark souls (or have it truly based on the speed)
-
+	- weapons can have bonuses to certain things (inflicts more pain / causes more bleeding)
 
 appendages 
 	- need to have some internal 'health'
@@ -31,11 +33,14 @@ appendages
 		- the owner will give in if they are in too much pain 
 			-pain and bleeding tolerance can be increased by moving towards the defensive classes
 	- some appendages have `fatal' tags - when broken the owner will immedaitely die
-	
 
 
+How does (active/passive) healing work?????
+- auto stop bleeding (potential animation) after combat
+- while in combat use bandages to reduce bleeding
+How will armour work??
 
-
+Stamina/Exhaustion mechanic?
 
 To code the system Andrew wants
 A class for body parts
