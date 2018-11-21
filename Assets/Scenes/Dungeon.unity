@@ -113,58 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &491567341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 491567343}
-  - component: {fileID: 491567342}
-  m_Layer: 0
-  m_Name: DungeonGen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &491567342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 491567341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96c8dcf39fbc5e045b1daae9e2235cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxRooms: 351
-  roomCollisionTolerance: 0.989
-  roomTypes: []
-  instantiatedRoomObjects: []
-  instantiatedRoomScripts: []
-  DungeonParent: {fileID: 1996885662}
-  deadEnd: {fileID: 0}
-  door: {fileID: 0}
-  exit: {fileID: 0}
-  spawn: {fileID: 0}
-  useRandomSeed: 1
-  CustomSeed: 90909
---- !u!4 &491567343
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 491567341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &829570369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4119418756069322, guid: fa2f58110bd45a64a8b59236483c9e56,
@@ -325,7 +273,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4119418756069322, guid: fa2f58110bd45a64a8b59236483c9e56, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114232905866917456, guid: fa2f58110bd45a64a8b59236483c9e56,
         type: 2}
@@ -427,7 +375,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1692395864
 MonoBehaviour:
@@ -448,6 +396,7 @@ MonoBehaviour:
   yMaxLimit: 80
   distanceMin: 2
   distanceMax: 3
+  invertY: 1
   offset: {x: 0.8, y: 1.5, z: 0}
 --- !u!4 &1857527098 stripped
 Transform:
@@ -462,6 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1996885663}
+  - component: {fileID: 1996885664}
   m_Layer: 0
   m_Name: DungeonParent
   m_TagString: Untagged
@@ -481,5 +431,28 @@ Transform:
   m_Children:
   - {fileID: 1857527098}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1996885664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1996885662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c8dcf39fbc5e045b1daae9e2235cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRooms: 144
+  roomCollisionTolerance: 0.99
+  roomTypes: []
+  instantiatedRoomObjects: []
+  instantiatedRoomScripts: []
+  DungeonParent: {fileID: 0}
+  deadEnd: {fileID: 0}
+  door: {fileID: 0}
+  exit: {fileID: 0}
+  spawn: {fileID: 0}
+  useRandomSeed: 1
+  CustomSeed: 0

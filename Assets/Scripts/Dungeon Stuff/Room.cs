@@ -8,10 +8,9 @@ public class Room : MonoBehaviour {
     public GameObject room; //reference to the gameobject
     public Transform[] Doorways; //stores spots where the room can link to another room (doorways)
     //Note the doorways rotations need to add to 180
-    Vector3[] points; //
+    public List<int> doorRotations; //order should be the same as doorways
     public List<GameObject> connectedRooms;
     protected bool playerInRoom;
-    public List<int> doorRotations; //order should be the same as doorways
     public float rotation=0;
     public Transform center; //centre of the box the room generates
     public Transform corner; //Distance from centre to a corner
@@ -19,6 +18,7 @@ public class Room : MonoBehaviour {
     {
         ID += 1;
         thisID = ID;
+        connectedRooms = new List<GameObject>();
     }
 
 
@@ -58,7 +58,7 @@ public class Room : MonoBehaviour {
     
     //Will add delegate functions for different rooms for better checks
     //i.e. for the T room use two check boxes - one for the vertical line, and one for the horizontal, and just take !or
-    public bool NoCollisionAbstract(Vector3 boxOffset, Quaternion boxRotation, float tolerance)
+    public bool NoCollisionAbstract(Vector3 boxOffset, Vector3 boxRotation, float tolerance)
     {
         //Boxoffset is where we're the room will be centered
         //Boxrotation is how the room is to be rotated
@@ -66,7 +66,7 @@ public class Room : MonoBehaviour {
         Vector3 boxCenter = boxOffset;
         Vector3 halfExtents = (corner.localPosition - center.localPosition) * tolerance;
         //Returns true if there is NO collision
-        return !Physics.CheckBox(boxCenter, halfExtents, boxRotation);
+        return !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(boxRotation));
 
     }
 }

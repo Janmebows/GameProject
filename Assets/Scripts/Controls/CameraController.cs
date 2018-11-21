@@ -19,7 +19,7 @@ public class CameraController: MonoBehaviour
     bool zoomIn = false;
     float x = 0.0f;
     float y = 0.0f;
-    bool invertY = false;
+    public bool invertY = false;
 
     //the offset for the camera to look over right(left) shoulder
     public Vector3 offset;
