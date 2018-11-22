@@ -12,6 +12,10 @@ public class Appendage : MonoBehaviour {
     //an appendage must have a collider
     public new Collider collider;
 
+    public Appendage uplimb   = null;
+    public Appendage downlimb = null;
+    public Appendage leftlimb = null;
+    public Appendage rightlim = null;
 
     //BROKEN LIMB STUFF
     //broken limbs will affect animations, damage, ability to perform certain attacks
@@ -28,6 +32,7 @@ public class Appendage : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () { 
+
 	}
 	
 	// Update is called once per frame

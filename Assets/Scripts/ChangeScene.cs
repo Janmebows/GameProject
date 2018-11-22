@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour {
-    Collider collider;
+    new Collider collider;
     public List<string> scenes;
     public Transform player;
     bool InOpenWorld;

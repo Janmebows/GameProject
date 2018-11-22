@@ -116,7 +116,7 @@ public class DungeonManager : MonoBehaviour
             //the one which is actually connected
             else
             {
-                GameObject tempDoor = Instantiate(door, doorConnection.door);
+                Instantiate(door, doorConnection.door);
                 unusedDoors.Remove(prevRoomDoorConnection);
             }
         }

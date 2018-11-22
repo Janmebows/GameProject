@@ -21,6 +21,49 @@ weapons (attacking)
 		-have a similar mechanic to light/medium/heavy rolls in dark souls (or have it truly based on the speed)
 	- weapons can have bonuses to certain things (inflicts more pain / causes more bleeding)
 
+weapons construction system
+enum pieceType {hilt,guard,shaft,spike,head}
+	-each part will have its own collider!
+	- each component piece has sockets for other pieces
+	- HILT:
+		-root to hold the weapon
+		-down attaches to a spike 
+		-up attaches to a guard/adaptor/shaft/allowed head/
+		-Stat effects:
+			-
+			-
+	- GUARD (adaptor):
+		- can be used to make the head not look stupid (if not an allowed head)
+		- 
+		-down attaches to a hilt 
+		-up attaches to a shaft/allowed head 
+		-Stat effects:
+			-
+			-
+	- SHAFT
+		-big sticky bit 
+		-down attaches to a hilt/guard(adaptor)
+		-up attaches to a head/shaft/spike
+		-Stat effects:
+			-RANGE
+			-WEIGHT
+			-
+	- SPIKE
+		- just a pointed spike/ball or something to attach to the end of a weapon 
+		- TERMINUS POINT
+		- down attaches to a hilt/head
+		-Stat effects:
+			-
+			-
+	- HEAD
+		-the main blade of the weapon 
+		-down attaches to a hilt/guard/shaft
+		-up attaches to a spike
+			-if we want maybe can attach to another shaft for the meme
+		-Stat effects:
+			-
+			-
+	
 appendages 
 	- need to have some internal 'health'
 	- possibly some instant break conditions?
