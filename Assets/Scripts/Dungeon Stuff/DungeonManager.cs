@@ -194,7 +194,6 @@ IEnumerator ReplaceDeadEndsWithDoors()
                 //removes clutter from hierarchy
                 tempDoor.transform.parent = deadEnds[startingIndex].transform.parent;
                 GameObject temp = deadEnds[startingIndex];
-                Debug.Log(temp.transform.position.ToString());
                 deadEnds.RemoveAt(startingIndex);
                 Destroy(temp);
 

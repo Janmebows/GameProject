@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     //reference to the player to look at
     public Transform player;
     //reference to what the player is locking on to
-    public Transform target;
+    Transform target;
     public float distance = 5.0f;
     public float xSpeed = 4.0f;
     public float ySpeed = 4.0f;
@@ -27,8 +27,8 @@ public class CameraController : MonoBehaviour
     //the offset for the camera to look over right(left) shoulder
     public Vector3 offset;
     //Whether or not the player has targetted an enemy
-    public bool tryLockOn;
-    bool lockedOn;
+    bool tryLockOn = false;
+    bool lockedOn = false;
     // Use this for initialization
     void Start()
     {
@@ -71,11 +71,20 @@ public class CameraController : MonoBehaviour
 
         }
 
-        if (lockedOn && target!=null) { 
+        if (lockedOn && target != null)
+        {
+            if (Input.GetButtonDown("XboxLB"))
+            {
+                ChangeTarget(true);
+            }
+            else if (Input.GetButtonDown("XboxRB"))
+            {
+                ChangeTarget(false);
+            }
             rotation = transform.rotation;
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
             position = transform.rotation * negDistance + player.position + (transform.rotation * offset);
-            
+
             Vector3 direction = target.position - position;
 
             //slerp to make pretty rotating effect
@@ -100,8 +109,8 @@ public class CameraController : MonoBehaviour
 
         }
 
-            transform.position = position;
-            transform.rotation = rotation;
+        transform.position = position;
+        transform.rotation = rotation;
         //Will need to fix this part here - currently a bit janky (hence commented)
         //RaycastHit hit;
         //if (Physics.Linecast(target.position, transform.position, out hit))
@@ -112,53 +121,110 @@ public class CameraController : MonoBehaviour
 
     }
 
-    //true if a target was found
-    //false otherwise
-    //sets the target within the script
-    bool FindBestTarget()
+    //Finds all the enemies seen by the main camera
+    void FindValidTargets(ref List<GameObject> validTargets)
     {
-        List<GameObject> validTargets = new List<GameObject>();
-        //may have a script which can manage this when it does spawning, etc.
+        //may have a script which can manage this with spawning/despawning, etc.
         //HAVE TO GIVE EVERY ENEMY A TAG THAT ACKNOWLEDGES THEM AS AN ENEMY
         GameObject[] enemiesInScene = GameObject.FindGameObjectsWithTag("Enemy");
-        if(enemiesInScene.Length >= 1)
+        if (enemiesInScene.Length >= 1)
         {
             //check if it is a valid target
             foreach (GameObject enemy in enemiesInScene)
             {
-                if (enemy.GetComponentInChildren<Renderer>().IsVisibleFrom(Camera.main))
+                if (LiesInCamera(enemy.transform.position))
+                {
                     validTargets.Add(enemy);
+                }
             }
-            //if theres only one valid target - we lock on to that one
-            if(validTargets.Count==1)
-            {
-                target = validTargets[0].transform;
-                return true;
-            }
-            //if there are multiple targets pick the best
-            else if(validTargets.Count >1)
-            {
-                target = validTargets[0].transform;
-                foreach(GameObject obj in validTargets)
-                    target =BestOutOfTwoValidTargets(target, obj.transform);
-                return true;
-            }
+        }
+    }
+    //Given a Vector3, tells if it appears in camera
+    bool LiesInCamera(Vector3 position)
+    {
+        Vector3 pt = Camera.main.WorldToViewportPoint(position);
+        if (pt.x > 1 || pt.x < 0 || pt.y > 1 || pt.y < 0 || pt.z < 0)
+            return false;
+        else
+        {
+            return true;
+        }
+    }
+    bool FindBestTarget()
+    {
+        List<GameObject> validTargets = new List<GameObject>();
+        FindValidTargets(ref validTargets);
+        //if theres only one valid target - we lock on to that one
+        if (validTargets.Count == 1)
+        {
+            target = validTargets[0].transform;
+            return true;
+        }
+        //if there are multiple targets pick the best
+        else if (validTargets.Count > 1)
+        {
+            target = validTargets[0].transform;
+            foreach (GameObject obj in validTargets)
+                target = BestOutOfTwoValidTargets(target, obj.transform);
+            return true;
         }
         //no targets were found
         target = null;
         return false;
     }
-    //currently just looks at distance but i want it to prioritise centredness higher than distance (but consider both)
+
     Transform BestOutOfTwoValidTargets(Transform target1, Transform target2)
     {
-        float invLikelihood1 = Vector3.Magnitude(target1.position - transform.position);
-        float invLikelihood2 = Vector3.Magnitude(target2.position - transform.position);
+        float angle1 = Vector3.Angle(target1.position - transform.position, transform.forward);
+        float angle2 = Vector3.Angle(target2.position - transform.position, transform.forward);
+        float dist1 = Vector3.Magnitude(target1.position - transform.position);
+        float dist2 = Vector3.Magnitude(target2.position - transform.position);
+        float distanceScale = 0.1f;
+        //want the smallest angle and smallest distance
+        float invLikelihood1 = angle1 * angle1 + (dist1 * distanceScale);
+        float invLikelihood2 = angle2 * angle2 + (dist2 * distanceScale);
         if (invLikelihood1 <= invLikelihood2)
             return target1;
         else
         {
             return target2;
         }
+    }
+
+    //given a current target and a direction to go (left/right)
+    void ChangeTarget(bool leftTrightF)
+    {
+        List<GameObject> validTargets = new List<GameObject>();
+        FindValidTargets(ref validTargets);
+        float currentangle = Vector3.SignedAngle(target.position - transform.position, transform.forward, Vector3.up);
+
+        //pointless to consider the current object
+        validTargets.Remove(target.gameObject);
+        if (validTargets.Count >= 1)
+        {
+            int counter = validTargets.Count - 1;
+            float bestAngle = leftTrightF? 500 : -500;
+
+            Debug.Log(counter);
+            while (counter >= 0)
+            {
+                float thisAngle = Vector3.SignedAngle(validTargets[counter].transform.position - transform.position, transform.forward, Vector3.up);
+                Debug.Log(thisAngle);
+                //If its to the left but less to the left than the last
+                if (leftTrightF && (thisAngle > currentangle && thisAngle < bestAngle) || !leftTrightF && (thisAngle < currentangle && thisAngle > bestAngle))
+                {
+                    Debug.Log("test");
+                    target = validTargets[counter].transform;
+                    bestAngle = thisAngle;
+
+                }
+
+                counter--;
+            }
+        }
+        else { return; }
+
+
     }
 
     //implements a zoomin effect
@@ -182,4 +248,6 @@ public class CameraController : MonoBehaviour
             angle -= 360F;
         return Mathf.Clamp(angle, min, max);
     }
+
+
 }
