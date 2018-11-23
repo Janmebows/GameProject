@@ -1,8 +1,33 @@
 
 NOTES
 Unfinished/unimportant business:
-Camera needs zoom-smoothing (animation curve)
-Possibly make it to hold right stick to zoom, let go to zoom out
+Camera needs smoothing out of lock-on
+Fix targetting to consider angle and distance (angle has greater impact than distance)
+
+CONTROL SCHEMA
+-LS - move (duh)
+-LSC - sprint
+-RS
+	- camera (not locked on)
+	- change targetted limb (when locked on)
+-RSC - toggle lock on
+-A - jump (possibly swap with B)
+-B - interact (possibly swap with A)
+-X - ability toggle 1*(possibly swap these with LT/RT)
+-Y - ability toggle 2* (possibly swap these with LT/RT)
+-LB - change target left
+-RB - change target right 
+-LT - light attack (possibly swap these with x/y) 
+-RT - heavy attack (possibly swap these with x/y)
+-DPAD
+	- side change weapon
+	- updown quick item
+
+*hold x + RT = heavy ability 1
+ hold y + RT = heavy ability 2
+ hold x + LT = light ability 1
+ hold y + LT = light ability 2
+possibly RT + LT = block? - might need to put this on its own key (possibly B?) 
 
 
 Next objectives:
