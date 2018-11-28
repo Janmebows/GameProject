@@ -439,7 +439,6 @@ GameObject:
   - component: {fileID: 1692395863}
   - component: {fileID: 1692395862}
   - component: {fileID: 1692395861}
-  - component: {fileID: 1692395860}
   - component: {fileID: 1692395859}
   - component: {fileID: 1692395864}
   m_Layer: 0
@@ -451,13 +450,6 @@ GameObject:
   m_IsActive: 1
 --- !u!81 &1692395859
 AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1692395858}
-  m_Enabled: 1
---- !u!92 &1692395860
-Behaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -535,16 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 829570369}
-  distance: 5
-  xSpeed: 2
-  ySpeed: 3
-  lockOnSpeed: 10
-  yMinLimit: -20
-  yMaxLimit: 80
-  distanceMin: 2
-  distanceMax: 3
-  invertY: 1
-  offset: {x: 0.6, y: 1.3, z: 0}
+  cameraSettings: {fileID: 11400000, guid: c69ef39798c5a5b4d9a60c7244c25eb1, type: 2}
 --- !u!1001 &1717045747
 Prefab:
   m_ObjectHideFlags: 0

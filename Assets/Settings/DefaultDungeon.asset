@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25045222f610434c9c699f7a53e2065, type: 3}
+  m_Name: DefaultDungeon
+  m_EditorClassIdentifier: 
+  maxRooms: 500
+  collisionTolerance: 0.99
+  deadEnd: {fileID: 0}
+  door: {fileID: 0}
+  exit: {fileID: 0}
+  spawn: {fileID: 0}
+  roomTypes: []
+  useRandomSeed: 0
+  CustomSeed: 0

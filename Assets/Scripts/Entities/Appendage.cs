@@ -7,6 +7,7 @@ using UnityEngine;
 //Head, torso, leg, arm, etc. all come under this class
 public class Appendage : MonoBehaviour {
 
+    //possibly change these for different limbs
     public enum Limb
     {
         Head,Neck,UpperChest,LowerChest,UpperArm,LowerArm,Hand,UpperLeg,LowerLeg,Foot,None

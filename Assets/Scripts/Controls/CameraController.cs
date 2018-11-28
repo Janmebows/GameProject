@@ -2,31 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
 public class CameraController : MonoBehaviour
 {
     //reference to the player to look at
     public Transform player;
     //reference to what the player is locking on to
     Transform target;
-    public float distance = 5.0f;
-    public float xSpeed = 4.0f;
-    public float ySpeed = 4.0f;
-    public float lockOnSpeed = 1f;
-    public float yMinLimit = -20f;
-    public float yMaxLimit = 80f;
-
-    public float distanceMin = .5f;
-    public float distanceMax = 15f;
     private new Rigidbody rigidbody;
+    public CameraSettings cameraSettings;
     bool zoomIn = false;
     float x = 0.0f;
     float y = 0.0f;
-    public bool invertY = false;
 
-    //the offset for the camera to look over right(left) shoulder
-    public Vector3 offset;
-    //Whether or not the player has targetted an enemy
+    //Whether or not the player wants to and has targeted an enemy
     bool tryLockOn = false;
     bool lockedOn = false;
     // Use this for initialization
@@ -82,30 +70,30 @@ public class CameraController : MonoBehaviour
                 ChangeTarget(false);
             }
             rotation = transform.rotation;
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-            position = transform.rotation * negDistance + player.position + (transform.rotation * offset);
+            Vector3 negDistance = new Vector3(0.0f, 0.0f, -cameraSettings.distance);
+            position = transform.rotation * negDistance + player.position + (transform.rotation * cameraSettings.offset);
 
             Vector3 direction = target.position - position;
 
             //slerp to make pretty rotating effect
-            rotation = Quaternion.Slerp(rotation, Quaternion.LookRotation(direction), Time.deltaTime * lockOnSpeed);
+            rotation = Quaternion.Slerp(rotation, Quaternion.LookRotation(direction), Time.deltaTime * cameraSettings.lockOnSpeed);
             //DO SOMETHING HERE TO STOP RETARDED ROTATY SHIT WHEN TOO CLOSE
 
         }
         else
         {
-            x += Input.GetAxis("XboxRightHorizontal") * xSpeed * distance;
-            if (!invertY)
-                y -= Input.GetAxis("XboxRightVertical") * ySpeed;
+            x += Input.GetAxis("XboxRightHorizontal") * cameraSettings.xSpeed * cameraSettings.distance;
+            if (!cameraSettings.invertY)
+                y -= Input.GetAxis("XboxRightVertical") * cameraSettings.ySpeed;
             else
-                y += Input.GetAxis("XboxRightVertical") * ySpeed;
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
+                y += Input.GetAxis("XboxRightVertical") * cameraSettings.ySpeed;
+            y = ClampAngle(y, cameraSettings.yMinLimit, cameraSettings.yMaxLimit);
 
             //ZoomIn(ref distance);
             rotation = Quaternion.Euler(y, x, 0);
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+            Vector3 negDistance = new Vector3(0.0f, 0.0f, -cameraSettings.distance);
             //not sure about the offset term
-            position = rotation * negDistance + player.position + (rotation * offset);
+            position = rotation * negDistance + player.position + (rotation * cameraSettings.offset);
 
         }
 
@@ -231,9 +219,9 @@ public class CameraController : MonoBehaviour
         zoomIn = zoomIn ^ Input.GetButtonDown("XboxRightStickClick");
 
         if (zoomIn)
-            distance = Mathf.Clamp(distance - 0.1f, distanceMin, distanceMax);
+            distance = Mathf.Clamp(distance - 0.1f, cameraSettings.distanceMin, cameraSettings.distanceMax);
         else
-            distance = Mathf.Clamp(distance + 0.5f, distanceMin, distanceMax);
+            distance = Mathf.Clamp(distance + 0.5f, cameraSettings.distanceMin, cameraSettings.distanceMax);
 
     }
 

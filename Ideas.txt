@@ -1,12 +1,38 @@
 
 NOTES
+FILE HIERARCHY - if adding/removing folders please change this
+- Assets (main folder)
+	- Scenes (contains all scenes - has no subfolders yet)
+	- Scripts (contains all scripting)
+		- Controls (any input)
+		- Dungeon (scripting related to the dungeon generation - will rename)
+		- Entities (anything to do with scripting player/npc/ai)
+			- AI (scripting for AI behaviour)
+			- Player (player specific scripting)
+		- Items (scripting for item types - will have subfolders if/when necessary)
+		- WorldGeneration (scripting to do with overworld)
+	- Settings (contains data files and ScriptableObjects)
+	- Resources (contains everything else)
+		- Animations (all animations/animators and AnimationControllers)
+		- Materials (all graphic files - will need subfolders soon)
+		- Models (non-prefab models - not editable models)
+			- Characters (models for npcs/enemies/player)
+			- Constructs (models for buildings/immovable objects)
+			- Items (models for items which can be picked up)
+			- Weapons (models for parts of weapons)
+		- Particles (particle effects and their settings)
+		- Prefabs (any placable object - models should be converted to prefabs and placed in here)
+
+
+
+
 Unfinished/unimportant business:
 Camera needs smoothing out of lock-on
 Fix targetting to consider angle and distance (angle has greater impact than distance)
 
-CONTROL SCHEMA
+CONTROL SCHEMA - will have to rename in editor so they are customisable, not xbone specific
 -LS - move (duh)
--LSC - sprint
+-LSC - (toggle?) sprint
 -RS
 	- camera (not locked on)
 	- change targetted limb (when locked on)
@@ -23,22 +49,24 @@ CONTROL SCHEMA
 	- side change weapon
 	- updown quick item
 
-*hold x + RT = heavy ability 1
- hold y + RT = heavy ability 2
- hold x + LT = light ability 1
- hold y + LT = light ability 2
+*hold x + RT = right hand ability 1
+ hold y + RT = right hand ability 2
+ hold x + LT = left hand ability 1
+ hold y + LT = left hand ability 2
 possibly RT + LT = block? - might need to put this on its own key (possibly B?) 
 
 
 Next objectives:
-Get player to HOLD weapon (soon we'll have to work out inventories too o no)
+make dungeon gen not shit
+appendages
 hitboxes
 attacking
-appendages
+script to get player to HOLD weapon 
+
 
 
 weapons (attacking)
-	- damage not measured as a number
+	- damage not measured as a number (still have some measure of effectiveness)
 		- instead have weight/size (reach)/surface area?/sharpness ooh we could have stickiness and bounciness
 			-for blunt weapons instead of sharpness maybe something to do with spikes or something idk
 			-sharpness vs surface 
