@@ -179,7 +179,6 @@ IEnumerator ReplaceDeadEndsWithDoors()
 {
     float posTolerance = 0.3f;
     int startingIndex = 0;
-    Debug.Log(deadEnds.Count);
     while (startingIndex < deadEnds.Count)
     {
         startingIndex++;
@@ -244,11 +243,10 @@ bool CheckBounds(GameObject newRoom, Transform previousDoor, out Vector3 roomLoc
     {
         int index = seed.Next(0, indexList.Count);
         Transform door = Doors[indexList[index]];
-        //subtract the room's angle from the rooms rotation so the doors are at 180 degrees
         roomRotation -= door.localRotation.eulerAngles;
-        //the effective position of the door will be rotated by this rotation
+
         Vector3 doorEffectiveLocalPosition = Quaternion.Euler(roomRotation) * door.localPosition;
-        //get the new location
+            
         roomLocation -= doorEffectiveLocalPosition;
         //If the room does not collide with another room
         if (newRoomscript.NoCollisionAbstract(roomLocation, roomRotation, roomCollisionTolerance))

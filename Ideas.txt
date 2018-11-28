@@ -102,6 +102,15 @@ appendages
 			-pain and bleeding tolerance can be increased by moving towards the defensive classes
 	- some appendages have `fatal' tags - when broken the owner will immedaitely die
 
+possible damage model:
+user -> ability -> weapon -> enemy -> appendage -> enemy
+user has multipliers/additive effects for damage
+any ability additions/multipliers (light/heavy or ability) applied
+weapon values applied 
+WEAPON IS SWUNG
+
+
+	
 
 How does (active/passive) healing work?????
 - auto stop bleeding (potential animation) after combat

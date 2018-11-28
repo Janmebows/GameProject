@@ -14,6 +14,8 @@ public class Room : MonoBehaviour {
     public float rotation=0;
     public Transform center; //centre of the box the room generates
     public Transform corner; //Distance from centre to a corner
+
+    public List<ColliderInfo> roomColliders;
     void Start()
     {
         ID += 1;
@@ -46,17 +48,8 @@ public class Room : MonoBehaviour {
         rotation += angle;
         room.transform.RotateAround(link, Vector3.up, angle);
     }
-
-    public bool NoCollision(float tolerance)
-    {
-        Vector3 boxCenter = room.transform.position + center.localPosition;
-        Vector3 halfExtents = (corner.localPosition  - center.localPosition) * tolerance;
-        Quaternion boxRotation = room.transform.rotation;
-        return !Physics.CheckBox(boxCenter, halfExtents);// boxRotation);
-        
-    }
     
-    //Will add delegate functions for different rooms for better checks
+    //Might add delegate functions for different rooms for better checks
     //i.e. for the T room use two check boxes - one for the vertical line, and one for the horizontal, and just take !or
     public bool NoCollisionAbstract(Vector3 boxOffset, Vector3 boxRotation, float tolerance)
     {
@@ -67,6 +60,47 @@ public class Room : MonoBehaviour {
         Vector3 halfExtents = (corner.localPosition - center.localPosition) * tolerance;
         //Returns true if there is NO collision
         return !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(boxRotation));
+
+        //Quaternion boxRot = Quaternion.Euler(boxRotation);
+        //Vector3 boxCenter = boxOffset + center.localPosition;
+
+        //bool colliding = false;
+        //for(int i=0; i<roomColliders.Count;i++)
+        //{
+        //    ColliderInfo roomCol = roomColliders[i];
+        //    Vector3 halfExtents = (roomCol.corner.localPosition - roomCol.center.localPosition) * tolerance;
+        //    switch (roomCol.type)
+        //    {
+        //        case ColliderInfo.RoomType.Sphere:
+        //            //colliding = !Physics.CheckSphere(boxCenter, halfExtents, );
+        //            break;
+        //        case ColliderInfo.RoomType.Capsule:
+        //            //colliding= !Physics.CheckCapsule(boxCenter, halfExtents, boxRot);
+        //            break;
+        //        case ColliderInfo.RoomType.Box:
+        //            colliding = !Physics.CheckBox(boxCenter, halfExtents, boxRot);
+        //            break;
+        //        default:
+        //            colliding = !Physics.CheckBox(boxCenter, halfExtents, boxRot);
+        //            break;
+        //    }
+        //    if (colliding)
+        //        return false;
+        //}
+        //return true;
+
+    }
+
+    [System.Serializable]
+    public struct ColliderInfo
+    {
+        public enum RoomType
+        {
+            Sphere, Capsule, Box
+        }
+        public RoomType type;
+        public Transform center;
+        public Transform corner;
 
     }
 }

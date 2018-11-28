@@ -7,8 +7,17 @@ using UnityEngine;
 //Head, torso, leg, arm, etc. all come under this class
 public class Appendage : MonoBehaviour {
 
-
-    public string limbName;
+    public enum Limb
+    {
+        Head,Neck,UpperChest,LowerChest,UpperArm,LowerArm,Hand,UpperLeg,LowerLeg,Foot,None
+    }
+    public Limb limbName = Limb.None;
+    //effective damage thresholds for crush and sever
+    public float maxCrushHP;
+    public float maxSeverHP;
+    //whether the weapon can be crushed or severed
+    public bool severable;
+    public bool crushable;
     //an appendage must have a collider
     public new Collider collider;
 

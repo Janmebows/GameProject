@@ -204,16 +204,13 @@ public class CameraController : MonoBehaviour
         {
             int counter = validTargets.Count - 1;
             float bestAngle = leftTrightF? 500 : -500;
-
-            Debug.Log(counter);
+            
             while (counter >= 0)
             {
                 float thisAngle = Vector3.SignedAngle(validTargets[counter].transform.position - transform.position, transform.forward, Vector3.up);
-                Debug.Log(thisAngle);
                 //If its to the left but less to the left than the last
                 if (leftTrightF && (thisAngle > currentangle && thisAngle < bestAngle) || !leftTrightF && (thisAngle < currentangle && thisAngle > bestAngle))
                 {
-                    Debug.Log("test");
                     target = validTargets[counter].transform;
                     bestAngle = thisAngle;
 

@@ -320,8 +320,12 @@ MonoBehaviour:
   - {fileID: 4353345367278176}
   - {fileID: 4084488625664998}
   - {fileID: 4711044861896424}
-  connectedRooms: []
   doorRotations: 000000005a0000000e010000b4000000
+  connectedRooms: []
   rotation: 0
   center: {fileID: 4116355602723788}
   corner: {fileID: 4293547303479840}
+  roomColliders:
+  - type: 2
+    center: {fileID: 4116355602723788}
+    corner: {fileID: 4293547303479840}

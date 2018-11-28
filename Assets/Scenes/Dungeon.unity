@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c8dcf39fbc5e045b1daae9e2235cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRooms: 144
+  maxRooms: 1000
   roomCollisionTolerance: 0.99
   roomTypes: []
   instantiatedRoomObjects: []

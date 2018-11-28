@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseEntity : MonoBehaviour {
-    //EntityStatistics statistics;
+    public List<Appendage> appendages = new List<Appendage>();
 
 
 	// Use this for initialization
