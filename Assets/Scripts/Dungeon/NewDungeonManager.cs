@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class DungeonManager : MonoBehaviour
+public class NewDungeonManager : MonoBehaviour
 {
     //settings class for dungeon generation
     //this class will allow for randomisation - different dungeon types, etc.
@@ -11,9 +11,9 @@ public class DungeonManager : MonoBehaviour
     public int roomCount;
 
 
-    public List<GameObject> instantiatedRoomObjects;
-    List<GameObject> deadEnds;
-    List<DoorConnection> unusedDoors; //the list of doors which are unused
+    public List<GameObject> instantiatedRoomObjects; //list of all rooms which have been spawned
+    List<GameObject> deadEnds; //the list of doorways which are terminated
+    List<DoorConnection> unusedDoors; //the list of doors which lead nowhere (YET)
 
     public GameObject dungeonParent; //holds all the dungeon stuff to clear the hierarchy
                                      //reference for the different room types
@@ -58,16 +58,13 @@ public class DungeonManager : MonoBehaviour
         {
             unusedDoors.Add(new DoorConnection(instancedSpawnScr.Doorways[i], instancedSpawn, i));
         }
-        roomCount += 1;
+        roomCount++;
         return;
 
     }
+
     IEnumerator AddRoom(DoorConnection prevDoorConnection, DoorConnection doorConnection, Vector3 position, Quaternion rotation)
     {
-        if(doorConnection==null)
-        {
-            Debug.Log("ono");
-        }
         //prevDoorConnection - previous room + door used + index
         //doorConnection - this room + door used + index
         GameObject newRoom = Instantiate(doorConnection.room, position, rotation, dungeonParent.transform);
@@ -84,9 +81,9 @@ public class DungeonManager : MonoBehaviour
         for (int i = 0; i < newRoomScript.Doorways.Length; i++)
         {
             //if this is the door we used
-            if (i == doorConnection.doorIndex)
+            if(i == doorConnection.doorIndex)
             {
-                unusedDoors.Remove(prevDoorConnection);
+                Debug.Log(unusedDoors.Remove(prevDoorConnection));
                 //the location of this may be wrong
                 Instantiate(dS.door, doorConnection.door);
             }
@@ -98,6 +95,47 @@ public class DungeonManager : MonoBehaviour
         roomCount++;
         yield return null;
     }
+
+    //IEnumerator AddRoom(DoorConnection prevRoomDoorConnection, DoorConnection doorConnection, Vector3 position, Quaternion rotation)
+    //{
+    //    //Given a chosen prefab - place a room and add it to the relevant lists
+    //    //prevRoomDoorConnection is the door/index/room of the NEW room
+    //    //doorconnection         is the door/index/room of the NEW room
+    //    //position + rotation make the transform of the room
+
+
+    //    //initialise the room
+    //    GameObject current = Instantiate(doorConnection.room, position, rotation, dungeonParent.transform);
+    //    //replace the prefab room with the actual instance
+    //    doorConnection.room = current;
+    //    instantiatedRoomObjects.Add(current);
+    //    yield return null;
+    //    Room currentRoomScr = current.GetComponent<Room>();
+    //    //tell them they are connected
+    //    currentRoomScr.connectedRooms.Add(doorConnection.room);
+    //    Room previousRoomSrc = prevRoomDoorConnection.room.GetComponent<Room>();
+    //    previousRoomSrc.connectedRooms.Add(current);
+
+    //    for (int i = 0; i < currentRoomScr.Doorways.Length; i++)
+    //    {
+    //        //if looking at new unused doors
+    //        if (i != doorConnection.doorIndex)
+    //        {
+    //            DoorConnection newDoor = new DoorConnection(currentRoomScr.Doorways[i], doorConnection.room, i);
+    //            unusedDoors.Add(newDoor);
+    //        }
+    //        //the one which is actually connected
+    //        else
+    //        {
+    //            Instantiate(dS.door, doorConnection.door);
+    //            unusedDoors.Remove(prevRoomDoorConnection);
+    //        }
+    //    }
+
+    //    roomCount += 1;
+    //    yield return null;
+
+    //}
 
 
 
@@ -119,7 +157,7 @@ public class DungeonManager : MonoBehaviour
             if (CheckBounds(newRoom, linkToAttach, out newRoomLocation, out newRoomRotation, out doorConnection))
             {
                 yield return AddRoom(unusedDoors[linkIndex], doorConnection, newRoomLocation, Quaternion.Euler(newRoomRotation));
-
+                //openDoors.RemoveAt(linkIndex);
 
             }
 
@@ -205,8 +243,8 @@ public class DungeonManager : MonoBehaviour
         Room newRoomscript = newRoom.GetComponent(typeof(Room)) as Room;
 
         roomLocation = previousDoor.position;
-
-        roomRotation = previousDoor.rotation.eulerAngles + new Vector3(0, 180, 0);
+        
+        roomRotation = previousDoor.rotation.eulerAngles + (Vector3.up *180f);
 
 
         List<Transform> Doors = new List<Transform>(newRoomscript.Doorways);

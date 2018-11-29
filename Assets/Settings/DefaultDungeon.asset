@@ -13,10 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRooms: 500
   collisionTolerance: 0.99
-  deadEnd: {fileID: 0}
-  door: {fileID: 0}
-  exit: {fileID: 0}
-  spawn: {fileID: 0}
-  roomTypes: []
-  useRandomSeed: 0
+  deadEnd: {fileID: 1543878605429120, guid: 0f127b65fe2dfca4194a73b0c92974b6, type: 2}
+  door: {fileID: 1483252113705802, guid: 8ecd7b09f6fcd7f4bb01f2dd77295861, type: 2}
+  exit: {fileID: 1679915358215254, guid: 034fa5d86058cdc489e98435e2454963, type: 2}
+  spawn: {fileID: 1903576847534842, guid: b3ebf88342a73304da46c21bce0b98b2, type: 2}
+  roomTypes:
+  - {fileID: 1903576847534842, guid: e1125f18f91e4fc47b0b94d412913796, type: 2}
+  - {fileID: 1504991207395372, guid: 88629ea67eb15224d979797cfca9c436, type: 2}
+  - {fileID: 1668256078328712, guid: dfc260779a5eb144db7a20e52aea6815, type: 2}
+  - {fileID: 1994507866627058, guid: 86db14ebc72d0024e8663ae7727a8032, type: 2}
+  - {fileID: 1769345456910372, guid: 6c4f188560ce3d2478a15056a95ba7f1, type: 2}
+  useRandomSeed: 1
   CustomSeed: 0

@@ -624,14 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c8dcf39fbc5e045b1daae9e2235cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRooms: 1000
-  roomCollisionTolerance: 0.99
-  roomTypes: []
+  dS: {fileID: 11400000, guid: 01d5f32b6ca24cc4bb756163931f54ca, type: 2}
+  roomCount: 0
   instantiatedRoomObjects: []
-  DungeonParent: {fileID: 0}
-  deadEnd: {fileID: 0}
-  door: {fileID: 0}
-  exit: {fileID: 0}
-  spawn: {fileID: 0}
-  useRandomSeed: 1
-  CustomSeed: 0
+  DungeonParent: {fileID: 1996885662}
