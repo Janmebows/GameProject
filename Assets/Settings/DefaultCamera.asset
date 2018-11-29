@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: DefaultCamera
   m_EditorClassIdentifier: 
   distance: 5
-  xSpeed: 3
-  ySpeed: 2
+  xSpeed: 1
+  ySpeed: 1.5
   lockOnSpeed: 8
   yMinLimit: -20
   yMaxLimit: 80

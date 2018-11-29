@@ -138,7 +138,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_LocalRotation.z
@@ -146,7 +146,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_RootOrder
@@ -159,6 +159,10 @@ Prefab:
     - target: {fileID: 100266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_Name
       value: Eugen (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
@@ -188,7 +192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_LocalRotation.z
@@ -196,7 +200,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_RootOrder
@@ -209,6 +213,10 @@ Prefab:
     - target: {fileID: 100266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
       propertyPath: m_Name
       value: Eugen (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400266, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c757afc4cb689d4a9fd7687247b9908, type: 3}
@@ -375,13 +383,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1074425999}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.42990184, y: 0.07559178, z: 0.22758746, w: 0.8704449}
   m_LocalPosition: {x: 0.52, y: 4.24, z: -0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 45.562, y: 27.869001, z: 41.203003}
 --- !u!1001 &1111559577
 Prefab:
   m_ObjectHideFlags: 0
@@ -421,11 +429,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114232905866917456, guid: fa2f58110bd45a64a8b59236483c9e56,
-        type: 2}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1692395862}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa2f58110bd45a64a8b59236483c9e56, type: 2}
   m_IsPrefabAsset: 0
@@ -508,7 +511,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1692395858}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -627,4 +630,4 @@ MonoBehaviour:
   dS: {fileID: 11400000, guid: 01d5f32b6ca24cc4bb756163931f54ca, type: 2}
   roomCount: 0
   instantiatedRoomObjects: []
-  DungeonParent: {fileID: 1996885662}
+  dungeonParent: {fileID: 1996885662}

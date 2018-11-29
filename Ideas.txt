@@ -1,5 +1,21 @@
 
 NOTES
+
+
+Next objectives:
+appendages
+hitboxes
+attacking
+script to get player to HOLD weapon 
+
+
+Unfinished/unimportant business:
+Camera needs smoothing out of lock-on
+make dungeon gen not shit
+
+
+
+
 FILE HIERARCHY - if adding/removing folders please change this
 - Assets (main folder)
 	- Scenes (contains all scenes - has no subfolders yet)
@@ -26,9 +42,6 @@ FILE HIERARCHY - if adding/removing folders please change this
 
 
 
-Unfinished/unimportant business:
-Camera needs smoothing out of lock-on
-Fix targetting to consider angle and distance (angle has greater impact than distance)
 
 CONTROL SCHEMA - will have to rename in editor so they are customisable, not xbone specific
 -LS - move (duh)
@@ -43,8 +56,8 @@ CONTROL SCHEMA - will have to rename in editor so they are customisable, not xbo
 -Y - ability toggle 2* (possibly swap these with LT/RT)
 -LB - change target left
 -RB - change target right 
--LT - light attack (possibly swap these with x/y) 
--RT - heavy attack (possibly swap these with x/y)
+-LT - left hand (possibly swap these with x/y) 
+-RT - right hand (possibly swap these with x/y)
 -DPAD
 	- side change weapon
 	- updown quick item
@@ -55,13 +68,6 @@ CONTROL SCHEMA - will have to rename in editor so they are customisable, not xbo
  hold y + LT = left hand ability 2
 possibly RT + LT = block? - might need to put this on its own key (possibly B?) 
 
-
-Next objectives:
-make dungeon gen not shit
-appendages
-hitboxes
-attacking
-script to get player to HOLD weapon 
 
 
 
@@ -75,12 +81,13 @@ weapons (attacking)
 	- weapons can have bonuses to certain things (inflicts more pain / causes more bleeding)
 
 weapons construction system
+Each part can add/remove possible animations/attacks
 enum pieceType {hilt,guard,shaft,spike,head}
 	-each part will have its own collider!
 	- each component piece has sockets for other pieces
 	- HILT:
 		-root to hold the weapon
-		-down attaches to a spike 
+		-down attaches to a spike/pommel
 		-up attaches to a guard/adaptor/shaft/allowed head/
 		-Stat effects:
 			-
@@ -131,7 +138,12 @@ appendages
 	- some appendages have `fatal' tags - when broken the owner will immedaitely die
 
 possible damage model:
-user -> ability -> weapon -> enemy -> appendage -> enemy
+OnEquip() or OnStatsChanged() -> weaponSWING (ability?) ->  appendage -> enemy -> appendage -> enemy
+OnStatsChanged()
+{
+user -> weapon
+}
+
 user has multipliers/additive effects for damage
 any ability additions/multipliers (light/heavy or ability) applied
 weapon values applied 
