@@ -8,11 +8,7 @@ using UnityEngine;
 public class Appendage : MonoBehaviour {
 
     //possibly change these for different limbs
-    public enum Limb
-    {
-        Head,Neck,UpperChest,LowerChest,UpperArm,LowerArm,Hand,UpperLeg,LowerLeg,Foot,None
-    }
-    public Limb limbName = Limb.None;
+    public string limbName;
     //effective damage thresholds for crush and sever
     public float maxCrushHP;
     public float maxSeverHP;
@@ -21,11 +17,7 @@ public class Appendage : MonoBehaviour {
     public bool crushable;
     //an appendage must have a collider
     public new Collider collider;
-
-    public Appendage uplimb   = null;
-    public Appendage downlimb = null;
-    public Appendage leftlimb = null;
-    public Appendage rightlim = null;
+    
 
     //BROKEN LIMB STUFF
     //broken limbs will affect animations, damage, ability to perform certain attacks
@@ -56,8 +48,8 @@ public class Appendage : MonoBehaviour {
         //If hit by a weapon
         if (weapon!=null)
         {
-            //TAKE A BIG LOAD OF DAMAGE
-            TakeDamage(weapon);
+            //do a bunch of shitty calculations
+            //StartCoroutine();
 
         }
     }

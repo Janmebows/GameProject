@@ -10,7 +10,6 @@ public class CameraController : MonoBehaviour
     Transform target;
     private new Rigidbody rigidbody;
     public CameraSettings cameraSettings;
-    bool zoomIn = false;
     float x = 0.0f;
     float y = 0.0f;
 
@@ -89,7 +88,6 @@ public class CameraController : MonoBehaviour
                 y += Input.GetAxis("XboxRightVertical") * cameraSettings.ySpeed;
             y = ClampAngle(y, cameraSettings.yMinLimit, cameraSettings.yMaxLimit);
 
-            //ZoomIn(ref distance);
             rotation = Quaternion.Euler(y, x, 0);
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -cameraSettings.distance);
             //not sure about the offset term
@@ -99,12 +97,7 @@ public class CameraController : MonoBehaviour
 
         transform.position = position;
         transform.rotation = rotation;
-        //Will need to fix this part here - currently a bit janky (hence commented)
-        //RaycastHit hit;
-        //if (Physics.Linecast(target.position, transform.position, out hit))
-        //{
-        //    distance -= hit.distance;
-        //}
+        //might need some code so the camera doesn't clip through things
 
 
     }
@@ -191,8 +184,8 @@ public class CameraController : MonoBehaviour
         if (validTargets.Count >= 1)
         {
             int counter = validTargets.Count - 1;
-            float bestAngle = leftTrightF? 500 : -500;
-            
+            float bestAngle = leftTrightF ? 500 : -500;
+
             while (counter >= 0)
             {
                 float thisAngle = Vector3.SignedAngle(validTargets[counter].transform.position - transform.position, transform.forward, Vector3.up);
@@ -209,19 +202,6 @@ public class CameraController : MonoBehaviour
         }
         else { return; }
 
-
-    }
-
-    //implements a zoomin effect
-    void ZoomIn(ref float distance)
-    {
-
-        zoomIn = zoomIn ^ Input.GetButtonDown("XboxRightStickClick");
-
-        if (zoomIn)
-            distance = Mathf.Clamp(distance - 0.1f, cameraSettings.distanceMin, cameraSettings.distanceMax);
-        else
-            distance = Mathf.Clamp(distance + 0.5f, cameraSettings.distanceMin, cameraSettings.distanceMax);
 
     }
 

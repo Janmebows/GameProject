@@ -64,9 +64,9 @@ public class DungeonManager : MonoBehaviour
     }
     IEnumerator AddRoom(DoorConnection prevDoorConnection, DoorConnection doorConnection, Vector3 position, Quaternion rotation)
     {
-        if(doorConnection==null)
+        if (doorConnection == null)
         {
-            Debug.Log("ono");
+            Debug.Log("oh no");
         }
         //prevDoorConnection - previous room + door used + index
         //doorConnection - this room + door used + index
@@ -87,7 +87,6 @@ public class DungeonManager : MonoBehaviour
             if (i == doorConnection.doorIndex)
             {
                 unusedDoors.Remove(prevDoorConnection);
-                //the location of this may be wrong
                 Instantiate(dS.door, doorConnection.door);
             }
             unusedDoors.Add(new DoorConnection(newRoomScript.Doorways[i], newRoom, i));
