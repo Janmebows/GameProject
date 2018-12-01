@@ -12,7 +12,11 @@ script to get player to HOLD weapon
 Unfinished/unimportant business:
 Camera needs smoothing out of lock-on
 make dungeon gen not shit
-
+Entirely rework character movement (current system is buggy)
+	- fix movement in air - possibly allow for small inputs
+	- dash/rolls 
+	- double jump
+	- remove shitty capsule collider - replace with box (or something) at feet
 
 
 

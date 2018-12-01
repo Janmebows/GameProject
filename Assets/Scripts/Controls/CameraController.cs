@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class CameraController : MonoBehaviour
 {
@@ -12,10 +13,11 @@ public class CameraController : MonoBehaviour
     public CameraSettings cameraSettings;
     float x = 0.0f;
     float y = 0.0f;
-
+    float deadzone = 0.5f;
     //Whether or not the player wants to and has targeted an enemy
     bool tryLockOn = false;
     bool lockedOn = false;
+    bool targettingAppendages = false;
     // Use this for initialization
     void Start()
     {
@@ -34,8 +36,6 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 position;
-        Quaternion rotation;
         //do we want to be locked on?
         tryLockOn = lockedOn ^ Input.GetButtonDown("XboxRightStickClick");
 
@@ -57,49 +57,102 @@ public class CameraController : MonoBehaviour
                 lockedOn = true;
 
         }
-
         if (lockedOn && target != null)
         {
-            if (Input.GetButtonDown("XboxLB"))
-            {
-                ChangeTarget(true);
-            }
-            else if (Input.GetButtonDown("XboxRB"))
-            {
-                ChangeTarget(false);
-            }
-            rotation = transform.rotation;
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -cameraSettings.distance);
-            position = transform.rotation * negDistance + player.position + (transform.rotation * cameraSettings.offset);
-
-            Vector3 direction = target.position - position;
-
-            //slerp to make pretty rotating effect
-            rotation = Quaternion.Slerp(rotation, Quaternion.LookRotation(direction), Time.deltaTime * cameraSettings.lockOnSpeed);
-            //DO SOMETHING HERE TO STOP RETARDED ROTATY SHIT WHEN TOO CLOSE
-
+            LockedOn();
         }
         else
         {
-            x += Input.GetAxis("XboxRightHorizontal") * cameraSettings.xSpeed * cameraSettings.distance;
-            if (!cameraSettings.invertY)
-                y -= Input.GetAxis("XboxRightVertical") * cameraSettings.ySpeed;
-            else
-                y += Input.GetAxis("XboxRightVertical") * cameraSettings.ySpeed;
-            y = ClampAngle(y, cameraSettings.yMinLimit, cameraSettings.yMaxLimit);
-
-            rotation = Quaternion.Euler(y, x, 0);
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -cameraSettings.distance);
-            //not sure about the offset term
-            position = rotation * negDistance + player.position + (rotation * cameraSettings.offset);
+            Unlocked();
 
         }
 
+    }
+
+    void LockedOn()
+    {
+        if (Input.GetButtonDown("XboxLB"))
+        {
+            ChangeTarget(true);
+        }
+        else if (Input.GetButtonDown("XboxRB"))
+        {
+            ChangeTarget(false);
+        }
+
+        Quaternion rotation = transform.rotation;
+        Vector3 negDistance = new Vector3(0.0f, 0.0f, -cameraSettings.distance);
+        Vector3 position = transform.rotation * negDistance + player.position + (transform.rotation * cameraSettings.offset);
+
+        Vector3 direction = target.position - position;
+
+        //slerp to make pretty rotating effect
+        rotation = Quaternion.Slerp(rotation, Quaternion.LookRotation(direction), Time.deltaTime * cameraSettings.lockOnSpeed);
         transform.position = position;
         transform.rotation = rotation;
-        //might need some code so the camera doesn't clip through things
+        if (!targettingAppendages)
+        {
+            StartCoroutine(TargetAppendages());
+        }
+    }
 
+    IEnumerator TargetAppendages()
+    {
+        targettingAppendages = true;
+        while (lockedOn && target != null)
+        {
+            float inputx = Input.GetAxis("XboxRightHorizontal");
+            float inputy = Input.GetAxis("XboxRightVertical");
+            Vector3 inputDir = new Vector3(inputx, inputy, 0);
+            //if theres any big boi input
+            if (inputx > deadzone || inputx < -deadzone || inputy > deadzone || inputy < -deadzone)
+            {
+                Debug.Log("soontm");
+                yield return new WaitForSeconds(0.5f);
+                FindBestAppendage(inputDir);
+            }
+            yield return null;
+        }
+        targettingAppendages = false;
+        yield return null;
+    }
 
+    Transform FindBestAppendage(Vector3 direction)
+    {
+        List<Appendage> appendages = target.GetComponent<BaseEntity>().appendages;
+        Appendage best = appendages[0];
+        if (appendages.Count > 0)
+        {
+            for (int i = 0; i < appendages.Count; i++)
+            {
+                //find out if this appendage better suits the directional input
+                best = appendages[i];
+                
+            }
+            return best.collider.transform;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    void Unlocked()
+    {
+
+        x += Input.GetAxis("XboxRightHorizontal") * cameraSettings.xSpeed * cameraSettings.distance;
+        if (!cameraSettings.invertY)
+            y -= Input.GetAxis("XboxRightVertical") * cameraSettings.ySpeed;
+        else
+            y += Input.GetAxis("XboxRightVertical") * cameraSettings.ySpeed;
+        y = ClampAngle(y, cameraSettings.yMinLimit, cameraSettings.yMaxLimit);
+
+        Quaternion rotation = Quaternion.Euler(y, x, 0);
+        Vector3 negDistance = new Vector3(0.0f, 0.0f, -cameraSettings.distance);
+        //not sure about the offset term
+        Vector3 position = rotation * negDistance + player.position + (rotation * cameraSettings.offset);
+        transform.position = position;
+        transform.rotation = rotation;
     }
 
     //Finds all the enemies seen by the main camera

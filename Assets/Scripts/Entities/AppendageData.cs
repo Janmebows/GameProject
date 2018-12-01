@@ -14,8 +14,6 @@ public class AppendageData : ScriptableObject
     //whether the weapon can be crushed or severed
     public bool severable;
     public bool crushable;
-    //an appendage must have a collider
-    public Collider collider;
 
 
     //BROKEN LIMB STUFF
