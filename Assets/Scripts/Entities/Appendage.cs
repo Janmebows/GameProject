@@ -6,13 +6,8 @@ using UnityEngine;
 //The class for a particular character's limbs
 //Head, torso, leg, arm, etc. all come under this class
 public class Appendage : MonoBehaviour {
+    public AppendageData baseAppendageData;
 
-    //possibly change these for different limbs
-    public string limbName;
-    //effective damage thresholds for crush and sever
-    public float maxCrushHP;
-    public float maxSeverHP;
-    //whether the weapon can be crushed or severed
     public bool severable;
     public bool crushable;
     //an appendage must have a collider
