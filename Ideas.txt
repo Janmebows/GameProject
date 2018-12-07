@@ -9,6 +9,9 @@ attacking
 script to get player to HOLD weapon 
 
 
+MOVE SHIT THAT DOESN"T NEED TO BE IN RESOURCES OUT OF RESOURCES 
+	- using the resources folder literally slows down unity
+	- resources folder essentially stays as-is on release unfortunately
 Generalise code for CO-OP?
 
 

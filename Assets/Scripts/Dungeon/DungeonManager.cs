@@ -70,6 +70,7 @@ public class DungeonManager : MonoBehaviour
         Room prevRoomScript = prevDoorConnection.room.GetComponent<Room>();
         newRoomScript.connectedRooms.Add(prevDoorConnection.room);
         prevRoomScript.connectedRooms.Add(doorConnection.room);
+        unusedDoors.Remove(prevDoorConnection);
         doorConnection.room = newRoom;
         instantiatedRoomObjects.Add(newRoom);
 
@@ -81,14 +82,16 @@ public class DungeonManager : MonoBehaviour
             //if this is the door we used
             if (i == doorConnection.doorIndex)
             {
-                unusedDoors.Remove(prevDoorConnection);
                 GameObject newDoor = Instantiate(dS.door, doorConnection.door);
+                Debug.Log("Door at " + doorConnection.door.position.ToString());
                 newDoor.layer = LayerMask.NameToLayer("Doors");
+                
             }
             else
             {
                 unusedDoors.Add(new DoorConnection(newRoomScript.Doorways[i], newRoom, i));
             }
+            yield return null;
         }
         //increment roomcount
 
@@ -126,7 +129,6 @@ public class DungeonManager : MonoBehaviour
         }
         //seal off the remaining doorways
         //before this need to check if rooms are connected but their doorways are considered not connected
-        Debug.Log(unusedDoors.Count);
         yield return null;
         StartCoroutine(PlaceDeadEnd());
         yield return null;
@@ -166,9 +168,10 @@ public class DungeonManager : MonoBehaviour
                 //if they are (almost) exactly the same
                 if (Vector3.SqrMagnitude(deadEnds[startingIndex].transform.position - deadEnds[i].transform.position) < posTolerance)
                 {
-                    GameObject tempDoor = Instantiate(dS.door, deadEnds[startingIndex].transform);
+                    //lets not do this yet
+                    //GameObject tempDoor = Instantiate(dS.door, deadEnds[startingIndex].transform);
                     //removes clutter from hierarchy
-                    tempDoor.transform.parent = deadEnds[startingIndex].transform.parent;
+                    //tempDoor.transform.parent = deadEnds[startingIndex].transform.parent;
                     GameObject temp = deadEnds[startingIndex];
                     deadEnds.RemoveAt(startingIndex);
                     Destroy(temp);

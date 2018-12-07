@@ -12,8 +12,6 @@ public class Room : MonoBehaviour {
     public List<GameObject> connectedRooms;
     protected bool playerInRoom;
     public float rotation=0;
-    public Transform center; //centre of the box the room generates
-    public Transform corner; //Distance from centre to a corner
 
     public List<ColliderInfo> roomColliders;
     void Start()
@@ -39,7 +37,7 @@ public class Room : MonoBehaviour {
         bool colliding = false;
         foreach (ColliderInfo roomCol in roomColliders)
         {
-            Vector3 boxCenter = centreOffset + center.localPosition;
+            Vector3 boxCenter = centreOffset + roomCol.center.localPosition;
             Vector3 halfExtents = (roomCol.corner.localPosition - roomCol.center.localPosition) * tolerance;
             switch (roomCol.type)
             {
@@ -55,7 +53,6 @@ public class Room : MonoBehaviour {
                     colliding = !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(roomRotation), ~LayerMask.NameToLayer("Doors"));
                     break;
                 default:
-                    //colliding = !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(roomRotation), LayerMask.NameToLayer("Doors"));
                     Debug.LogError("You forgot to assign a collider type to " + gameObject.name);
                     break;
             }
@@ -67,30 +64,30 @@ public class Room : MonoBehaviour {
 
     }
 
-    //Unfortunately its shit if the rotation isn't a multiple of 90 deg
-    void OnDrawGizmos()
-    {
-        foreach(ColliderInfo roomCol in roomColliders)
-        {
-            switch (roomCol.type)
-            {
-                case ColliderInfo.RoomType.Sphere:
-                    Gizmos.DrawWireSphere(roomCol.center.position, roomCol.radius);
-                    break;
-                case ColliderInfo.RoomType.Capsule:
-                    //Gizmos.DrawWireMesh(GameObject.CreatePrimitive(PrimitiveType.Capsule).GetComponent<Mesh>());
-                    Gizmos.DrawCube((roomCol.center.position + roomCol.secondCenter.position) / 2, gameObject.transform.rotation * roomCol.corner.localPosition * 2f);
-                    break;
-                case ColliderInfo.RoomType.Box:
-                    //gotta multiply by 2 bc not half extents bc the unity devs are assholes who can't be consistent
-                    Gizmos.DrawWireCube(roomCol.center.position,gameObject.transform.rotation*roomCol.corner.localPosition *2f);
-                    break;
-                default:
-                    break;
-            }
+    ////Unfortunately its shit if the rotation isn't a multiple of 90 deg
+    //void OnDrawGizmos()
+    //{
+    //    foreach(ColliderInfo roomCol in roomColliders)
+    //    {
+    //        switch (roomCol.type)
+    //        {
+    //            case ColliderInfo.RoomType.Sphere:
+    //                Gizmos.DrawWireSphere(roomCol.center.position, roomCol.radius);
+    //                break;
+    //            case ColliderInfo.RoomType.Capsule:
+    //                //Gizmos.DrawWireMesh(GameObject.CreatePrimitive(PrimitiveType.Capsule).GetComponent<Mesh>());
+    //                Gizmos.DrawCube((roomCol.center.position + roomCol.secondCenter.position) / 2, gameObject.transform.rotation * roomCol.corner.localPosition * 2f);
+    //                break;
+    //            case ColliderInfo.RoomType.Box:
+    //                //gotta multiply by 2 bc not half extents bc the unity devs are assholes who can't be consistent
+    //                Gizmos.DrawWireCube(roomCol.center.position,gameObject.transform.rotation*roomCol.corner.localPosition *2f);
+    //                break;
+    //            default:
+    //                break;
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
 
 
