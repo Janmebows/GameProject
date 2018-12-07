@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: DefaultHead
   m_EditorClassIdentifier: 
   limbName: Head
+  appendageType: 4
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0

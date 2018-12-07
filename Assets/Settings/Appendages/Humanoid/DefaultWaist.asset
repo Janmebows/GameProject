@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: DefaultWaist
   m_EditorClassIdentifier: 
   limbName: Waist
+  appendageType: 10
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0

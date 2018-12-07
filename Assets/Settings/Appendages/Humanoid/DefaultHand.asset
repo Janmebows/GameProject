@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: DefaultHand
   m_EditorClassIdentifier: 
   limbName: Hand
+  appendageType: 3
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0

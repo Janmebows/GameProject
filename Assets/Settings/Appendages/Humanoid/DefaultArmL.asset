@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: DefaultArmL
   m_EditorClassIdentifier: 
   limbName: Lower Arm
+  appendageType: 1
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0

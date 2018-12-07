@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: DefaultTorsoL
   m_EditorClassIdentifier: 
   limbName: Lower Torso
+  appendageType: 9
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0

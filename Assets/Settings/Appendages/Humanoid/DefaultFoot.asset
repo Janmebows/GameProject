@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: DefaultFoot
   m_EditorClassIdentifier: 
   limbName: Foot
+  appendageType: 2
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0

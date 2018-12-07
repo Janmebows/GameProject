@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4516367567811302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doorway2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4279676564118284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Center1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 33630614738353016}
   - component: {fileID: 23720017354197446}
   - component: {fileID: 65467484598204064}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4873860829130796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Corner1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4537849238388552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Center2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4466304235705208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Corner2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 33883194411174876}
   - component: {fileID: 23960859831135510}
   - component: {fileID: 65007364905927456}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4306204509081508}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doorway1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4263520744204868}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4342732753179074}
   - component: {fileID: 114281048648752262}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BendRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

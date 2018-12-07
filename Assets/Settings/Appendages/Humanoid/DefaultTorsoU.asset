@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: DefaultTorsoU
   m_EditorClassIdentifier: 
   limbName: Upper Torso
+  appendageType: 8
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0

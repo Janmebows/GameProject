@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: DefaultNeck
   m_EditorClassIdentifier: 
   limbName: Neck
+  appendageType: 7
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0

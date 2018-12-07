@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd129f724a60e5046b6394fe306b12d8, type: 3}
   m_Name: DefaultLegL
   m_EditorClassIdentifier: 
-  limbName: Calf
+  limbName: Lower Leg
+  appendageType: 6
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 0
