@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25045222f610434c9c699f7a53e2065, type: 3}
+  m_Name: DungeonFunnyLookinRooms
+  m_EditorClassIdentifier: 
+  maxRooms: 1540
+  collisionTolerance: 0.924
+  deadEnd: {fileID: 1543878605429120, guid: 0f127b65fe2dfca4194a73b0c92974b6, type: 2}
+  door: {fileID: 1483252113705802, guid: 8ecd7b09f6fcd7f4bb01f2dd77295861, type: 2}
+  exit: {fileID: 1679915358215254, guid: 034fa5d86058cdc489e98435e2454963, type: 2}
+  spawn: {fileID: 1903576847534842, guid: b3ebf88342a73304da46c21bce0b98b2, type: 2}
+  roomTypes:
+  - {fileID: 1995112605255582, guid: 98129e0e56cafaf4392aa2f79317801f, type: 2}
+  - {fileID: 1769345456910372, guid: 6c4f188560ce3d2478a15056a95ba7f1, type: 2}
+  - {fileID: 1994507866627058, guid: 86db14ebc72d0024e8663ae7727a8032, type: 2}
+  useRandomSeed: 1
+  CustomSeed: 0
