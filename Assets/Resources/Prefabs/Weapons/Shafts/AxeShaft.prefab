@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33194266407477456}
   - component: {fileID: 23086908124125872}
   m_Layer: 0
-  m_Name: AxeShaft_01
+  m_Name: AxeShaft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

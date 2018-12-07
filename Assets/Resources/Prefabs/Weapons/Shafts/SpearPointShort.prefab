@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33549809182058416}
   - component: {fileID: 23409744360395026}
   m_Layer: 0
-  m_Name: SpearPointShort_01
+  m_Name: SpearPointShort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

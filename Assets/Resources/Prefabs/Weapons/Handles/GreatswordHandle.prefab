@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33922648395609328}
   - component: {fileID: 23984224285094850}
   m_Layer: 0
-  m_Name: GreatswordHandle_01
+  m_Name: GreatswordHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

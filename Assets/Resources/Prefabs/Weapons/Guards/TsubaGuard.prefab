@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33733435244309134}
   - component: {fileID: 23419972701591222}
   m_Layer: 0
-  m_Name: TsubaGuard_01
+  m_Name: TsubaGuard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

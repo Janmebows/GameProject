@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33469117308889572}
   - component: {fileID: 23701799533416066}
   m_Layer: 0
-  m_Name: LongswordHandle_01
+  m_Name: LongswordHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

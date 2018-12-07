@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33930010297181298}
   - component: {fileID: 23729960867714576}
   m_Layer: 0
-  m_Name: RoundCap_01
+  m_Name: RoundCap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33868304403128498}
   - component: {fileID: 23079240374529144}
   m_Layer: 0
-  m_Name: ArmingSwordHandle_01
+  m_Name: ArmingSwordHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

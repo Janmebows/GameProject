@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33104815671543332}
   - component: {fileID: 23175330598198578}
   m_Layer: 0
-  m_Name: FlangedMaceHead_01
+  m_Name: FlangedMaceHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

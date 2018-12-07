@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33573542253616066}
   - component: {fileID: 23423977613968604}
   m_Layer: 0
-  m_Name: SpearShaft_01
+  m_Name: SpearShaft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

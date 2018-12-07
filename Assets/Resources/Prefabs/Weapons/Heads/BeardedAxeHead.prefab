@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4310666114909678}
   m_Layer: 0
-  m_Name: BeardedAxeHead_01
+  m_Name: BeardedAxeHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
