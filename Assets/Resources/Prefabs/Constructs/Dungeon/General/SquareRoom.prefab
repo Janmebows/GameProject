@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4230395904844746}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doorway (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4209056178001496}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doorway (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4117876853715158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4960336457145560}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4549724903129192}
   - component: {fileID: 114917955103018612}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SquareRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4912819996365544}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doorway (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4261427184412248}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doorway (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 33828698438616974}
   - component: {fileID: 23806351573843310}
   - component: {fileID: 65232844723496012}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,3 +327,5 @@ MonoBehaviour:
   - type: 2
     center: {fileID: 4960336457145560}
     corner: {fileID: 4117876853715158}
+    secondCenter: {fileID: 0}
+    radius: 0

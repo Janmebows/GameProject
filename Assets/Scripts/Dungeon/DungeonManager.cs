@@ -22,7 +22,6 @@ public class DungeonManager : MonoBehaviour
     System.Random seed;
 
 
-
     void Start()
     {
         roomCount = 0;
@@ -44,10 +43,10 @@ public class DungeonManager : MonoBehaviour
     }
 
 
+
+
+
     //Initialise the spawn room, and start placing rooms
-
-
-
     void PlaceSpawn()
     {
         GameObject instancedSpawn = Instantiate(dS.spawn, Vector3.zero, Quaternion.identity, dungeonParent.transform);
@@ -64,12 +63,8 @@ public class DungeonManager : MonoBehaviour
     }
     IEnumerator AddRoom(DoorConnection prevDoorConnection, DoorConnection doorConnection, Vector3 position, Quaternion rotation)
     {
-        if (doorConnection == null)
-        {
-            Debug.Log("oh no");
-        }
-        //prevDoorConnection - previous room + door used + index
-        //doorConnection - this room + door used + index
+        //prevDoorConnection - previous (room + door used + index)
+        //doorConnection - this (room + door used + index)
         GameObject newRoom = Instantiate(doorConnection.room, position, rotation, dungeonParent.transform);
         Room newRoomScript = newRoom.GetComponent<Room>();
         Room prevRoomScript = prevDoorConnection.room.GetComponent<Room>();
@@ -87,9 +82,13 @@ public class DungeonManager : MonoBehaviour
             if (i == doorConnection.doorIndex)
             {
                 unusedDoors.Remove(prevDoorConnection);
-                Instantiate(dS.door, doorConnection.door);
+                GameObject newDoor = Instantiate(dS.door, doorConnection.door);
+                newDoor.layer = LayerMask.NameToLayer("Doors");
             }
-            unusedDoors.Add(new DoorConnection(newRoomScript.Doorways[i], newRoom, i));
+            else
+            {
+                unusedDoors.Add(new DoorConnection(newRoomScript.Doorways[i], newRoom, i));
+            }
         }
         //increment roomcount
 
@@ -106,7 +105,7 @@ public class DungeonManager : MonoBehaviour
     IEnumerator PlaceRooms()
     {
         //While we can fit more rooms, and want more rooms
-        while (unusedDoors.Count > 0 && roomCount <= dS.maxRooms)
+        while (unusedDoors.Count > 0 && roomCount < dS.maxRooms)
         {
             DoorConnection doorConnection = null;
             Vector3 newRoomLocation = Vector3.zero;
@@ -127,6 +126,8 @@ public class DungeonManager : MonoBehaviour
         }
         //seal off the remaining doorways
         //before this need to check if rooms are connected but their doorways are considered not connected
+        Debug.Log(unusedDoors.Count);
+        yield return null;
         StartCoroutine(PlaceDeadEnd());
         yield return null;
     }
@@ -145,7 +146,9 @@ public class DungeonManager : MonoBehaviour
         }
         yield return null;
         StartCoroutine(PlaceExit());
-        StartCoroutine(ReplaceDeadEndsWithDoors());
+
+        //2 deadends with same position => replace with door
+        //StartCoroutine(ReplaceDeadEndsWithDoors());
 
     }
     //if two doorways are conviniently next to each other but not considered connected then we do this!
@@ -153,11 +156,11 @@ public class DungeonManager : MonoBehaviour
     {
         float posTolerance = 0.3f;
         int startingIndex = 0;
-        while (startingIndex < deadEnds.Count)
+        while (startingIndex < deadEnds.Count-1)
         {
             startingIndex++;
             int i = startingIndex;
-            while (i <= deadEnds.Count)
+            while (i < deadEnds.Count)
             {
                 i++;
                 //if they are (almost) exactly the same

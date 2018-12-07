@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25045222f610434c9c699f7a53e2065, type: 3}
   m_Name: DefaultDungeon
   m_EditorClassIdentifier: 
-  maxRooms: 500
-  collisionTolerance: 0.95
+  maxRooms: 50
+  collisionTolerance: 0.8
   deadEnd: {fileID: 1543878605429120, guid: 0f127b65fe2dfca4194a73b0c92974b6, type: 2}
   door: {fileID: 1483252113705802, guid: 8ecd7b09f6fcd7f4bb01f2dd77295861, type: 2}
   exit: {fileID: 1679915358215254, guid: 034fa5d86058cdc489e98435e2454963, type: 2}

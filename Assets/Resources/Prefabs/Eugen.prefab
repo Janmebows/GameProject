@@ -1956,6 +1956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4098742361990046}
   - component: {fileID: 95245879361453736}
+  - component: {fileID: 114235202606590992}
   m_Layer: 0
   m_Name: Eugen
   m_TagString: Enemy
@@ -5937,6 +5938,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114235202606590992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652979676456618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93f2ff19967b224abbb713265aa384f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appendages: []
+  humanoid: 0
 --- !u!136 &136088713517899372
 CapsuleCollider:
   m_ObjectHideFlags: 1

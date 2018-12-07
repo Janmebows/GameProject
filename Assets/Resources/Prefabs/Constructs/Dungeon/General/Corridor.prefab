@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612254096736584}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4320219461777910}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4102475111600462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doorway2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4659218296326790}
   - component: {fileID: 114935636233654434}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Corridor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 33062910819303586}
   - component: {fileID: 65012292735051708}
   - component: {fileID: 23732628724067648}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978377017130318}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doorway1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,3 +267,5 @@ MonoBehaviour:
   - type: 2
     center: {fileID: 4612254096736584}
     corner: {fileID: 4320219461777910}
+    secondCenter: {fileID: 0}
+    radius: 0

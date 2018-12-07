@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class DungeonSettings : ScriptableObject {
     
+    [Range(1,10000)]
     public int maxRooms;
     [Range(0,1)]
     public float collisionTolerance;
@@ -18,5 +19,7 @@ public class DungeonSettings : ScriptableObject {
 
     public bool useRandomSeed;
     public int CustomSeed;
+
+    
 
 }

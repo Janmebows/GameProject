@@ -24,72 +24,75 @@ public class Room : MonoBehaviour {
     }
 
 
-    public void Move(Vector3 offset)
-    { 
-        room.transform.position += offset;
-
-    }
-    public void MoveRoom(Transform doorway,bool negate)
-    {
-        if (negate)
-        {
-            room.transform.position -= doorway.transform.localPosition;
-            Rotate(doorway.transform.position, -doorway.rotation.eulerAngles.y);
-        }
-        else
-        {
-            room.transform.position += doorway.transform.localPosition;
-            Rotate(doorway.transform.position, doorway.rotation.eulerAngles.y);
-        }
-        
-    }
-    public void Rotate(Vector3 link, float angle)
-    {
-        rotation += angle;
-        room.transform.RotateAround(link, Vector3.up, angle);
-    }
-    
-    //Might add delegate functions for different rooms for better checks
     //i.e. for the T room use two check boxes - one for the vertical line, and one for the horizontal, and just take !or
-    public bool NoCollisionAbstract(Vector3 boxOffset, Vector3 boxRotation, float tolerance)
+    public bool NoCollisionAbstract(Vector3 centreOffset, Vector3 roomRotation, float tolerance)
     {
         //Boxoffset is where we're the room will be centered
         //Boxrotation is how the room is to be rotated
         //Tolerance is testing for how harsh the collision check should be
-        Vector3 boxCenter = boxOffset;
-        Vector3 halfExtents = (corner.localPosition - center.localPosition) * tolerance;
-        //Returns true if there is NO collision
-        return !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(boxRotation));
 
-        //Quaternion boxRot = Quaternion.Euler(boxRotation);
-        //Vector3 boxCenter = boxOffset + center.localPosition;
+        //Vector3 boxCenter = centreOffset;
+        //Vector3 halfExtents = (corner.localPosition - center.localPosition) * tolerance;
+        ////Returns true if there is NO collision
+        //return !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(roomRotation),LayerMask.NameToLayer("Doors"));
 
-        //bool colliding = false;
-        //for(int i=0; i<roomColliders.Count;i++)
-        //{
-        //    ColliderInfo roomCol = roomColliders[i];
-        //    Vector3 halfExtents = (roomCol.corner.localPosition - roomCol.center.localPosition) * tolerance;
-        //    switch (roomCol.type)
-        //    {
-        //        case ColliderInfo.RoomType.Sphere:
-        //            //colliding = !Physics.CheckSphere(boxCenter, halfExtents, );
-        //            break;
-        //        case ColliderInfo.RoomType.Capsule:
-        //            //colliding= !Physics.CheckCapsule(boxCenter, halfExtents, boxRot);
-        //            break;
-        //        case ColliderInfo.RoomType.Box:
-        //            colliding = !Physics.CheckBox(boxCenter, halfExtents, boxRot);
-        //            break;
-        //        default:
-        //            colliding = !Physics.CheckBox(boxCenter, halfExtents, boxRot);
-        //            break;
-        //    }
-        //    if (colliding)
-        //        return false;
-        //}
-        //return true;
+        bool colliding = false;
+        foreach (ColliderInfo roomCol in roomColliders)
+        {
+            Vector3 boxCenter = centreOffset + center.localPosition;
+            Vector3 halfExtents = (roomCol.corner.localPosition - roomCol.center.localPosition) * tolerance;
+            switch (roomCol.type)
+            {
+                case ColliderInfo.RoomType.Sphere:
+                    //colliding = !Physics.CheckSphere(boxCenter, halfExtents, );
+                    Debug.Log("Sphere Room Colliders are not yet implemented");
+                    break;
+                case ColliderInfo.RoomType.Capsule:
+                    //colliding= !Physics.CheckCapsule(boxCenter, halfExtents, boxRot);
+                    Debug.Log("Capsule Room Colliders are not yet implemented");
+                    break;
+                case ColliderInfo.RoomType.Box:
+                    colliding = !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(roomRotation), ~LayerMask.NameToLayer("Doors"));
+                    break;
+                default:
+                    //colliding = !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(roomRotation), LayerMask.NameToLayer("Doors"));
+                    Debug.LogError("You forgot to assign a collider type to " + gameObject.name);
+                    break;
+            }
+            //if at any point it collides
+            if (!colliding)
+                return false;
+        }
+        return true;
 
     }
+
+    //Unfortunately its shit if the rotation isn't a multiple of 90 deg
+    void OnDrawGizmos()
+    {
+        foreach(ColliderInfo roomCol in roomColliders)
+        {
+            switch (roomCol.type)
+            {
+                case ColliderInfo.RoomType.Sphere:
+                    Gizmos.DrawWireSphere(roomCol.center.position, roomCol.radius);
+                    break;
+                case ColliderInfo.RoomType.Capsule:
+                    //Gizmos.DrawWireMesh(GameObject.CreatePrimitive(PrimitiveType.Capsule).GetComponent<Mesh>());
+                    Gizmos.DrawCube((roomCol.center.position + roomCol.secondCenter.position) / 2, gameObject.transform.rotation * roomCol.corner.localPosition * 2f);
+                    break;
+                case ColliderInfo.RoomType.Box:
+                    //gotta multiply by 2 bc not half extents bc the unity devs are assholes who can't be consistent
+                    Gizmos.DrawWireCube(roomCol.center.position,gameObject.transform.rotation*roomCol.corner.localPosition *2f);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
+
+
 
     [System.Serializable]
     public struct ColliderInfo
@@ -101,6 +104,8 @@ public class Room : MonoBehaviour {
         public RoomType type;
         public Transform center;
         public Transform corner;
+        public Transform secondCenter;
+        public float radius;
 
     }
 }

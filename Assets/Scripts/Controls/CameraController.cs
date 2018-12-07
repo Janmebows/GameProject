@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
     {
         //do we want to be locked on?
         tryLockOn = lockedOn ^ Input.GetButtonDown("XboxRightStickClick");
-
+        
         //don't want to be locked on
         if (!tryLockOn)
         {
@@ -119,20 +119,28 @@ public class CameraController : MonoBehaviour
 
     Transform FindBestAppendage(Vector3 direction)
     {
-        List<Appendage> appendages = target.GetComponent<BaseEntity>().appendages;
-        Appendage best = appendages[0];
-        if (appendages.Count > 0)
+        try
         {
-            for (int i = 0; i < appendages.Count; i++)
+            List<Appendage> appendages = target.GetComponent<BaseEntity>().appendages;
+            Appendage best = appendages[0];
+            if (appendages.Count > 0)
             {
-                //find out if this appendage better suits the directional input
-                best = appendages[i];
-                
+                for (int i = 0; i < appendages.Count; i++)
+                {
+                    //find out if this appendage better suits the directional input
+                    best = appendages[i];
+
+                }
+                return best.collider.transform;
             }
-            return best.collider.transform;
+            else
+            {
+                return null;
+            }
         }
-        else
+        catch
         {
+            Debug.LogWarning("not implemented");
             return null;
         }
     }
@@ -178,11 +186,26 @@ public class CameraController : MonoBehaviour
     {
         Vector3 pt = Camera.main.WorldToViewportPoint(position);
         if (pt.x > 1 || pt.x < 0 || pt.y > 1 || pt.y < 0 || pt.z < 0)
+        {
             return false;
+
+        }
         else
         {
-            return true;
+            //spaghetti raycast code which (almost) works
+            RaycastHit hit;
+            LayerMask mask = ~0;
+            Physics.Raycast(Camera.main.transform.position, position, out hit, Mathf.Min(100f, Vector3.SqrMagnitude(Camera.main.transform.position - position)), mask);
+            if (hit.collider ==null)
+            {
+                return true;
+            }
+            else
+            {
+                Debug.Log(hit.collider.gameObject.ToString());
+            }
         }
+        return false;
     }
     bool FindBestTarget()
     {

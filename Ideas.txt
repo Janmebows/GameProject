@@ -9,6 +9,10 @@ attacking
 script to get player to HOLD weapon 
 
 
+Generalise code for CO-OP?
+
+
+
 Unfinished/unimportant business:
 Camera needs smoothing out of lock-on
 make dungeon gen not shit
@@ -165,7 +169,7 @@ Stamina/Exhaustion mechanic?
 
 To code the system Andrew wants
 A class for body parts
-each part has a reference to another part to the up, down, left, right (possibly generalise this to instead find the closest part based on input)
+
 a bool for whether or not this one is targetted, some way to tell if player is behind (to swap left,right)
 
 
