@@ -71,6 +71,8 @@ public class DungeonManager : MonoBehaviour
         newRoomScript.connectedRooms.Add(prevDoorConnection.room);
         prevRoomScript.connectedRooms.Add(doorConnection.room);
         unusedDoors.Remove(prevDoorConnection);
+        //give the doorconnection the real values rather than prefabs
+        doorConnection.door = newRoomScript.Doorways[doorConnection.doorIndex];
         doorConnection.room = newRoom;
         instantiatedRoomObjects.Add(newRoom);
 
@@ -83,7 +85,6 @@ public class DungeonManager : MonoBehaviour
             if (i == doorConnection.doorIndex)
             {
                 GameObject newDoor = Instantiate(dS.door, doorConnection.door);
-                Debug.Log("Door at " + doorConnection.door.position.ToString());
                 newDoor.layer = LayerMask.NameToLayer("Doors");
                 
             }
@@ -205,8 +206,10 @@ public class DungeonManager : MonoBehaviour
     //newRoom is the prefab of the room to try to place, previousDoor is the global position of the door it is attaching to
     bool CheckBounds(GameObject newRoom, Transform previousDoor, out Vector3 roomLocation, out Vector3 roomRotation, out DoorConnection doorConnection)
     {
+        //make it null so no errors (yay)
         doorConnection = null;
-        //get the room script corresponding to the prefab (gives the room size & doorways)
+
+        //get the room script corresponding to the prefab (gives the doorways)
         Room newRoomscript = newRoom.GetComponent(typeof(Room)) as Room;
 
         roomLocation = previousDoor.position;

@@ -50,7 +50,7 @@ public class Room : MonoBehaviour {
                     Debug.Log("Capsule Room Colliders are not yet implemented");
                     break;
                 case ColliderInfo.RoomType.Box:
-                    colliding = !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(roomRotation), ~LayerMask.NameToLayer("Doors"));
+                    colliding = !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(roomRotation +roomCol.rotation), ~LayerMask.NameToLayer("Doors"));
                     break;
                 default:
                     Debug.LogError("You forgot to assign a collider type to " + gameObject.name);
@@ -101,6 +101,7 @@ public class Room : MonoBehaviour {
         public RoomType type;
         public Transform center;
         public Transform corner;
+        public Vector3 rotation;
         public Transform secondCenter;
         public float radius;
 

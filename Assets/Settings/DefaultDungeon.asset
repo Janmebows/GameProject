@@ -24,5 +24,6 @@ MonoBehaviour:
   - {fileID: 1994507866627058, guid: 86db14ebc72d0024e8663ae7727a8032, type: 2}
   - {fileID: 1769345456910372, guid: 6c4f188560ce3d2478a15056a95ba7f1, type: 2}
   - {fileID: 1995112605255582, guid: 98129e0e56cafaf4392aa2f79317801f, type: 2}
+  - {fileID: 1994507866627058, guid: b12a9bd266a4c874aaf01b8a18be9204, type: 2}
   useRandomSeed: 1
   CustomSeed: 0
