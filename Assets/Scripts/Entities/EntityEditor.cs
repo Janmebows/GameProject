@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+using System.Text.RegularExpressions;
 //script to allow the editing of entities without too much interaction within the model/prefab
 [CustomEditor(typeof(BaseEntity))]
 public class EntityEditor : Editor
@@ -10,7 +10,7 @@ public class EntityEditor : Editor
     BaseEntity thisTarget;
     bool adding = false;
 
-
+    string path = "Assets/Settings/Appendages/CreatureSpecificDefaults";
     //Entity Info
     List<string> colliderNames;
     Collider[] colliders;
@@ -24,17 +24,20 @@ public class EntityEditor : Editor
         //necessary to make shit work
         thisTarget = (BaseEntity)target;
 
+        AutoAppendagesButton();
+
+        //Regular expression to remove <space>(number) at the end of duplicates
+
         //Stuff from the target itself
         thisTarget.humanoid = EditorGUILayout.Toggle("Humanoid", thisTarget.humanoid);
 
         //appendage information
 
         ObtainAppendageColliders();
-        DisplayAppendages();
 
         //ADD APPENDAGE
         AddAppendageButton();
-
+        DisplayAppendages();
 
     }
 
@@ -42,20 +45,71 @@ public class EntityEditor : Editor
 
 
 
+    void AutoAppendagesButton()
+    {
+        if (GUILayout.Button("Auto Add Appendages (this might take a second)"))
+        {
+            string regexPattern = "\\s\\(\\d.*\\)\\z";
+            string folderName = Regex.Replace(target.name, regexPattern, "");
+            if (!AssetDatabase.IsValidFolder(path +"/" + folderName))
+            {
+                string guid = AssetDatabase.CreateFolder(path, folderName);
+                string folderPath = AssetDatabase.GUIDToAssetPath(guid);
+                Debug.Log("Created: " + folderPath);
+                AutoAddAppendages();
+            }
+            else if (thisTarget.appendages.Count == 0)
+            {
+                Object[] assets = AssetDatabase.LoadAllAssetsAtPath(folderName);
+                foreach (Object asset in assets)
+                {
+                    Appendage newAppendage = thisTarget.gameObject.AddComponent<Appendage>();
+                    newAppendage.baseAppendageData = (AppendageData)asset;
+                    int collindex = colliderNames.FindIndex(x => x == newAppendage.baseAppendageData.limbName);
+                    newAppendage.collider = colliders[collindex];
+                    thisTarget.appendages.Add(newAppendage);
+                }
+            }
+
+        }
+    }
 
 
 
 
 
+    void AutoAddAppendages()
+    {
+        Debug.Log("You will have to manually put in appendage types");
+        ObtainAppendageColliders();
+        //if its a human
+        if (thisTarget.humanoid)
+        {
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                //type needs to be similar to the collider name
+                AppendageData.AppendageType type = FindAppendageType(colliderNames[i]);
+                //AppendageData.AppendageType.
+                //add the appendage
+                DealWithAppendage(colliderNames[i], type, i);
+            }
+        }
+    }
+
+    AppendageData.AppendageType FindAppendageType(string compare)
+    {
+        //clean the string to compare against
 
 
+        //compare to appendage types
 
 
+        return AppendageData.AppendageType.Other;
+    }
 
     //APPENDAGES
     void AddAppendageButton()
     {
-
         
         if (GUILayout.Button("Add a new appendage") || adding)
         {
@@ -80,12 +134,10 @@ public class EntityEditor : Editor
             //FINISH BUTTON
             if (GUILayout.Button("Finish appendage") && appendageName.Length > 0)
             {
-                DealWithAppendage();
+                DealWithAppendage(appendageName, appType,appendageColliderIndex);
                 adding = false;
             }
         }
-
-
 
     }
 
@@ -107,14 +159,17 @@ public class EntityEditor : Editor
     }
  
     //fills in the appendage info given inputs
-    void DealWithAppendage()
+    void DealWithAppendage(string appName, AppendageData.AppendageType type, int index)
     {
         Appendage newAppendage = thisTarget.gameObject.AddComponent<Appendage>();
-        newAppendage.baseAppendageData = CreateInstance<AppendageData>();
-        newAppendage.baseAppendageData.limbName = appendageName;
-        newAppendage.baseAppendageData.appendageType = appType;
-        newAppendage.collider = colliders[appendageColliderIndex];
+        newAppendage.baseAppendageData = ScriptableObject.CreateInstance<AppendageData>();
+        newAppendage.baseAppendageData.limbName = appName;
+        newAppendage.baseAppendageData.appendageType = type;
+        newAppendage.collider = colliders[index];
         thisTarget.appendages.Add(newAppendage);
+
+        AssetDatabase.CreateAsset(newAppendage.baseAppendageData, path +"/" + target.name +"/"+ appName +".asset");
+        AssetDatabase.SaveAssets();
 
 
     }
@@ -128,7 +183,7 @@ public class EntityEditor : Editor
             colliderNames = new List<string>();
             foreach (Collider collider in colliders)
             {
-                colliderNames.Add(collider.ToString());
+                colliderNames.Add(collider.name);
             }
         }
     }

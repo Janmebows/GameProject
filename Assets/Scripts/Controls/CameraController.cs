@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public Transform player;
     //reference to what the player is locking on to
     Transform target;
+    public Transform targettedAppendage;
     private new Rigidbody rigidbody;
     public CameraSettings cameraSettings;
     float x = 0.0f;
@@ -21,6 +22,7 @@ public class CameraController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -32,13 +34,14 @@ public class CameraController : MonoBehaviour
         {
             rigidbody.freezeRotation = true;
         }
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void LateUpdate()
     {
         //do we want to be locked on?
         tryLockOn = lockedOn ^ Input.GetButtonDown("XboxRightStickClick");
-        
         //don't want to be locked on
         if (!tryLockOn)
         {
@@ -46,6 +49,7 @@ public class CameraController : MonoBehaviour
             lockedOn = false;
             //clear the target for future use
             target = null;
+            targettedAppendage = null;
         }
         //not yet locked on but we want to be
         else if (tryLockOn && !lockedOn)
@@ -83,13 +87,20 @@ public class CameraController : MonoBehaviour
         Quaternion rotation = transform.rotation;
         Vector3 negDistance = new Vector3(0.0f, 0.0f, -cameraSettings.distance);
         Vector3 position = transform.rotation * negDistance + player.position + (transform.rotation * cameraSettings.offset);
-
-        Vector3 direction = target.position - position;
-
+        Vector3 direction;
+        if (targettedAppendage!=null)
+        {
+            direction = targettedAppendage.position - position;
+        }
+        else
+        {
+            direction = target.position - position;
+        }
         //slerp to make pretty rotating effect
         rotation = Quaternion.Slerp(rotation, Quaternion.LookRotation(direction), Time.deltaTime * cameraSettings.lockOnSpeed);
         transform.position = position;
         transform.rotation = rotation;
+        
         if (!targettingAppendages)
         {
             StartCoroutine(TargetAppendages());
@@ -98,40 +109,79 @@ public class CameraController : MonoBehaviour
 
     IEnumerator TargetAppendages()
     {
-        targettingAppendages = true;
+        //find the default appendage (upper chest)
+        targettedAppendage = FindRootBone();
+
         while (lockedOn && target != null)
         {
+            targettingAppendages = true;
             float inputx = Input.GetAxis("XboxRightHorizontal");
             float inputy = Input.GetAxis("XboxRightVertical");
             Vector3 inputDir = new Vector3(inputx, inputy, 0);
             //if theres any big boi input
             if (inputx > deadzone || inputx < -deadzone || inputy > deadzone || inputy < -deadzone)
             {
-                Debug.Log("soontm");
+                targettedAppendage = FindBestAppendage(inputDir);
                 yield return new WaitForSeconds(0.5f);
-                FindBestAppendage(inputDir);
             }
             yield return null;
         }
         targettingAppendages = false;
         yield return null;
     }
+    Transform FindRootBone()
+    {
+        try
+        {
+            BaseEntity targetInfo = target.GetComponent<BaseEntity>();
+            List<Appendage> appendages = targetInfo.appendages;
+            Appendage wanted;
+            if (appendages.Count > 0)
+            {
+                if (targetInfo.humanoid)
+                {
 
-    Transform FindBestAppendage(Vector3 direction)
+                    wanted = appendages.Find(x => x.baseAppendageData.appendageType == AppendageData.AppendageType.TorsoU);
+                }
+                else
+                {
+                    wanted = appendages.Find(x => x.baseAppendageData.appendageType == AppendageData.AppendageType.Head);
+                }
+                return wanted.collider.gameObject.transform;
+            }
+            else { return null; }
+        }
+        catch
+        {
+            Debug.LogWarning("This target is missing some appendage information");
+            return null;
+        }
+
+    }
+    Transform FindBestAppendage(Vector3 inputDirection)
     {
         try
         {
             List<Appendage> appendages = target.GetComponent<BaseEntity>().appendages;
             Appendage best = appendages[0];
-            if (appendages.Count > 0)
+            float angle = Vector3.Angle(inputDirection, appendages[0].collider.transform.localPosition);
+            float distance = Vector3.Distance(inputDirection, appendages[0].collider.transform.localPosition);
+            float bestVal = angle*angle + distance * 100;
+            if (appendages.Count > 1)
             {
                 for (int i = 0; i < appendages.Count; i++)
                 {
-                    //find out if this appendage better suits the directional input
-                    best = appendages[i];
+                    angle = Vector3.Angle(inputDirection, appendages[i].collider.transform.localPosition);
+                    distance = Vector3.Distance(inputDirection, appendages[i].collider.transform.localPosition);
+                    float value = angle * angle + distance * 100;
+                    if(value < bestVal)
+                    {
+                        best = appendages[i];
+                        bestVal = value;
+                    }
 
                 }
-                return best.collider.transform;
+                return best.collider.gameObject.transform;
             }
             else
             {
@@ -144,6 +194,13 @@ public class CameraController : MonoBehaviour
             return null;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        if(targettedAppendage!=null)
+            Gizmos.DrawCube(targettedAppendage.position, Vector3.one / 2f);
+    }
+
 
     void Unlocked()
     {
@@ -192,17 +249,23 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            //spaghetti raycast code which (almost) works
             RaycastHit hit;
-            LayerMask mask = ~0;
-            Physics.Raycast(Camera.main.transform.position, position, out hit, Mathf.Min(100f, Vector3.SqrMagnitude(Camera.main.transform.position - position)), mask);
-            if (hit.collider ==null)
+            //layer 11 is entities
+            LayerMask mask = ~11;
+           
+            if (!Physics.Raycast(Camera.main.transform.position, position - Camera.main.transform.position, out hit, Vector3.Magnitude(position - Camera.main.transform.position),mask))
+            {
+                return true;
+            }
+            else if (hit.collider.gameObject.layer == 11)
             {
                 return true;
             }
             else
             {
+                Debug.DrawRay(Camera.main.transform.position,hit.point,Color.magenta,2f);
                 Debug.Log(hit.collider.gameObject.ToString());
+                
             }
         }
         return false;
