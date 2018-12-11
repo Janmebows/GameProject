@@ -13,6 +13,8 @@ public class Room : MonoBehaviour {
     protected bool playerInRoom;
     public float rotation=0;
 
+    public int playerRoomDistance;
+
     public List<ColliderInfo> roomColliders;
     void Start()
     {
@@ -28,11 +30,6 @@ public class Room : MonoBehaviour {
         //Boxoffset is where we're the room will be centered
         //Boxrotation is how the room is to be rotated
         //Tolerance is testing for how harsh the collision check should be
-
-        //Vector3 boxCenter = centreOffset;
-        //Vector3 halfExtents = (corner.localPosition - center.localPosition) * tolerance;
-        ////Returns true if there is NO collision
-        //return !Physics.CheckBox(boxCenter, halfExtents, Quaternion.Euler(roomRotation),LayerMask.NameToLayer("Doors"));
 
         bool colliding = false;
         foreach (ColliderInfo roomCol in roomColliders)
@@ -98,11 +95,17 @@ public class Room : MonoBehaviour {
         {
             Sphere, Capsule, Box
         }
+        [Tooltip("Shape of the room collider")]
         public RoomType type;
+        [Tooltip("Where the room collider is centered")]
         public Transform center;
+        [Tooltip("The corner of the room collider - leave blank for spheres/capsules")]
         public Transform corner;
+        [Tooltip("Rotation of the collider - set to 0 for default")]
         public Vector3 rotation;
+        [Tooltip("For capsule colliders - leave empty for non Capsules")]
         public Transform secondCenter;
+        [Tooltip("Radius of the sphere/capsule - leave empty for Boxes")]
         public float radius;
 
     }

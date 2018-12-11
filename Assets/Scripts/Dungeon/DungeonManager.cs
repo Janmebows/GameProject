@@ -21,7 +21,6 @@ public class DungeonManager : MonoBehaviour
 
     System.Random seed;
 
-
     void Start()
     {
         roomCount = 0;

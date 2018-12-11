@@ -1740,7 +1740,7 @@ GameObject:
   - component: {fileID: 1996885663}
   - component: {fileID: 1996885664}
   m_Layer: 9
-  m_Name: DungeonParent
+  m_Name: Dungeon Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
