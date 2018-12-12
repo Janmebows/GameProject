@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Elbow_R
   m_EditorClassIdentifier: 
   limbName: Elbow_R
-  appendageType: 11
+  appendageType: 1
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 1

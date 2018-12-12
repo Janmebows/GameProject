@@ -25,7 +25,7 @@ public class EntityEditor : Editor
         thisTarget = (BaseEntity)target;
 
         AutoAppendagesButton();
-
+        FillAppendageListButton();
         //Regular expression to remove <space>(number) at the end of duplicates
 
         //Stuff from the target itself
@@ -42,7 +42,20 @@ public class EntityEditor : Editor
     }
 
 
-
+    void FillAppendageListButton()
+    {
+        if (GUILayout.Button("Fill appendage list"))
+        {
+            try
+            {
+                thisTarget.appendages = new List<Appendage>(thisTarget.gameObject.GetComponents<Appendage>());
+            }
+            catch
+            {
+                Debug.LogWarning("Try adding appendages first!");
+            }
+        }
+    }
 
 
     void AutoAppendagesButton()
@@ -80,7 +93,8 @@ public class EntityEditor : Editor
 
     void AutoAddAppendages()
     {
-        Debug.Log("You will have to manually put in appendage types");
+        Debug.Log("You may have to manually put in appendage types");
+        
         ObtainAppendageColliders();
         //if its a human
         if (thisTarget.humanoid)
@@ -98,12 +112,62 @@ public class EntityEditor : Editor
 
     AppendageData.AppendageType FindAppendageType(string compare)
     {
+        //First clean string and see if it matches any keywords
         //clean the string to compare against
+        string newcompare = compare.ToLower();
+        string regexPattern = "_.*";
+        newcompare = Regex.Replace(newcompare, regexPattern, "");
 
-
+        //compare to keywords
+        switch (newcompare)
+        {
+            case "arml":
+            case "lowerarm":
+            case "elbow":
+            case "armlower":
+                return AppendageData.AppendageType.ArmL;
+            case "armu":
+            case "arm":
+            case "upperarm":
+            case "armupper":
+                return AppendageData.AppendageType.ArmU;
+            case "foot":
+            case "ankle":
+                return AppendageData.AppendageType.Foot;
+            case "hand":
+            case "wrist":
+                return AppendageData.AppendageType.Hand;
+            case "head":
+            case "face":
+                return AppendageData.AppendageType.Head;
+            case "legl":
+            case "lowerleg":
+            case "knee":
+            case "calf":
+                return AppendageData.AppendageType.LegL;
+            case "legu":
+            case "upperleg":
+            case "thigh":
+            case "leg":
+                return AppendageData.AppendageType.LegU;
+            case "neck":
+                return AppendageData.AppendageType.Neck;
+            case "torsol":
+            case "lowertorso":
+                return AppendageData.AppendageType.TorsoL;
+            case "torsou":
+            case "uppertorso":
+            case "upperbody":
+                return AppendageData.AppendageType.TorsoU;
+            case "waist":
+            case "lowerbody":
+                return AppendageData.AppendageType.Waist;
+            default:
+                break;
+        }
         //compare to appendage types
 
-
+        Debug.LogWarning("The type for appendage: " + compare + " was not automatically assigned");
         return AppendageData.AppendageType.Other;
     }
 

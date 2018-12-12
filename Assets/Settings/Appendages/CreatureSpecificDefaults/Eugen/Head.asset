@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Head
   m_EditorClassIdentifier: 
   limbName: Head
-  appendageType: 11
+  appendageType: 4
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 1

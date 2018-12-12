@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Ankle_R
   m_EditorClassIdentifier: 
   limbName: Ankle_R
-  appendageType: 11
+  appendageType: 2
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 1

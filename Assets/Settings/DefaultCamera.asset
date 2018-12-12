@@ -21,3 +21,4 @@ MonoBehaviour:
   distanceMin: 0.5
   distanceMax: 3
   invertY: 1
+  FOV: 100

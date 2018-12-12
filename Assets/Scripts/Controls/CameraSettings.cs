@@ -16,5 +16,7 @@ public class CameraSettings : ScriptableObject {
     public float distanceMin;
     public float distanceMax;
     public bool invertY;
+    [Range(20,120)]
+    public float FOV;
 
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Knee_R
   m_EditorClassIdentifier: 
   limbName: Knee_R
-  appendageType: 11
+  appendageType: 6
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 1

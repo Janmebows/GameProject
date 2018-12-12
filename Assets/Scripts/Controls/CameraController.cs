@@ -36,6 +36,8 @@ public class CameraController : MonoBehaviour
         }
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        Camera.main.fieldOfView = cameraSettings.FOV;
     }
 
     void LateUpdate()
@@ -117,6 +119,7 @@ public class CameraController : MonoBehaviour
             targettingAppendages = true;
             float inputx = Input.GetAxis("XboxRightHorizontal");
             float inputy = Input.GetAxis("XboxRightVertical");
+            //may need to convert this to be respective of the rotation of the target...
             Vector3 inputDir = new Vector3(inputx, inputy, 0);
             //if theres any big boi input
             if (inputx > deadzone || inputx < -deadzone || inputy > deadzone || inputy < -deadzone)
@@ -138,15 +141,8 @@ public class CameraController : MonoBehaviour
             Appendage wanted;
             if (appendages.Count > 0)
             {
-                if (targetInfo.humanoid)
-                {
-
                     wanted = appendages.Find(x => x.baseAppendageData.appendageType == AppendageData.AppendageType.TorsoU);
-                }
-                else
-                {
-                    wanted = appendages.Find(x => x.baseAppendageData.appendageType == AppendageData.AppendageType.Head);
-                }
+
                 return wanted.collider.gameObject.transform;
             }
             else { return null; }

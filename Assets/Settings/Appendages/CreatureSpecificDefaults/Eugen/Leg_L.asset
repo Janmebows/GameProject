@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Leg_L
   m_EditorClassIdentifier: 
   limbName: Leg_L
-  appendageType: 11
+  appendageType: 5
   maxCrushHP: 0
   maxSeverHP: 0
   severable: 1
