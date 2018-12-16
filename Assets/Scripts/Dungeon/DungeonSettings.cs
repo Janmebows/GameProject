@@ -16,9 +16,7 @@ public class DungeonSettings : ScriptableObject {
     public GameObject exit;
     public GameObject spawn;
     public List<GameObject> roomTypes = new List<GameObject>();
-
-    public bool useRandomSeed;
-    public int CustomSeed;
+    
 
     
 

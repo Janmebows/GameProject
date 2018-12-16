@@ -197,13 +197,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sheathed: {fileID: 1359284489}
   drawn: {fileID: 1985827086}
-  axe: {fileID: 1425502538}
+  weapon: {fileID: 632984542}
   weaponDrawn: 0
 --- !u!4 &267824755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4119418756069322, guid: fa2f58110bd45a64a8b59236483c9e56,
     type: 2}
   m_PrefabInternal: {fileID: 1500323712}
+--- !u!1 &632984542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1722739051115620, guid: f68bc704c30488c4ebe09f355a9f294d,
+    type: 2}
+  m_PrefabInternal: {fileID: 796314156}
 --- !u!1001 &796314156
 Prefab:
   m_ObjectHideFlags: 0
@@ -360,17 +365,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 267824755}
+  targettedAppendage: {fileID: 0}
   cameraSettings: {fileID: 11400000, guid: c69ef39798c5a5b4d9a60c7244c25eb1, type: 2}
 --- !u!4 &1359284489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4907057096550120, guid: fa2f58110bd45a64a8b59236483c9e56,
     type: 2}
   m_PrefabInternal: {fileID: 1500323712}
---- !u!4 &1425502538 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4451585661856602, guid: f68bc704c30488c4ebe09f355a9f294d,
-    type: 2}
-  m_PrefabInternal: {fileID: 796314156}
 --- !u!1001 &1500323712
 Prefab:
   m_ObjectHideFlags: 0

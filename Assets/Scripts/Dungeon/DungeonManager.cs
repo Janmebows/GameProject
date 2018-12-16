@@ -7,9 +7,8 @@ public class DungeonManager : MonoBehaviour
     //settings class for dungeon generation
     //this class will allow for randomisation - different dungeon types, etc.
     public DungeonSettings dS;
-
     public int roomCount;
-
+    System.Random rng;
 
     public List<GameObject> instantiatedRoomObjects;
     List<GameObject> deadEnds;
@@ -19,10 +18,11 @@ public class DungeonManager : MonoBehaviour
                                      //reference for the different room types
 
 
-    System.Random seed;
+
 
     void Start()
     {
+        rng = LevelInformation.levelInfo.rng;
         roomCount = 0;
         if (dungeonParent == null)
         {
@@ -31,11 +31,6 @@ public class DungeonManager : MonoBehaviour
 
         unusedDoors = new List<DoorConnection>();
         deadEnds = new List<GameObject>();
-        //initialise rng
-        if (dS.useRandomSeed)
-            seed = new System.Random();
-        else
-            seed = new System.Random(dS.CustomSeed);
 
         PlaceSpawn();
         StartCoroutine(PlaceRooms());
@@ -113,9 +108,9 @@ public class DungeonManager : MonoBehaviour
             DoorConnection doorConnection = null;
             Vector3 newRoomLocation = Vector3.zero;
             Vector3 newRoomRotation = Vector3.zero;
-            int linkIndex = seed.Next(0, unusedDoors.Count);
+            int linkIndex = rng.Next(0, unusedDoors.Count);
             Transform linkToAttach = unusedDoors[linkIndex].door; //pick a random doorway
-            GameObject newRoom = dS.roomTypes[seed.Next(0, dS.roomTypes.Count)]; //picks a random room prefab
+            GameObject newRoom = dS.roomTypes[rng.Next(0, dS.roomTypes.Count)]; //picks a random room prefab
 
             if (CheckBounds(newRoom, linkToAttach, out newRoomLocation, out newRoomRotation, out doorConnection))
             {
@@ -194,7 +189,7 @@ public class DungeonManager : MonoBehaviour
     IEnumerator PlaceExit()
     {
 
-        GameObject exitRoom = instantiatedRoomObjects[seed.Next(0, instantiatedRoomObjects.Count)];
+        GameObject exitRoom = instantiatedRoomObjects[rng.Next(0, instantiatedRoomObjects.Count)];
 
         Instantiate(dS.exit, exitRoom.transform);
         yield return null;
@@ -226,7 +221,7 @@ public class DungeonManager : MonoBehaviour
         }
         while (indexList.Count > 0)
         {
-            int index = seed.Next(0, indexList.Count);
+            int index = rng.Next(0, indexList.Count);
             Transform door = Doors[indexList[index]];
             roomRotation -= door.localRotation.eulerAngles;
 
