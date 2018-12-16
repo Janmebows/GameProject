@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: GuardNarrow
   typeOfPiece: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 1875396144704662, guid: c67a482b6f2a3c647b9ccc2767bd173c, type: 2}
   connections:
   - connectionPosition: {x: 0, y: 0.02, z: 0}
     connectionRotation: {x: 0, y: 0, z: 0}

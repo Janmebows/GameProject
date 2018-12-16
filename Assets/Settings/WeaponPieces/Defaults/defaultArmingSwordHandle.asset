@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: ArmingSwordHandle
   typeOfPiece: 1
-  prefab: {fileID: 0}
+  prefab: {fileID: 1041294469263870, guid: 821193a7571289f4999494053e09a657, type: 2}
   connections:
   - connectionPosition: {x: 0, y: 0.065, z: 0}
     connectionRotation: {x: 0, y: 0, z: 0}

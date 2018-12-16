@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: TsubaGuard
   typeOfPiece: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 1747761191078762, guid: 882b474a5c6a14940a4513ad5676ecaf, type: 2}
   connections:
   - connectionPosition: {x: 0, y: 0.01, z: 0}
     connectionRotation: {x: 0, y: 0, z: 0}
