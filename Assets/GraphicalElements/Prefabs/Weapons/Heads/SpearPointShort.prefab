@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1436750211454852}
   m_IsPrefabAsset: 1
+--- !u!1 &1342900587662734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4164870009539058}
+  m_Layer: 0
+  m_Name: Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1436750211454852
 GameObject:
   m_ObjectHideFlags: 0
@@ -21,6 +36,8 @@ GameObject:
   - component: {fileID: 4727817784297578}
   - component: {fileID: 33549809182058416}
   - component: {fileID: 23409744360395026}
+  - component: {fileID: 114555823817810762}
+  - component: {fileID: 136235776873091030}
   m_Layer: 0
   m_Name: SpearPointShort
   m_TagString: Untagged
@@ -28,6 +45,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4164870009539058
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1342900587662734}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4727817784297578}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!4 &4727817784297578
 Transform:
   m_ObjectHideFlags: 1
@@ -37,7 +67,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4164870009539058}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -83,3 +114,40 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436750211454852}
   m_Mesh: {fileID: 4300000, guid: 29c21d1feff017b498ed1cdb3c8f9f41, type: 3}
+--- !u!114 &114555823817810762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1436750211454852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54aadac8ebbd9d2408950741efc61a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceName: SpearHead
+  typeOfPiece: 3
+  prefab: {fileID: 1436750211454852}
+  connections:
+  - transform: {fileID: 4164870009539058}
+    acceptableConnections: 00000000040000000100000002000000
+    piece: {fileID: 114555823817810762}
+  collider: {fileID: 136235776873091030}
+  quality: 3
+  speedMultiplier: 1
+  weight: 0
+  severProportion: 0.5
+  crushProportion: 0.5
+--- !u!136 &136235776873091030
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1436750211454852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.015
+  m_Height: 0.099999994
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

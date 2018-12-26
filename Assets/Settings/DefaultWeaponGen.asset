@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b4b4beae6683d4c84ec1de08f98f22, type: 3}
+  m_Name: DefaultWeaponGen
+  m_EditorClassIdentifier: 
+  handles:
+  - {fileID: 1745741681647572, guid: e527038b70a0bbf4f80283dba31788dd, type: 2}
+  - {fileID: 1198637968109140, guid: 45678426ad4749942bd190aba9b37412, type: 2}
+  - {fileID: 1627066184008510, guid: a1f68bd7509ea6549ac96aa5af285d5f, type: 2}
+  - {fileID: 1497581273350092, guid: 6b966a0c4fcaf7b48ac1339365526659, type: 2}
+  guards:
+  - {fileID: 1747761191078762, guid: 882b474a5c6a14940a4513ad5676ecaf, type: 2}
+  shafts:
+  - {fileID: 1198637968109140, guid: 45678426ad4749942bd190aba9b37412, type: 2}
+  - {fileID: 1497581273350092, guid: 6b966a0c4fcaf7b48ac1339365526659, type: 2}
+  pommels:
+  - {fileID: 1436750211454852, guid: e21ce263f567fea4799d4279ad6244c7, type: 2}
+  - {fileID: 1258856343227346, guid: cffeb0f2ac229bd478fb0f0c99a4b684, type: 2}
+  heads:
+  - {fileID: 1436750211454852, guid: e21ce263f567fea4799d4279ad6244c7, type: 2}
+  - {fileID: 1198039051177750, guid: b156f0e5f2a83c441951d3bfec6e50a6, type: 2}
+  - {fileID: 1458769890165842, guid: 097518336925050419f8b8295c79a4b9, type: 2}

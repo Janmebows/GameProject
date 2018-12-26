@@ -11,6 +11,36 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1627066184008510}
   m_IsPrefabAsset: 1
+--- !u!1 &1149937490711540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4631771316274018}
+  m_Layer: 0
+  m_Name: Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1448546074830708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4806860656999730}
+  m_Layer: 0
+  m_Name: Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1627066184008510
 GameObject:
   m_ObjectHideFlags: 0
@@ -21,6 +51,8 @@ GameObject:
   - component: {fileID: 4028045457177218}
   - component: {fileID: 33831460304725968}
   - component: {fileID: 23822671414130128}
+  - component: {fileID: 114431167690900318}
+  - component: {fileID: 136890686485642536}
   m_Layer: 0
   m_Name: PikeShaft
   m_TagString: Untagged
@@ -37,8 +69,36 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4806860656999730}
+  - {fileID: 4631771316274018}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4631771316274018
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1149937490711540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4028045457177218}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4806860656999730
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448546074830708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4028045457177218}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23822671414130128
@@ -83,3 +143,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1627066184008510}
   m_Mesh: {fileID: 4300000, guid: 95f0014cf230c534980191592d181c3f, type: 3}
+--- !u!114 &114431167690900318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1627066184008510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54aadac8ebbd9d2408950741efc61a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceName: Pike Shaft
+  typeOfPiece: 4
+  prefab: {fileID: 1627066184008510}
+  connections:
+  - transform: {fileID: 4806860656999730}
+    acceptableConnections: 040000000200000003000000
+    piece: {fileID: 0}
+  - transform: {fileID: 4631771316274018}
+    acceptableConnections: 000000000100000003000000
+    piece: {fileID: 0}
+  collider: {fileID: 136890686485642536}
+  quality: 3
+  speedMultiplier: 1
+  weight: 0
+  severProportion: 0.5
+  crushProportion: 0.5
+--- !u!136 &136890686485642536
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1627066184008510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.014999997
+  m_Height: 2.3999999
+  m_Direction: 1
+  m_Center: {x: -0.0000000023283064, y: 0, z: 0.0000000027939677}

@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4503190429142846}
   - component: {fileID: 33422482518748106}
   - component: {fileID: 23476137828197400}
+  - component: {fileID: 114642528033025896}
+  - component: {fileID: 136852081735423482}
   m_Layer: 0
   m_Name: PipeMaceHead
   m_TagString: Untagged
@@ -28,6 +30,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1858998747214144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4229971538817444}
+  m_Layer: 0
+  m_Name: Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1967500275960974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4936207202547512}
+  m_Layer: 0
+  m_Name: Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4229971538817444
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1858998747214144}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4503190429142846}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!4 &4503190429142846
 Transform:
   m_ObjectHideFlags: 1
@@ -37,8 +82,23 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4936207202547512}
+  - {fileID: 4229971538817444}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4936207202547512
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1967500275960974}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4503190429142846}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23476137828197400
@@ -83,3 +143,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1198039051177750}
   m_Mesh: {fileID: 4300000, guid: 2a584fcac9a7d504799770d2db8244cc, type: 3}
+--- !u!114 &114642528033025896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1198039051177750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54aadac8ebbd9d2408950741efc61a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceName: Pipe Mace Head
+  typeOfPiece: 2
+  prefab: {fileID: 1198039051177750}
+  connections:
+  - transform: {fileID: 4936207202547512}
+    acceptableConnections: 03000000
+    piece: {fileID: 0}
+  - transform: {fileID: 4229971538817444}
+    acceptableConnections: 0000000001000000020000000300000004000000
+    piece: {fileID: 0}
+  collider: {fileID: 136852081735423482}
+  quality: 3
+  speedMultiplier: 1
+  weight: 0
+  severProportion: 0.5
+  crushProportion: 0.5
+--- !u!136 &136852081735423482
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1198039051177750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.032416575
+  m_Height: 0.08
+  m_Direction: 1
+  m_Center: {x: -0.0000000037252903, y: 0, z: -0.000006262213}

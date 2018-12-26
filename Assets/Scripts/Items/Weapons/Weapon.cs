@@ -13,15 +13,13 @@ public class Weapon : MonoBehaviour {
     bool isActive = false;
 
     //constructor for WeaponAssembly to do nice things
-    Weapon(ref WeaponPieceData[] piece) : base()
+    Weapon(ref WeaponPiece[] piece) : base()
     {       
 
     }
 	// Use this for initialization
 	void Start () {
-        owner = this.transform.root.gameObject;
 
-        NoInternalCollision();
 
 	}
     void Update()
