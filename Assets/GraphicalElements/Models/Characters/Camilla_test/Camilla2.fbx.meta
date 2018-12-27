@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 62d693a1bfd26a44b8dc0008b436c1d9
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Ankle_L
+    100002: Ankle_R
+    100004: Arm_L
+    100006: Arm_R
+    100008: BreastLower_L
+    100010: BreastLower_R
+    100012: BreastLowerTip_L
+    100014: BreastLowerTip_L_end
+    100016: BreastLowerTip_R
+    100018: BreastLowerTip_R_end
+    100020: BreastUpper2-_L
+    100022: BreastUpper2-_L_end
+    100024: BreastUpper2-_R
+    100026: BreastUpper2-_R_end
+    100028: BreastUpper2_L
+    100030: BreastUpper2_L_end
+    100032: BreastUpper2_R
+    100034: BreastUpper2_R_end
+    100036: BreastUpper_L
+    100038: BreastUpper_L_end
+    100040: BreastUpper_R
+    100042: BreastUpper_R_end
+    100044: //RootNode
+    100046: Camilla_arm
+    100048: Camilla_mesh
+    100050: Center
+    100052: Elbow_L
+    100054: Elbow_R
+    100056: Eye_L
+    100058: Eye_L_end
+    100060: Eye_R
+    100062: Eye_R_end
+    100064: Eyes
+    100066: Eyes_end
+    100068: Groove
+    100070: hair back 1
+    100072: hair back 2a
+    100074: hair back 2b
+    100076: hair back 2c
+    100078: hair back 2d
+    100080: hair back 3a
+    100082: hair back 3b
+    100084: hair back 3c
+    100086: hair back 3d
+    100088: hair back 4a
+    100090: hair back 4a_end
+    100092: hair back 4b
+    100094: hair back 4b_end
+    100096: hair back 4c
+    100098: hair back 4c_end
+    100100: hair back 4d
+    100102: hair back 4d_end
+    100104: hair front lower left 1
+    100106: hair front lower left 2
+    100108: hair front lower left 3
+    100110: hair front lower left 4
+    100112: hair front lower left 5
+    100114: hair front lower left 5_end
+    100116: hair front lower right 1
+    100118: hair front lower right 2
+    100120: hair front lower right 3
+    100122: hair front lower right 4
+    100124: hair front lower right 5
+    100126: hair front lower right 6
+    100128: hair front lower right 6_end
+    100130: hair front lower rightside 1
+    100132: hair front lower rightside 2
+    100134: hair front lower rightside 3
+    100136: hair front lower rightside 3_end
+    100138: hair front upper left 1
+    100140: hair front upper left 2
+    100142: hair front upper left 2_end
+    100144: hair front upper right 1
+    100146: hair front upper right 2
+    100148: hair front upper right 2_end
+    100150: hair upper
+    100152: hair upper_end
+    100154: Head
+    100156: head adj
+    100158: head adj 2
+    100160: head adj 2_end
+    100162: head adj_end
+    100164: head cheek lower left 1
+    100166: head cheek lower left 1_end
+    100168: head cheek lower left 2
+    100170: head cheek lower left 2_end
+    100172: head cheek lower right 1
+    100174: head cheek lower right 1_end
+    100176: head cheek lower right 2
+    100178: head cheek lower right 2_end
+    100180: head cheek upper left 1
+    100182: head cheek upper left 1_end
+    100184: head cheek upper left 2
+    100186: head cheek upper left 2_end
+    100188: head cheek upper right 1
+    100190: head cheek upper right 1_end
+    100192: head cheek upper right 2
+    100194: head cheek upper right 2_end
+    100196: head extra eyelid left
+    100198: head extra eyelid left_end
+    100200: head extra eyelid right
+    100202: head extra eyelid right_end
+    100204: head eye corner left 1
+    100206: head eye corner left 1_end
+    100208: head eye corner left 2
+    100210: head eye corner left 2_end
+    100212: head eye corner right 1
+    100214: head eye corner right 1_end
+    100216: head eye corner right 2
+    100218: head eye corner right 2_end
+    100220: head eye left root
+    100222: head eye right root
+    100224: head eyebrow left 1
+    100226: head eyebrow left 1_end
+    100228: head eyebrow left 2
+    100230: head eyebrow left 2_end
+    100232: head eyebrow left 3
+    100234: head eyebrow left 3_end
+    100236: head eyebrow left root
+    100238: head eyebrow right 1
+    100240: head eyebrow right 1_end
+    100242: head eyebrow right 2
+    100244: head eyebrow right 2_end
+    100246: head eyebrow right 3
+    100248: head eyebrow right 3_end
+    100250: head eyebrow right root
+    100252: head eyelid lower left
+    100254: head eyelid lower left_end
+    100256: head eyelid lower right
+    100258: head eyelid lower right_end
+    100260: head eyelid upper left
+    100262: head eyelid upper right
+    100264: head jaw
+    100266: head jaw adj
+    100268: head jaw adj_end
+    100270: head lip lower left
+    100272: head lip lower left_end
+    100274: head lip lower middle 1
+    100276: head lip lower middle 1_end
+    100278: head lip lower middle 2
+    100280: head lip lower middle 2_end
+    100282: head lip lower right
+    100284: head lip lower right_end
+    100286: head lip upper left
+    100288: head lip upper left_end
+    100290: head lip upper middle 1
+    100292: head lip upper middle 1_end
+    100294: head lip upper middle 2
+    100296: head lip upper middle 2_end
+    100298: head lip upper right
+    100300: head lip upper right_end
+    100302: head mouth corner left
+    100304: head mouth corner left_end
+    100306: head mouth corner right
+    100308: head mouth corner right_end
+    100310: head nose
+    100312: head nose adj
+    100314: head nose adj_end
+    100316: head nose tip
+    100318: head nose tip_end
+    100320: head nostril left
+    100322: head nostril left_end
+    100324: head nostril right
+    100326: head nostril right_end
+    100328: head teeth lower
+    100330: head teeth lower_end
+    100332: head teeth upper
+    100334: head teeth upper_end
+    100336: head tongue 1
+    100338: head tongue 1_end
+    100340: head tongue 2
+    100342: head tongue 2_end
+    100344: IndexFinger1_L
+    100346: IndexFinger1_R
+    100348: IndexFinger2_L
+    100350: IndexFinger2_R
+    100352: IndexFinger3_L
+    100354: IndexFinger3_L_end
+    100356: IndexFinger3_R
+    100358: IndexFinger3_R_end
+    100360: Knee_L
+    100362: Knee_R
+    100364: Leg_L
+    100366: Leg_R
+    100368: LegIK_L
+    100370: LegIK_R
+    100372: LegIKTip_L
+    100374: LegIKTip_L_end
+    100376: LegIKTip_R
+    100378: LegIKTip_R_end
+    100380: LittleFinger1_L
+    100382: LittleFinger1_R
+    100384: LittleFinger2_L
+    100386: LittleFinger2_R
+    100388: LittleFinger3_L
+    100390: LittleFinger3_L_end
+    100392: LittleFinger3_R
+    100394: LittleFinger3_R_end
+    100396: LowerBody
+    100398: LowerBodyTip
+    100400: LowerBodyTip_end
+    100402: MiddleFinger1_L
+    100404: MiddleFinger1_R
+    100406: MiddleFinger2_L
+    100408: MiddleFinger2_R
+    100410: MiddleFinger3_L
+    100412: MiddleFinger3_L_end
+    100414: MiddleFinger3_R
+    100416: MiddleFinger3_R_end
+    100418: Neck
+    100420: ParentNode
+    100422: RingFinger1_L
+    100424: RingFinger1_R
+    100426: RingFinger2_L
+    100428: RingFinger2_R
+    100430: RingFinger3_L
+    100432: RingFinger3_L_end
+    100434: RingFinger3_R
+    100436: RingFinger3_R_end
+    100438: Shoulder_L
+    100440: Shoulder_R
+    100442: skirt back left 1
+    100444: skirt back left 2
+    100446: skirt back left 3
+    100448: skirt back left 4
+    100450: skirt back left 5
+    100452: skirt back left 5_end
+    100454: skirt back right 1
+    100456: skirt back right 2
+    100458: skirt back right 3
+    100460: skirt back right 4
+    100462: skirt back right 5
+    100464: skirt back right 5_end
+    100466: skirt backside left 1
+    100468: skirt backside left 2
+    100470: skirt backside left 3
+    100472: skirt backside left 4
+    100474: skirt backside left 5
+    100476: skirt backside left 5_end
+    100478: skirt backside right 1
+    100480: skirt backside right 2
+    100482: skirt backside right 3
+    100484: skirt backside right 4
+    100486: skirt backside right 5
+    100488: skirt backside right 5_end
+    100490: skirt front left 1
+    100492: skirt front left 2
+    100494: skirt front left 3
+    100496: skirt front left 4
+    100498: skirt front left 5
+    100500: skirt front left 5_end
+    100502: skirt front right 1
+    100504: skirt front right 2
+    100506: skirt front right 3
+    100508: skirt front right 4
+    100510: skirt front right 5
+    100512: skirt front right 5_end
+    100514: skirt frontside left 1
+    100516: skirt frontside left 2
+    100518: skirt frontside left 3
+    100520: skirt frontside left 4
+    100522: skirt frontside left 5
+    100524: skirt frontside left 5_end
+    100526: skirt frontside right 1
+    100528: skirt frontside right 2
+    100530: skirt frontside right 3
+    100532: skirt frontside right 4
+    100534: skirt frontside right 5
+    100536: skirt frontside right 5_end
+    100538: skirt left
+    100540: skirt right
+    100542: skirt root
+    100544: Thumb0_L
+    100546: Thumb0_R
+    100548: Thumb1_L
+    100550: Thumb1_R
+    100552: Thumb2_L
+    100554: Thumb2_L_end
+    100556: Thumb2_R
+    100558: Thumb2_R_end
+    100560: ToeTip_L
+    100562: ToeTip_L_end
+    100564: ToeTip_R
+    100566: ToeTip_R_end
+    100568: ToeTipIK_L
+    100570: ToeTipIK_R
+    100572: ToeTipIKTip_L
+    100574: ToeTipIKTip_L_end
+    100576: ToeTipIKTip_R
+    100578: ToeTipIKTip_R_end
+    100580: unused jnt 061
+    100582: unused jnt 061_end
+    100584: unused jnt 062
+    100586: unused jnt 062_end
+    100588: unused jnt 110
+    100590: unused jnt 110_end
+    100592: unused jnt 112
+    100594: unused jnt 112_end
+    100596: unused jnt 115
+    100598: unused jnt 115_end
+    100600: unused jnt 116
+    100602: unused jnt 116_end
+    100604: unused jnt 129
+    100606: unused jnt 129_end
+    100608: unused jnt 130
+    100610: unused jnt 130_end
+    100612: unused nt 109
+    100614: unused nt 109_end
+    100616: UpperBody
+    100618: UpperBody2
+    100620: Waist
+    100622: Wrist_L
+    100624: Wrist_R
+    400000: Ankle_L
+    400002: Ankle_R
+    400004: Arm_L
+    400006: Arm_R
+    400008: BreastLower_L
+    400010: BreastLower_R
+    400012: BreastLowerTip_L
+    400014: BreastLowerTip_L_end
+    400016: BreastLowerTip_R
+    400018: BreastLowerTip_R_end
+    400020: BreastUpper2-_L
+    400022: BreastUpper2-_L_end
+    400024: BreastUpper2-_R
+    400026: BreastUpper2-_R_end
+    400028: BreastUpper2_L
+    400030: BreastUpper2_L_end
+    400032: BreastUpper2_R
+    400034: BreastUpper2_R_end
+    400036: BreastUpper_L
+    400038: BreastUpper_L_end
+    400040: BreastUpper_R
+    400042: BreastUpper_R_end
+    400044: //RootNode
+    400046: Camilla_arm
+    400048: Camilla_mesh
+    400050: Center
+    400052: Elbow_L
+    400054: Elbow_R
+    400056: Eye_L
+    400058: Eye_L_end
+    400060: Eye_R
+    400062: Eye_R_end
+    400064: Eyes
+    400066: Eyes_end
+    400068: Groove
+    400070: hair back 1
+    400072: hair back 2a
+    400074: hair back 2b
+    400076: hair back 2c
+    400078: hair back 2d
+    400080: hair back 3a
+    400082: hair back 3b
+    400084: hair back 3c
+    400086: hair back 3d
+    400088: hair back 4a
+    400090: hair back 4a_end
+    400092: hair back 4b
+    400094: hair back 4b_end
+    400096: hair back 4c
+    400098: hair back 4c_end
+    400100: hair back 4d
+    400102: hair back 4d_end
+    400104: hair front lower left 1
+    400106: hair front lower left 2
+    400108: hair front lower left 3
+    400110: hair front lower left 4
+    400112: hair front lower left 5
+    400114: hair front lower left 5_end
+    400116: hair front lower right 1
+    400118: hair front lower right 2
+    400120: hair front lower right 3
+    400122: hair front lower right 4
+    400124: hair front lower right 5
+    400126: hair front lower right 6
+    400128: hair front lower right 6_end
+    400130: hair front lower rightside 1
+    400132: hair front lower rightside 2
+    400134: hair front lower rightside 3
+    400136: hair front lower rightside 3_end
+    400138: hair front upper left 1
+    400140: hair front upper left 2
+    400142: hair front upper left 2_end
+    400144: hair front upper right 1
+    400146: hair front upper right 2
+    400148: hair front upper right 2_end
+    400150: hair upper
+    400152: hair upper_end
+    400154: Head
+    400156: head adj
+    400158: head adj 2
+    400160: head adj 2_end
+    400162: head adj_end
+    400164: head cheek lower left 1
+    400166: head cheek lower left 1_end
+    400168: head cheek lower left 2
+    400170: head cheek lower left 2_end
+    400172: head cheek lower right 1
+    400174: head cheek lower right 1_end
+    400176: head cheek lower right 2
+    400178: head cheek lower right 2_end
+    400180: head cheek upper left 1
+    400182: head cheek upper left 1_end
+    400184: head cheek upper left 2
+    400186: head cheek upper left 2_end
+    400188: head cheek upper right 1
+    400190: head cheek upper right 1_end
+    400192: head cheek upper right 2
+    400194: head cheek upper right 2_end
+    400196: head extra eyelid left
+    400198: head extra eyelid left_end
+    400200: head extra eyelid right
+    400202: head extra eyelid right_end
+    400204: head eye corner left 1
+    400206: head eye corner left 1_end
+    400208: head eye corner left 2
+    400210: head eye corner left 2_end
+    400212: head eye corner right 1
+    400214: head eye corner right 1_end
+    400216: head eye corner right 2
+    400218: head eye corner right 2_end
+    400220: head eye left root
+    400222: head eye right root
+    400224: head eyebrow left 1
+    400226: head eyebrow left 1_end
+    400228: head eyebrow left 2
+    400230: head eyebrow left 2_end
+    400232: head eyebrow left 3
+    400234: head eyebrow left 3_end
+    400236: head eyebrow left root
+    400238: head eyebrow right 1
+    400240: head eyebrow right 1_end
+    400242: head eyebrow right 2
+    400244: head eyebrow right 2_end
+    400246: head eyebrow right 3
+    400248: head eyebrow right 3_end
+    400250: head eyebrow right root
+    400252: head eyelid lower left
+    400254: head eyelid lower left_end
+    400256: head eyelid lower right
+    400258: head eyelid lower right_end
+    400260: head eyelid upper left
+    400262: head eyelid upper right
+    400264: head jaw
+    400266: head jaw adj
+    400268: head jaw adj_end
+    400270: head lip lower left
+    400272: head lip lower left_end
+    400274: head lip lower middle 1
+    400276: head lip lower middle 1_end
+    400278: head lip lower middle 2
+    400280: head lip lower middle 2_end
+    400282: head lip lower right
+    400284: head lip lower right_end
+    400286: head lip upper left
+    400288: head lip upper left_end
+    400290: head lip upper middle 1
+    400292: head lip upper middle 1_end
+    400294: head lip upper middle 2
+    400296: head lip upper middle 2_end
+    400298: head lip upper right
+    400300: head lip upper right_end
+    400302: head mouth corner left
+    400304: head mouth corner left_end
+    400306: head mouth corner right
+    400308: head mouth corner right_end
+    400310: head nose
+    400312: head nose adj
+    400314: head nose adj_end
+    400316: head nose tip
+    400318: head nose tip_end
+    400320: head nostril left
+    400322: head nostril left_end
+    400324: head nostril right
+    400326: head nostril right_end
+    400328: head teeth lower
+    400330: head teeth lower_end
+    400332: head teeth upper
+    400334: head teeth upper_end
+    400336: head tongue 1
+    400338: head tongue 1_end
+    400340: head tongue 2
+    400342: head tongue 2_end
+    400344: IndexFinger1_L
+    400346: IndexFinger1_R
+    400348: IndexFinger2_L
+    400350: IndexFinger2_R
+    400352: IndexFinger3_L
+    400354: IndexFinger3_L_end
+    400356: IndexFinger3_R
+    400358: IndexFinger3_R_end
+    400360: Knee_L
+    400362: Knee_R
+    400364: Leg_L
+    400366: Leg_R
+    400368: LegIK_L
+    400370: LegIK_R
+    400372: LegIKTip_L
+    400374: LegIKTip_L_end
+    400376: LegIKTip_R
+    400378: LegIKTip_R_end
+    400380: LittleFinger1_L
+    400382: LittleFinger1_R
+    400384: LittleFinger2_L
+    400386: LittleFinger2_R
+    400388: LittleFinger3_L
+    400390: LittleFinger3_L_end
+    400392: LittleFinger3_R
+    400394: LittleFinger3_R_end
+    400396: LowerBody
+    400398: LowerBodyTip
+    400400: LowerBodyTip_end
+    400402: MiddleFinger1_L
+    400404: MiddleFinger1_R
+    400406: MiddleFinger2_L
+    400408: MiddleFinger2_R
+    400410: MiddleFinger3_L
+    400412: MiddleFinger3_L_end
+    400414: MiddleFinger3_R
+    400416: MiddleFinger3_R_end
+    400418: Neck
+    400420: ParentNode
+    400422: RingFinger1_L
+    400424: RingFinger1_R
+    400426: RingFinger2_L
+    400428: RingFinger2_R
+    400430: RingFinger3_L
+    400432: RingFinger3_L_end
+    400434: RingFinger3_R
+    400436: RingFinger3_R_end
+    400438: Shoulder_L
+    400440: Shoulder_R
+    400442: skirt back left 1
+    400444: skirt back left 2
+    400446: skirt back left 3
+    400448: skirt back left 4
+    400450: skirt back left 5
+    400452: skirt back left 5_end
+    400454: skirt back right 1
+    400456: skirt back right 2
+    400458: skirt back right 3
+    400460: skirt back right 4
+    400462: skirt back right 5
+    400464: skirt back right 5_end
+    400466: skirt backside left 1
+    400468: skirt backside left 2
+    400470: skirt backside left 3
+    400472: skirt backside left 4
+    400474: skirt backside left 5
+    400476: skirt backside left 5_end
+    400478: skirt backside right 1
+    400480: skirt backside right 2
+    400482: skirt backside right 3
+    400484: skirt backside right 4
+    400486: skirt backside right 5
+    400488: skirt backside right 5_end
+    400490: skirt front left 1
+    400492: skirt front left 2
+    400494: skirt front left 3
+    400496: skirt front left 4
+    400498: skirt front left 5
+    400500: skirt front left 5_end
+    400502: skirt front right 1
+    400504: skirt front right 2
+    400506: skirt front right 3
+    400508: skirt front right 4
+    400510: skirt front right 5
+    400512: skirt front right 5_end
+    400514: skirt frontside left 1
+    400516: skirt frontside left 2
+    400518: skirt frontside left 3
+    400520: skirt frontside left 4
+    400522: skirt frontside left 5
+    400524: skirt frontside left 5_end
+    400526: skirt frontside right 1
+    400528: skirt frontside right 2
+    400530: skirt frontside right 3
+    400532: skirt frontside right 4
+    400534: skirt frontside right 5
+    400536: skirt frontside right 5_end
+    400538: skirt left
+    400540: skirt right
+    400542: skirt root
+    400544: Thumb0_L
+    400546: Thumb0_R
+    400548: Thumb1_L
+    400550: Thumb1_R
+    400552: Thumb2_L
+    400554: Thumb2_L_end
+    400556: Thumb2_R
+    400558: Thumb2_R_end
+    400560: ToeTip_L
+    400562: ToeTip_L_end
+    400564: ToeTip_R
+    400566: ToeTip_R_end
+    400568: ToeTipIK_L
+    400570: ToeTipIK_R
+    400572: ToeTipIKTip_L
+    400574: ToeTipIKTip_L_end
+    400576: ToeTipIKTip_R
+    400578: ToeTipIKTip_R_end
+    400580: unused jnt 061
+    400582: unused jnt 061_end
+    400584: unused jnt 062
+    400586: unused jnt 062_end
+    400588: unused jnt 110
+    400590: unused jnt 110_end
+    400592: unused jnt 112
+    400594: unused jnt 112_end
+    400596: unused jnt 115
+    400598: unused jnt 115_end
+    400600: unused jnt 116
+    400602: unused jnt 116_end
+    400604: unused jnt 129
+    400606: unused jnt 129_end
+    400608: unused jnt 130
+    400610: unused jnt 130_end
+    400612: unused nt 109
+    400614: unused nt 109_end
+    400616: UpperBody
+    400618: UpperBody2
+    400620: Waist
+    400622: Wrist_L
+    400624: Wrist_R
+    2100000: Mouth
+    2100002: Hair
+    2100004: Bangs
+    2100006: Bangs.001
+    2100008: Cape
+    2100010: Body Armor
+    2100012: Skin
+    2100014: Neck
+    2100016: Face
+    2100018: Crown
+    2100020: Face Details
+    2100022: Left Sclera
+    2100024: Right Sclera
+    2100026: Left Pupil
+    2100028: Right Pupil
+    2100030: Hair Lines1
+    2100032: Hair Lines2
+    2100034: skirt (top)1
+    2100036: skirt (top)2
+    2100038: Skirt (front)
+    4300000: Camilla_mesh
+    7400000: Camilla_arm|Camilla_vertical-swing
+    7400002: Camilla_arm|Camilla_vertical-swing.001
+    7400004: Camilla_arm|Camilla_vertical-swing.002
+    7400006: Camilla_arm|Camilla_vertical-swing.003
+    7400008: Camilla_arm|vertical_swing
+    9500000: //RootNode
+    13700000: Camilla_mesh
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

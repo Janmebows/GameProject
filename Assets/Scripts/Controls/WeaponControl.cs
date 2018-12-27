@@ -10,11 +10,12 @@ public class WeaponControl : MonoBehaviour
     public Transform drawn;
     public GameObject weapon;
     public bool weaponDrawn = false;
+    Animator anim;
 
     // Use this for initialization
     void Start ()
     {
-
+        anim = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -25,7 +26,10 @@ public class WeaponControl : MonoBehaviour
             DrawWeapon(true);
         }
            
-        
+        if (Input.GetButtonDown("XboxX"))
+        {
+            anim.SetTrigger("isSwinging");
+        }
         
         // reference to weapon > animation > slot/parent
     }
@@ -40,6 +44,7 @@ public class WeaponControl : MonoBehaviour
             weapon.transform.parent = drawn.transform;
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
+            anim.SetBool("weaponDrawn", true);
         }
 
         else
@@ -47,6 +52,7 @@ public class WeaponControl : MonoBehaviour
             weapon.transform.parent = sheathed.transform;
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
+            anim.SetBool("weaponDrawn", false);
         }
     }
 }
