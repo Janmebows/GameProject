@@ -39,7 +39,7 @@ FILE HIERARCHY - if adding/removing folders please change this
 		- Items (scripting for item types - will have subfolders if/when necessary)
 		- WorldGeneration (scripting to do with overworld)
 	- Settings (contains data files and ScriptableObjects)
-	- Resources (contains everything else)
+	- Graphical Elements (contains everything else)
 		- Animations (all animations/animators and AnimationControllers)
 		- Materials (all graphic files - will need subfolders soon)
 		- Models (non-prefab models - not editable models)
@@ -63,8 +63,8 @@ CONTROL SCHEMA - will have to rename in editor so they are customisable, not xbo
 -RSC - toggle lock on
 -A - jump (possibly swap with B)
 -B - interact (possibly swap with A)
--X - ability toggle 1*(possibly swap these with LT/RT)
--Y - ability toggle 2* (possibly swap these with LT/RT)
+-X - ability hold 1*(possibly swap these with LT/RT)
+-Y - ability hold 2* (possibly swap these with LT/RT)
 -LB - change target left
 -RB - change target right 
 -LT - left hand (possibly swap these with x/y) 

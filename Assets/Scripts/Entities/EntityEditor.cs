@@ -217,7 +217,7 @@ public class EntityEditor : Editor
             }
             else
             {
-                GUILayout.Label(appendage.baseAppendageData.limbName);
+                EditorGUILayout.Vector3Field(appendage.baseAppendageData.limbName + ": ", appendage.collider.transform.localPosition);
             }
         }
     }

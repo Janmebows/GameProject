@@ -10,8 +10,10 @@ public class CameraController : MonoBehaviour
     //reference to what the player is locking on to
     Transform target;
     public Transform targettedAppendage;
+    public Appendage targettedAppendageScript;
     private new Rigidbody rigidbody;
     public CameraSettings cameraSettings;
+    public ParticleSystem particle;
     float x = 0.0f;
     float y = 0.0f;
     float deadzone = 0.5f;
@@ -22,7 +24,6 @@ public class CameraController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -52,6 +53,7 @@ public class CameraController : MonoBehaviour
             //clear the target for future use
             target = null;
             targettedAppendage = null;
+            targettingAppendages = false;
         }
         //not yet locked on but we want to be
         else if (tryLockOn && !lockedOn)
@@ -66,9 +68,14 @@ public class CameraController : MonoBehaviour
         if (lockedOn && target != null)
         {
             LockedOn();
+            if (!particle.isPlaying)
+            {
+                particle.Play();
+            }
         }
         else
         {
+            particle.Stop();
             Unlocked();
 
         }
@@ -93,6 +100,7 @@ public class CameraController : MonoBehaviour
         if (targettedAppendage!=null)
         {
             direction = targettedAppendage.position - position;
+            particle.transform.position = targettedAppendage.position;
         }
         else
         {
@@ -119,13 +127,34 @@ public class CameraController : MonoBehaviour
             targettingAppendages = true;
             float inputx = Input.GetAxis("XboxRightHorizontal");
             float inputy = Input.GetAxis("XboxRightVertical");
-            //may need to convert this to be respective of the rotation of the target...
-            Vector3 inputDir = new Vector3(inputx, inputy, 0);
             //if theres any big boi input
             if (inputx > deadzone || inputx < -deadzone || inputy > deadzone || inputy < -deadzone)
             {
-                targettedAppendage = FindBestAppendage(inputDir);
-                yield return new WaitForSeconds(0.5f);
+
+                //may need to convert this to be respective of the rotation of the target...
+                Vector3 inputDir = new Vector3(inputx, inputy, 0);
+                //convert inputDir to accomodate player rotation
+                
+                Quaternion inputRot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y,Vector3.up);
+                /*
+                 * this is not conforming
+                 * basically the x input should be rotated around the Y axis (i.e. become an x-z direction)
+                 * whereas the y input should simply be as-is
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 */
+                inputDir = inputRot * inputDir;
+                Transform newTarget = FindBestAppendage(inputDir);
+                yield return null;
+                if (targettedAppendage != newTarget){
+                    targettedAppendage = newTarget;
+
+                    yield return new WaitForSeconds(0.5f);
+
+                }
             }
             yield return null;
         }
@@ -138,18 +167,18 @@ public class CameraController : MonoBehaviour
         {
             BaseEntity targetInfo = target.GetComponent<BaseEntity>();
             List<Appendage> appendages = targetInfo.appendages;
-            Appendage wanted;
+            
             if (appendages.Count > 0)
             {
-                    wanted = appendages.Find(x => x.baseAppendageData.appendageType == AppendageData.AppendageType.TorsoU);
-
-                return wanted.collider.gameObject.transform;
+                targettedAppendageScript = appendages.Find(x => x.baseAppendageData.appendageType == AppendageData.AppendageType.TorsoU);
+                
+                return targettedAppendageScript.collider.gameObject.transform;
             }
             else { return null; }
         }
         catch
         {
-            Debug.LogWarning("This target is missing some appendage information");
+            Debug.LogWarning("This target is missing appendage information");
             return null;
         }
 
@@ -159,25 +188,37 @@ public class CameraController : MonoBehaviour
         try
         {
             List<Appendage> appendages = target.GetComponent<BaseEntity>().appendages;
-            Appendage best = appendages[0];
-            float angle = Vector3.Angle(inputDirection, appendages[0].collider.transform.localPosition);
-            float distance = Vector3.Distance(inputDirection, appendages[0].collider.transform.localPosition);
-            float bestVal = angle*angle + distance * 100;
+            Appendage best = targettedAppendageScript;
+            float boundsSize = Mathf.Max(target.gameObject.GetComponentInChildren<Renderer>().bounds.max.x, target.gameObject.GetComponentInChildren<Renderer>().bounds.max.y, target.gameObject.GetComponentInChildren<Renderer>().bounds.max.z);
+            //max allowed angle + the max possible modified distance (45 + 45)
+            float bestVal = 45 + boundsSize*45;
+            float angle;
+            float proportionDistance;
+            float value;
             if (appendages.Count > 1)
             {
                 for (int i = 0; i < appendages.Count; i++)
                 {
-                    angle = Vector3.Angle(inputDirection, appendages[i].collider.transform.localPosition);
-                    distance = Vector3.Distance(inputDirection, appendages[i].collider.transform.localPosition);
-                    float value = angle * angle + distance * 100;
-                    if(value < bestVal)
+                    if (targettedAppendageScript == appendages[i])
+                        continue;
+                    angle = Vector3.Angle(inputDirection, appendages[i].collider.transform.position - targettedAppendage.position);
+                    proportionDistance = (targettedAppendage.position - appendages[i].collider.transform.position).magnitude /boundsSize;
+                    //if they're basically the same part don't allow for change
+                    if (proportionDistance< 0.01)
+                        continue;
+                    //distance / boundsSize should be in [0,1], so we want to multiply this so that 1 is roughly the max angle
+                    value = angle + 90 *  proportionDistance;
+                    if (angle < 45 && value < bestVal)
                     {
                         best = appendages[i];
                         bestVal = value;
                     }
 
                 }
+
+                targettedAppendageScript = best;
                 return best.collider.gameObject.transform;
+
             }
             else
             {
@@ -193,9 +234,28 @@ public class CameraController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(targettedAppendage!=null)
-            Gizmos.DrawCube(targettedAppendage.position, Vector3.one / 2f);
+
+        float inputx = Input.GetAxis("XboxRightHorizontal");
+        float inputy = Input.GetAxis("XboxRightVertical");
+        //if theres any big boi input
+        if (inputx > deadzone || inputx < -deadzone || inputy > deadzone || inputy < -deadzone)
+        {
+
+            //may need to convert this to be respective of the rotation of the target...
+            Vector3 inputDir = new Vector3(inputx, inputy, 0);
+            Quaternion inputRot = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up);
+
+            inputDir = inputRot * inputDir;
+            if(targettedAppendage!=null)
+            Gizmos.DrawLine(targettedAppendage.position, targettedAppendage.position + inputDir);
+
+        }
     }
+    //private void OnDrawGizmos()
+    //{
+    //    if(targettedAppendage!=null)
+    //        Gizmos.DrawCube(targettedAppendage.position, Vector3.one / 2f);
+    //}
 
 
     void Unlocked()

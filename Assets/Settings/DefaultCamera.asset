@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0d7ec1dc978747b3c5bd2c35819c1, type: 3}
   m_Name: DefaultCamera
   m_EditorClassIdentifier: 
-  distance: 5
+  distance: 1
   xSpeed: 1
   ySpeed: 1.5
   lockOnSpeed: 8
@@ -20,5 +20,5 @@ MonoBehaviour:
   offset: {x: 1, y: 1.3, z: 0}
   distanceMin: 0.5
   distanceMax: 3
-  invertY: 1
-  FOV: 100
+  invertY: 0
+  FOV: 90
