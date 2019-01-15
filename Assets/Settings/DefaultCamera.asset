@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0d7ec1dc978747b3c5bd2c35819c1, type: 3}
   m_Name: DefaultCamera
   m_EditorClassIdentifier: 
-  distance: 1
+  distance: 2
   xSpeed: 1
   ySpeed: 1.5
   lockOnSpeed: 8

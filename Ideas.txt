@@ -1,12 +1,23 @@
 
 NOTES
 
+ROADMAP (more or less in order)
+- attacks
+	- code in mixups/attack combos
+		- more attack animations (@pizza)
+	- taking/dealing damage
 
-Next objectives:
-appendages
-hitboxes
-attacking
-script to get player to HOLD weapon 
+- AI movement and combat (@josh)
+
+-Inventory + Items
+
+-NPCs 
+-Quests
+	-Quest objectives (e.g. finish dungeon)
+
+	
+-Make outside world gen not shit
+
 
 
 MOVE SHIT THAT DOESN"T NEED TO BE IN RESOURCES OUT OF RESOURCES 
@@ -82,57 +93,59 @@ possibly RT + LT = block? - might need to put this on its own key (possibly B?)
 
 
 
-weapons (attacking)
-	- damage not measured as a number (still have some measure of effectiveness)
-		- instead have weight/size (reach)/surface area?/sharpness ooh we could have stickiness and bounciness
-			-for blunt weapons instead of sharpness maybe something to do with spikes or something idk
-			-sharpness vs surface 
-	- somehow calculate a weapons speed and allow it to affect animation times
-		-have a similar mechanic to light/medium/heavy rolls in dark souls (or have it truly based on the speed)
-	- weapons can have bonuses to certain things (inflicts more pain / causes more bleeding)
 
-weapons construction system
-Each part can add/remove possible animations/attacks
-enum pieceType {hilt,guard,shaft,spike,head}
-	-each part will have its own collider!
-	- each component piece has sockets for other pieces
-	- HILT:
-		-root to hold the weapon
-		-down attaches to a spike/pommel
-		-up attaches to a guard/adaptor/shaft/allowed head/
-		-Stat effects:
-			-
-			-
-	- GUARD (adaptor):
-		- can be used to make the head not look stupid (if not an allowed head)
-		- 
-		-down attaches to a hilt 
-		-up attaches to a shaft/allowed head 
-		-Stat effects:
-			-
-			-
-	- SHAFT
-		-big sticky bit 
-		-down attaches to a hilt/guard(adaptor)
-		-up attaches to a head/shaft/spike
-		-Stat effects:
-			-RANGE
-			-WEIGHT
-			-
-	- SPIKE
-		- just a pointed spike/ball or something to attach to the end of a weapon 
-		- TERMINUS POINT
-		- down attaches to a hilt/head
-		-Stat effects:
-			-
-			-
-	- HEAD
-		-the main blade of the weapon 
-		-down attaches to a hilt/guard/shaft
-		-up attaches to a spike
-			-if we want maybe can attach to another shaft for the meme
-		-Stat effects:
-			-
+
+Detailed explanation of plans:
+
+
+
+weapons 
+	-attacking
+		- damage not measured as a number (still have some measure of effectiveness - e.g. number amirite)
+			- instead have weight/size (reach)/surface area?/sharpness ooh we could have stickiness and bounciness
+				-for blunt weapons instead of sharpness maybe something to do with spikes or something idk
+				-sharpness vs surface 
+		- somehow calculate a weapons speed and allow it to affect animation times
+			-have a similar mechanic to light/medium/heavy rolls in dark souls (or have it truly based on the speed)
+		- weapons can have bonuses to certain things (inflicts more pain / causes more bleeding)
+	-Construction
+		- HILT:
+			-root to hold the weapon
+			-down attaches to a spike/pommel
+			-up attaches to a guard/adaptor/shaft/allowed head/
+			-Stat effects:
+				-
+				-
+		- GUARD (adaptor):
+			- can be used to make the head not look stupid (if not an allowed head)
+			- 
+			-down attaches to a hilt 
+			-up attaches to a shaft/allowed head 
+			-Stat effects:
+				-
+				-
+		- SHAFT
+			-big sticky bit 
+			-down attaches to a hilt/guard(adaptor)
+			-up attaches to a head/shaft/spike
+			-Stat effects:
+				-RANGE
+				-WEIGHT
+				-
+		- SPIKE
+			- just a pointed spike/ball or something to attach to the end of a weapon 
+			- TERMINUS POINT
+			- down attaches to a hilt/head
+			-Stat effects:
+				-
+				-
+		- HEAD
+			-the main blade of the weapon 
+			-down attaches to a hilt/guard/shaft
+			-up attaches to a spike
+				-if we want maybe can attach to another shaft for the meme
+			-Stat effects:
+				-
 			-
 	
 appendages 
@@ -148,7 +161,22 @@ appendages
 			-pain and bleeding tolerance can be increased by moving towards the defensive classes
 	- some appendages have `fatal' tags - when broken the owner will immedaitely die
 
-possible damage model:
+damage model (probably):
+0.Have hidden values for the damage of different components which are moderated by player stats.
+	-Change these when they need to be (e.g. levelup / change weapon / skill improves / other factors apply)
+1.Prepare weapon for swing (any attack/ability multipliers will be passed through here)
+2.While swinging - do collision checks for each piece of the weapon 
+2.1 On miss
+	- possibly punish the player?
+2.2 On hit
+	- on each weapon piece do the collision check
+	- if hitting solid object 
+		-punish
+	- if hitting breakable object 
+		-break the object 
+	- if hitting enemy
+		- 
+3. end of swing - remove swing effects
 OnEquip() or OnStatsChanged() -> weaponSWING (ability?) ->  appendage -> enemy -> appendage -> enemy
 OnStatsChanged()
 {
@@ -170,29 +198,10 @@ How will armour work??
 
 Stamina/Exhaustion mechanic?
 
-To code the system Andrew wants
-A class for body parts
-
-a bool for whether or not this one is targetted, some way to tell if player is behind (to swap left,right)
-
-
--	Each enemy has a target thing
--	Player activates / deactivates it on lockon
--	When activated it needs to give off a particle effect (or something)
--	Needs reference to the pawn's mesh
--	player needs reference to its location.
-
-
 
 
 Light + Particles to identify where the player(s) is/are targetting
 	- Particles should launch normal to the mesh somehow.
-
-
-
-
-
-
 
 
 	

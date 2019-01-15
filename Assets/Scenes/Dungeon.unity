@@ -386,141 +386,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.9071755
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.9622642
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: ShapeModule.type
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InheritVelocityModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InheritVelocityModule.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InheritVelocityModule.m_Curve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: ShapeModule.alignToDirection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: ShapeModule.randomDirectionAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: ShapeModule.sphericalDirectionAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: ShapeModule.randomPositionAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: ShapeModule.arc.spread
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: InitialModule.maxNumParticles
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: useRigidbodyForVelocity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: autoRandomSeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: NoiseModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: NoiseModule.frequency
-      value: 1.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: NoiseModule.strength.scalar
-      value: 0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: NoiseModule.scrollSpeed.scalar
-      value: 1.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: NoiseModule.octaves
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: NoiseModule.octaveMultiplier
-      value: 0.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 198099044832437056, guid: c0c43c6e1a27f004182a56ab95389191,
-        type: 2}
-      propertyPath: NoiseModule.damping
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0c43c6e1a27f004182a56ab95389191, type: 2}
   m_IsPrefabAsset: 0
@@ -2164,6 +2029,11 @@ Prefab:
     - target: {fileID: 1811916656828772, guid: fa2f58110bd45a64a8b59236483c9e56, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114126952480163602, guid: fa2f58110bd45a64a8b59236483c9e56,
+        type: 2}
+      propertyPath: root
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa2f58110bd45a64a8b59236483c9e56, type: 2}

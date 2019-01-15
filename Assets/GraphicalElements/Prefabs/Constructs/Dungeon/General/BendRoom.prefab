@@ -702,6 +702,7 @@ MonoBehaviour:
   doorRotations: 000000002d000000
   connectedRooms: []
   rotation: 0
+  playerRoomDistance: 0
   roomColliders:
   - type: 2
     center: {fileID: 4279676564118284}
