@@ -44,7 +44,7 @@ public class Weapon : MonoBehaviour {
     //May need to handle this differently, could produce some weird results
     void NoInternalCollision()
     {
-        for(int i=1; i<=colliders.Length; i++)
+        for(int i=1; i<=colliders.Length; ++i)
         {
             foreach (Collider collider in owner.GetComponentsInChildren<Collider>())
             {

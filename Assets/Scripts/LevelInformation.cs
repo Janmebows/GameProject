@@ -9,20 +9,28 @@ public class LevelInformation : MonoBehaviour {
 
     public bool useRandomSeed = true;
     public int customSeed;
-    // Use this for initialization
+   
+
+    //singleton
     private void Awake()
     {
         if (levelInfo == null)
+        {
             levelInfo = this;
+        }
         else if (levelInfo != this)
+        {
             Destroy(this);
-
+        }
 
         if (useRandomSeed)
+        {
             rng = new System.Random();
+        }
         else
+        {
             rng = new System.Random(customSeed);
-
+        }
     }
 
 }

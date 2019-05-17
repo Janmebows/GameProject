@@ -101,12 +101,12 @@ public class DynamicBone : MonoBehaviour
 
     void CheckDistance()
     {
-        Transform rt = referenceObject;
-        if (rt == null && Camera.main != null)
-            rt = Camera.main.transform;
-        if (rt != null)
+        Transform referenceTransform = referenceObject;
+        if (referenceTransform == null && Camera.main != null)
+            referenceTransform = Camera.main.transform;
+        if (referenceTransform != null)
         {
-            float d = (rt.position - transform.position).sqrMagnitude;
+            float d = (referenceTransform.position - transform.position).sqrMagnitude;
             bool disable = d > distanceToObject * distanceToObject;
             if (disable != distantDisabled)
             {
@@ -147,8 +147,9 @@ public class DynamicBone : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         if (!enabled || root == null)
+        {
             return;
-
+        }
         if (Application.isEditor && !Application.isPlaying && transform.hasChanged)
         {
             InitTransforms();
@@ -161,11 +162,13 @@ public class DynamicBone : MonoBehaviour
             Particle p = particles[i];
             if (p.parentIndex >= 0)
             {
-                Particle p0 = particles[p.parentIndex];
-                Gizmos.DrawLine(p.position, p0.position);
+                Particle parentP = particles[p.parentIndex];
+                Gizmos.DrawLine(p.position, parentP.position);
             }
             if (p.radius > 0)
+            {
                 Gizmos.DrawWireSphere(p.position, p.radius * objectScale);
+            }
         }
     }
 
@@ -174,9 +177,13 @@ public class DynamicBone : MonoBehaviour
         if (weight != w)
         {
             if (w == 0)
+            {
                 InitTransforms();
+            }
             else if (weight == 0)
+            {
                 ResetParticlesPosition();
+            }
             weight = w;
         }
     }
@@ -189,8 +196,9 @@ public class DynamicBone : MonoBehaviour
     void UpdateDynamicBones(float t)
     {
         if (root == null)
+        {
             return;
-
+        }
         objectScale = Mathf.Abs(transform.lossyScale.x);
         objectMove = transform.position - objectPreviousPosition;
         objectPreviousPosition = transform.position;
@@ -234,8 +242,9 @@ public class DynamicBone : MonoBehaviour
     {
         particles.Clear();
         if (root == null)
+        {
             return;
-
+        }
         localGravity = root.InverseTransformDirection(gravity);
         objectScale = transform.lossyScale.x;
         objectPreviousPosition = transform.position;
@@ -256,15 +265,25 @@ public class DynamicBone : MonoBehaviour
             {
                 float a = p.boneLength / boneTotalLength;
                 if (dampingDistribution != null && dampingDistribution.keys.Length > 0)
+                {
                     p.damping *= dampingDistribution.Evaluate(a);
+                }
                 if (elasticityDistribution != null && elasticityDistribution.keys.Length > 0)
+                {
                     p.elasticity *= elasticityDistribution.Evaluate(a);
+                }
                 if (stiffnessDistribution != null && stiffnessDistribution.keys.Length > 0)
+                {
                     p.stiffness *= stiffnessDistribution.Evaluate(a);
+                }
                 if (inertiaDistribution != null && inertiaDistribution.keys.Length > 0)
+                {
                     p.inertia *= inertiaDistribution.Evaluate(a);
+                }
                 if (radiusDistribution != null && radiusDistribution.keys.Length > 0)
+                {
                     p.radius *= radiusDistribution.Evaluate(a);
+                }
             }
 
             p.damping = Mathf.Clamp01(p.damping);
@@ -288,20 +307,24 @@ public class DynamicBone : MonoBehaviour
         }
         else 	// end bone
         {
-            Transform pb = particles[parentIndex].transform;
+            Transform parentPTrans = particles[parentIndex].transform;
             if (endLength > 0)
             {
-                Transform ppb = pb.parent;
-                if (ppb != null)
-                    p.endOffset = pb.InverseTransformPoint((pb.position * 2 - ppb.position)) * endLength;
+                Transform parentParentPTrans = parentPTrans.parent;
+                if (parentParentPTrans != null)
+                {
+                    p.endOffset = parentPTrans.InverseTransformPoint((parentPTrans.position * 2 - parentParentPTrans.position)) * endLength;
+                }
                 else
+                {
                     p.endOffset = new Vector3(endLength, 0, 0);
+                }
             }
             else
             {
-                p.endOffset = pb.InverseTransformPoint(transform.TransformDirection(endOffset) + pb.position);
+                p.endOffset = parentPTrans.InverseTransformPoint(transform.TransformDirection(endOffset) + parentPTrans.position);
             }
-            p.position = p.previousPosition = pb.TransformPoint(p.endOffset);
+            p.position = p.previousPosition = parentPTrans.TransformPoint(p.endOffset);
         }
 
         if (parentIndex >= 0)
@@ -386,7 +409,7 @@ public class DynamicBone : MonoBehaviour
             Particle p = particles[i];
             if (p.parentIndex >= 0)
             {
-                // verlet integration
+                // verlet integration for newton's eqn of motion
                 Vector3 v = p.position - p.previousPosition;
                 Vector3 rmove = objectMove * p.inertia;
                 p.previousPosition = p.position + rmove;
@@ -411,10 +434,13 @@ public class DynamicBone : MonoBehaviour
 
             float restLen;
             if (p.transform != null)
+            {
                 restLen = (p0.transform.position - p.transform.position).magnitude;
+            }
             else
+            {
                 restLen = p0.transform.localToWorldMatrix.MultiplyVector(p.endOffset).magnitude;
-
+            }
             // keep shape
             float stiffness = Mathf.Lerp(1.0f, p.stiffness, weight);
             if (stiffness > 0 || p.elasticity > 0)
@@ -423,10 +449,13 @@ public class DynamicBone : MonoBehaviour
                 m0.SetColumn(3, p0.position);
                 Vector3 restPos;
                 if (p.transform != null)
+                {
                     restPos = m0.MultiplyPoint3x4(p.transform.localPosition);
+                }
                 else
+                {
                     restPos = m0.MultiplyPoint3x4(p.endOffset);
-
+                }
                 Vector3 d = restPos - p.position;
                 p.position += d * p.elasticity;
 
@@ -451,7 +480,7 @@ public class DynamicBone : MonoBehaviour
                     if (c != null && c.enabled)
                     {
                         //check if theres any funny business
-                        Collide(ref c,ref p.position, particleRadius);
+                        Collide(ref c, ref p.position, particleRadius);
                     }
                 }
             }
@@ -478,7 +507,9 @@ public class DynamicBone : MonoBehaviour
             Vector3 dd = p0.position - p.position;
             float leng = dd.magnitude;
             if (leng > 0)
+            {
                 p.position += dd * ((leng - restLen) / leng);
+            }
         }
     }
 
@@ -497,10 +528,13 @@ public class DynamicBone : MonoBehaviour
 
                 float restLen;
                 if (p.transform != null)
+                {
                     restLen = (p0.transform.position - p.transform.position).magnitude;
+                }
                 else
+                {
                     restLen = p0.transform.localToWorldMatrix.MultiplyVector(p.endOffset).magnitude;
-
+                }
                 // keep shape
                 float stiffness = Mathf.Lerp(1.0f, p.stiffness, weight);
                 if (stiffness > 0)
@@ -509,22 +543,29 @@ public class DynamicBone : MonoBehaviour
                     m0.SetColumn(3, p0.position);
                     Vector3 restPos;
                     if (p.transform != null)
+                    {
                         restPos = m0.MultiplyPoint3x4(p.transform.localPosition);
+                    }
                     else
+                    {
                         restPos = m0.MultiplyPoint3x4(p.endOffset);
-
+                    }
                     Vector3 d = restPos - p.position;
                     float len = d.magnitude;
                     float maxlen = restLen * (1 - stiffness) * 2;
                     if (len > maxlen)
+                    {
                         p.position += d * ((len - maxlen) / len);
+                    }
                 }
 
                 // keep length
                 Vector3 dd = p0.position - p.position;
                 float leng = dd.magnitude;
                 if (leng > 0)
+                {
                     p.position += dd * ((leng - restLen) / leng);
+                }
             }
             else
             {
@@ -545,15 +586,21 @@ public class DynamicBone : MonoBehaviour
             {
                 Vector3 v;
                 if (p.transform != null)
+                {
                     v = p.transform.localPosition;
+                }
                 else
+                {
                     v = p.endOffset;
+                }
                 Quaternion rot = Quaternion.FromToRotation(p0.transform.TransformDirection(v), p.position - p0.position);
                 p0.transform.rotation = rot * p0.transform.rotation;
             }
 
             if (p.transform != null)
+            {
                 p.transform.position = p.position;
+            }
         }
     }
 

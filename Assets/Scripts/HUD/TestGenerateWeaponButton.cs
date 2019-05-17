@@ -6,7 +6,7 @@ public class TestGenerateWeaponButton : MonoBehaviour {
 
     
 	void OnGUI() {
-		if(GUILayout.Button("The fuck d'ya say about me cunt?"))
+		if(GUILayout.Button("Generate Weapon"))
         {
             StartCoroutine(WeaponAssembly.weaponAssembly.AssembleWeapon());
         }

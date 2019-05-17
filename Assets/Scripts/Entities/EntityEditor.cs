@@ -99,7 +99,7 @@ public class EntityEditor : Editor
         //if its a human
         if (thisTarget.humanoid)
         {
-            for (int i = 0; i < colliders.Length; i++)
+            for (int i = 0; i < colliders.Length; ++i)
             {
                 //type needs to be similar to the collider name
                 AppendageData.AppendageType type = FindAppendageType(colliderNames[i]);

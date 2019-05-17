@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         if (controller.isGrounded)
         {
             anim.SetBool("grounded", true);
-            moveDirection = player.transform.forward * inputMag* speed;
+            moveDirection = player.transform.forward * inputMag * speed;
 
             if (Input.GetButtonDown("XboxA"))
             {
@@ -81,7 +81,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else
+        {
             anim.SetBool("grounded", false);
+        }
         // Apply gravity
         moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
         // Move the controller

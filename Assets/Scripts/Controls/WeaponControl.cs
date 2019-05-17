@@ -37,7 +37,7 @@ public class WeaponControl : MonoBehaviour
     //kinda clunky code rn but does the trick!
     void DrawWeapon(bool input)
     {
-        weaponDrawn = weaponDrawn ^ input;
+        weaponDrawn ^= input;
 
         if (weaponDrawn)
         {

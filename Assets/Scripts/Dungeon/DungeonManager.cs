@@ -47,7 +47,7 @@ public class DungeonManager : MonoBehaviour
         Room instancedSpawnScr = instancedSpawn.GetComponent<Room>();
         instantiatedRoomObjects.Add(instancedSpawn);
 
-        for (int i = 0; i < instancedSpawnScr.Doorways.Length; i++)
+        for (int i = 0; i < instancedSpawnScr.Doorways.Length; ++i)
         {
             unusedDoors.Add(new DoorConnection(instancedSpawnScr.Doorways[i], instancedSpawn, i));
         }
@@ -73,7 +73,7 @@ public class DungeonManager : MonoBehaviour
         //instance the room
         //get references
         //add doorways to list
-        for (int i = 0; i < newRoomScript.Doorways.Length; i++)
+        for (int i = 0; i < newRoomScript.Doorways.Length; ++i)
         {
             //if this is the door we used
             if (i == doorConnection.doorIndex)
@@ -91,7 +91,7 @@ public class DungeonManager : MonoBehaviour
         //increment roomcount
 
 
-        roomCount++;
+        ++roomCount;
         yield return null;
     }
 
@@ -115,8 +115,6 @@ public class DungeonManager : MonoBehaviour
             if (CheckBounds(newRoom, linkToAttach, out newRoomLocation, out newRoomRotation, out doorConnection))
             {
                 yield return AddRoom(unusedDoors[linkIndex], doorConnection, newRoomLocation, Quaternion.Euler(newRoomRotation));
-
-
             }
 
 
@@ -155,11 +153,11 @@ public class DungeonManager : MonoBehaviour
         int startingIndex = 0;
         while (startingIndex < deadEnds.Count-1)
         {
-            startingIndex++;
+            ++startingIndex;
             int i = startingIndex;
             while (i < deadEnds.Count)
             {
-                i++;
+                ++i;
                 //if they are (almost) exactly the same
                 if (Vector3.SqrMagnitude(deadEnds[startingIndex].transform.position - deadEnds[i].transform.position) < posTolerance)
                 {

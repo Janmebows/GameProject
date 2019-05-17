@@ -36,8 +36,9 @@ public class CameraController : MonoBehaviour
             rigidbody.freezeRotation = true;
         }
         if (player == null)
+        {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        }
         Camera.main.fieldOfView = cameraSettings.FOV;
     }
 
@@ -62,8 +63,9 @@ public class CameraController : MonoBehaviour
             //and need to find the 'best' target
             FindBestTarget();
             if (target != null)
+            {
                 lockedOn = true;
-
+            }
         }
         if (lockedOn && target != null)
         {
@@ -149,7 +151,8 @@ public class CameraController : MonoBehaviour
                 inputDir = inputRot * inputDir;
                 Transform newTarget = FindBestAppendage(inputDir);
                 yield return null;
-                if (targettedAppendage != newTarget){
+                if (targettedAppendage != newTarget)
+                {
                     targettedAppendage = newTarget;
 
                     yield return new WaitForSeconds(0.5f);
@@ -174,7 +177,10 @@ public class CameraController : MonoBehaviour
                 
                 return targettedAppendageScript.collider.gameObject.transform;
             }
-            else { return null; }
+            else
+            {
+                return null;
+            }
         }
         catch
         {
@@ -193,21 +199,26 @@ public class CameraController : MonoBehaviour
             //max allowed angle + the max possible modified distance (45 + 45)
             float bestVal = 45 + boundsSize*45;
             float angle;
-            float proportionDistance;
+            float relativeDistance;
             float value;
             if (appendages.Count > 1)
             {
                 for (int i = 0; i < appendages.Count; i++)
                 {
                     if (targettedAppendageScript == appendages[i])
+                    {
                         continue;
+                    }
                     angle = Vector3.Angle(inputDirection, appendages[i].collider.transform.position - targettedAppendage.position);
-                    proportionDistance = (targettedAppendage.position - appendages[i].collider.transform.position).magnitude /boundsSize;
+                    
+                    relativeDistance = (targettedAppendage.position - appendages[i].collider.transform.position).magnitude /boundsSize;
                     //if they're basically the same part don't allow for change
-                    if (proportionDistance< 0.01)
+                    if (relativeDistance < 0.01)
+                    {
                         continue;
+                    }
                     //distance / boundsSize should be in [0,1], so we want to multiply this so that 1 is roughly the max angle
-                    value = angle + 90 *  proportionDistance;
+                    value = angle + 90 *  relativeDistance;
                     if (angle < 45 && value < bestVal)
                     {
                         best = appendages[i];

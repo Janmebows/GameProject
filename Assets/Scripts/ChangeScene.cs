@@ -32,11 +32,5 @@ public class ChangeScene : MonoBehaviour {
         }
     }
 
-    //swaps the 0th and 1st elements
-    void Swap<T>(T[] array)
-    {
-        T temp = array[0];
-        array[0] = array[1];
-        array[1] = temp;
-    }
+
 }

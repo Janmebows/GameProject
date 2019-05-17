@@ -18,7 +18,7 @@ public class Room : MonoBehaviour {
     public List<ColliderInfo> roomColliders;
     void Start()
     {
-        ID += 1;
+        ++ID;
         thisID = ID;
         connectedRooms = new List<GameObject>();
     }

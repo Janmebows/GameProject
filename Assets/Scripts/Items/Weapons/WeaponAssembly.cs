@@ -43,7 +43,9 @@ public class WeaponAssembly : MonoBehaviour
         //so it doesn't try and make more weapons if its already trying (stop errors, good fun)
         //can use this class as a means of pre making weapons before they truly get spawned in
         if (assembling)
+        {
             yield break;
+        }
         else
         {
             assembling = true;
@@ -173,7 +175,7 @@ public class WeaponAssembly : MonoBehaviour
         int i = parts.Count;
         while (i > 0)
         {
-            i--;
+            --i;
             WeaponPiece info = parts[i].GetComponent<WeaponPiece>();
             List<ConnectPoint> points= info.connections;
 
@@ -213,7 +215,7 @@ public class WeaponAssembly : MonoBehaviour
             combine[i].mesh = meshFilters[i].sharedMesh;
             combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
             meshFilters[i].gameObject.SetActive(false);
-            i++;
+            ++i;
         }
         MeshFilter thisFilter = parent.AddComponent<MeshFilter>();
         MeshRenderer renderer = parent.AddComponent<MeshRenderer>();
